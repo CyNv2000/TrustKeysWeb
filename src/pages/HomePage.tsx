@@ -96,7 +96,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 onClick={() => onOpenEnquiry()}
                 className="px-6 py-3.5 rounded-xl bg-white hover:bg-amber-50/80 text-slate-800 font-semibold text-sm border border-slate-300 shadow-sm transition-colors flex items-center gap-2"
               >
-                <span>Speak to Tejas Shah</span>
+                <span>Speak to Tejas Shah (Principal Advisor)</span>
               </button>
             </div>
 
