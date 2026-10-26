@@ -42,7 +42,7 @@ async function startServer() {
 
   // Health check
   app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', service: 'TrustKeys Realty API', timestamp: new Date().toISOString() });
+    res.json({ status: 'ok', service: 'TrustKeys API', timestamp: new Date().toISOString() });
   });
 
   // Projects - List & Query
@@ -461,7 +461,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`TrustKeys Realty server operational on port ${PORT}`);
+    console.log(`TrustKeys server operational on port ${PORT}`);
   });
 }
 

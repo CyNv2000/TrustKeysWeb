@@ -273,9 +273,9 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
 
               <div className="flex items-center justify-between text-[11px] text-stone-400 pt-1">
                 <span>RERA Compliant Advisory</span>
-                <a href="tel:+919820198765" className="hover:text-amber-700 flex items-center gap-1 font-medium">
+                <a href="tel:+919987154120" className="hover:text-amber-700 flex items-center gap-1 font-medium">
                   <Phone className="w-3 h-3 text-amber-600" />
-                  <span>Direct Hotline: +91 98201 98765</span>
+                  <span>Direct Hotline: +91 99871 54120</span>
                 </a>
               </div>
             </form>

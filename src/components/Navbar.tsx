@@ -73,8 +73,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
             <span className="text-slate-600">Bandra | Khar | Santacruz | Juhu | Andheri | Borivali</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="tel:+919820198765" className="hover:text-amber-700 text-slate-700 transition-colors flex items-center gap-1 font-medium">
-              <Phone className="w-3 h-3 text-amber-600" /> +91 98201 98765
+            <a href="tel:+919987154120" className="hover:text-amber-700 text-slate-700 transition-colors flex items-center gap-1 font-medium">
+              <Phone className="w-3 h-3 text-amber-600" /> +91 99871 54120
             </a>
             <button 
               onClick={() => handleNavClick('/admin')} 
@@ -101,7 +101,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
                 <span className="font-serif-display text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-700 transition-colors">
                   TrustKeys
                 </span>
-                <span className="text-amber-600 font-serif-display font-bold text-lg">Realty</span>
               </div>
               <span className="block text-[10px] tracking-widest uppercase text-slate-600 font-semibold">
                 Western Mumbai
@@ -138,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
           {/* Right Action Buttons */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="tel:+919820198765"
+              href="tel:+919987154120"
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 transition-colors"
             >
               <Phone className="w-3.5 h-3.5 text-amber-600" />
@@ -211,11 +210,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
 
           <div className="mt-4 pt-4 border-t border-slate-200 space-y-2">
             <a
-              href="tel:+919820198765"
+              href="tel:+919987154120"
               className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 font-semibold text-sm hover:bg-amber-100"
             >
               <Phone className="w-4 h-4 text-amber-600" />
-              <span>Call Advisor: +91 98201 98765</span>
+              <span>Call Advisor: +91 99871 54120</span>
             </a>
             <button
               onClick={() => {

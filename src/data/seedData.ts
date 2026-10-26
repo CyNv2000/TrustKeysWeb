@@ -872,7 +872,7 @@ export const initialProjects: Project[] = [
 export const initialFAQs: FAQ[] = [
   {
     id: 'faq-1',
-    question: 'Why choose TrustKeys Realty instead of mass property listing portals?',
+    question: 'Why choose TrustKeys instead of mass property listing portals?',
     answer: 'Unlike generic aggregators flooded with expired listings, deceptive prices, and spam calls, TrustKeys operates on an exclusive physical verification model. Every property in our portfolio has undergone on-ground inspection, MahaRERA title verification, and direct developer pricing validation. You receive one dedicated Western Mumbai advisor from search to key handover.',
     category: 'Buying',
     sortOrder: 1,
@@ -880,7 +880,7 @@ export const initialFAQs: FAQ[] = [
   },
   {
     id: 'faq-2',
-    question: 'How does TrustKeys Realty verify MahaRERA registration and legal title?',
+    question: 'How does TrustKeys verify MahaRERA registration and legal title?',
     answer: 'Before listing any development, our legal team verifies the developer’s MahaRERA certificate, approved building sanctions, encumbrance certificates, commencement certificates (CC), and escrow bank account records directly from the MahaRERA public portal. We provide buyers with a verified legal check summary free of charge.',
     category: 'RERA & Legal',
     sortOrder: 2,
@@ -922,26 +922,24 @@ export const initialFAQs: FAQ[] = [
 
 export const initialSiteSettings: SiteSettings = {
   id: 'default',
-  businessName: 'TrustKeys Realty',
-  tagline: "Western Mumbai's Trusted Residential Property Advisory",
-  phone: '+91 98201 98765',
-  phoneSecondary: '+91 22 2654 8900',
-  email: 'advisory@trustkeysrealty.com',
-  notificationEmail: 'leads@trustkeysrealty.com',
-  address: 'Level 7, Crescenzo Tower, G Block, Bandra Kurla Complex (BKC), Mumbai, Maharashtra 400051',
+  businessName: 'TrustKeys',
+  tagline: 'Thoughtful homes. Clear decisions.',
+  phone: '+91 99871 54120',
+  phoneSecondary: '',
+  email: 'ts472000@gmail.com',
+  notificationEmail: 'ts472000@gmail.com',
+  address: 'Dheeraj Savera, Siddharth Nagar, Borivali(E), Mumbai',
   officeHours: 'Monday – Saturday: 9:30 AM – 7:30 PM (Sundays by private appointment)',
-  aboutSummary: 'TrustKeys Realty is Western Mumbai’s dedicated residential consultancy. We bring uncompromised transparency, verified RERA documentation, and end-to-end guidance from discovery to key handover across Bandra, Khar, Santacruz, Juhu, Andheri, and Borivali.',
-  advisorName: 'Vikramaditya Singhania',
-  advisorTitle: 'Founder & Principal Real Estate Advisor',
-  advisorRera: 'MahaRERA Reg: A51800049122',
-  advisorBio: 'With over 18 years navigating premium micro-markets across Western Mumbai, Vikramaditya has guided more than 600 discerning families and NRIs. Known for his zero-litigation track record and uncompromising client advocacy, he personally oversees portfolio curation and negotiations.',
+  aboutSummary: 'TrustKeys was started in February 2026 by Tejas Shah and Shweta Shah. Tejas is an ex-banker with 15 years of underwriting experience and gained real-estate experience at Indihomes before starting TrustKeys.',
+  advisorName: 'Tejas Shah',
+  advisorTitle: 'Real Estate Professional',
+  advisorRera: '',
+  advisorBio: 'Tejas Shah is an ex-banker with 15 years of underwriting experience and prior real-estate experience at Indihomes.',
   advisorImage: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80',
-  whatsappNumber: '+919820198765',
+  whatsappNumber: '+919987154120',
   socialLinks: {
-    instagram: 'https://instagram.com/trustkeysrealty',
-    linkedin: 'https://linkedin.com/company/trustkeysrealty',
-    facebook: 'https://facebook.com/trustkeysrealty',
-    youtube: 'https://youtube.com/@trustkeysrealty'
+    instagram: 'https://www.instagram.com/trustkeys_realtors',
+    facebook: 'https://www.facebook.com/people/Trustkeys-Realtors/61585075687649/'
   },
   updatedAt: new Date().toISOString()
 };

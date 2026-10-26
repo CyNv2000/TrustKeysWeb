@@ -394,10 +394,10 @@ export const SellPage: React.FC = () => {
                 Need an Immediate Valuation Assessment?
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Send photos or property location directly on WhatsApp for an immediate confidential discussion with Vikramaditya.
+                Send photos or property location directly on WhatsApp for an immediate confidential discussion with Tejas Shah.
               </p>
               <a
-                href="https://wa.me/919820198765?text=Hello%20TrustKeys%2C%20I%20am%20a%20property%20owner%20looking%20to%20sell%20my%20residence%20in%20Western%20Mumbai."
+                href="https://wa.me/919987154120?text=Hello%20TrustKeys%2C%20I%20am%20a%20property%20owner%20looking%20to%20sell%20my%20residence%20in%20Western%20Mumbai."
                 target="_blank"
                 rel="noreferrer"
                 className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md shadow-emerald-600/25 active:scale-95"

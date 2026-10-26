@@ -638,9 +638,9 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               {/* Direct Hotline */}
               <div className="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200/80 text-xs space-y-1">
                 <span className="font-semibold text-amber-950 block">Assigned Senior Advisor:</span>
-                <p className="text-amber-900">Vikramaditya Singhania</p>
-                <a href="tel:+919820198765" className="font-mono text-amber-800 font-bold block pt-1 hover:underline">
-                  +91 98201 98765
+                <p className="text-amber-900">Tejas Shah</p>
+                <a href="tel:+919987154120" className="font-mono text-amber-800 font-bold block pt-1 hover:underline">
+                  +91 99871 54120
                 </a>
               </div>
             </div>

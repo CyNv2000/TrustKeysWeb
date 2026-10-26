@@ -83,7 +83,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-xs font-semibold">
             <Building2 className="w-4 h-4 text-amber-700" />
-            <span>Advisory Headquarters • Bandra Kurla Complex (BKC)</span>
+            <span>TrustKeys Office • Borivali, Mumbai</span>
           </div>
           <h1 className="font-serif-display text-4xl sm:text-5xl font-bold text-stone-900 tracking-tight">
             Connect with Our Senior Advisory Team
@@ -152,7 +152,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
               {/* WhatsApp Action */}
               <div className="pt-2">
                 <a
-                  href={`https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}?text=Hello%20TrustKeys%20Realty%2C%20I%20would%20like%20to%20schedule%20an%20advisory%20call.`}
+                  href={`https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}?text=Hello%20TrustKeys%2C%20I%20would%20like%20to%20schedule%20an%20advisory%20call.`}
                   target="_blank"
                   rel="noreferrer"
                   className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors shadow-sm"
@@ -169,18 +169,18 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
               <div className="relative aspect-[16/10] w-full bg-stone-200">
                 {/* Embed OpenStreetMap / Static visual tile */}
                 <iframe
-                  title="TrustKeys Realty BKC Office Location"
+                  title="TrustKeys Borivali Office Location"
                   width="100%"
                   height="100%"
                   loading="lazy"
                   className="w-full h-full border-0"
-                  src="https://maps.google.com/maps?q=Bandra+Kurla+Complex+Mumbai&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  src={`https://maps.google.com/maps?q=${encodeURIComponent(settings.address)}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
                 />
               </div>
               <div className="p-4 bg-stone-50 border-t border-stone-200 text-xs text-stone-600 flex items-center justify-between">
-                <span>Crescenzo Tower, BKC G Block</span>
+                <span>{settings.address}</span>
                 <a
-                  href="https://maps.google.com/?q=Crescenzo+Tower+BKC+Mumbai"
+                  href={`https://maps.google.com/?q=${encodeURIComponent(settings.address)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="text-amber-800 font-semibold hover:underline flex items-center gap-1"
@@ -283,7 +283,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. Vikramaditya Mehta"
+                    placeholder="e.g. Tejas Shah"
                     className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
                   />
                 </div>

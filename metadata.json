@@ -1,6 +1,6 @@
 {
-  "name": "TrustKeys Realty",
-  "description": "Premium residential real estate advisory across Western Mumbai. Explore curated homes, new launches, verified resales, and expert Vastu guidance.",
+  "name": "TrustKeys",
+  "description": "Curated homes and real-estate guidance from TrustKeys, based in Borivali, Mumbai.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

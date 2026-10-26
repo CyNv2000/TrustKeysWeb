@@ -338,12 +338,12 @@ export const ResalePage: React.FC = () => {
                 Connect directly with our Resale Desk on WhatsApp for immediate off-market inventory checks and prompt title advice.
               </p>
               <a
-                href="https://wa.me/919820198765?text=Hello%20TrustKeys%20Resale%20Desk%2C%20I%20have%20an%20inquiry%20regarding%20resale%20property%20in%20Western%20Mumbai."
+                href="https://wa.me/919987154120?text=Hello%20TrustKeys%20Resale%20Desk%2C%20I%20have%20an%20inquiry%20regarding%20resale%20property%20in%20Western%20Mumbai."
                 target="_blank"
                 rel="noreferrer"
                 className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md shadow-emerald-600/25 active:scale-95"
               >
-                <span>Chat on WhatsApp (+91 98201 98765)</span>
+                <span>Chat on WhatsApp (+91 99871 54120)</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>

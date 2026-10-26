@@ -96,7 +96,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 onClick={() => onOpenEnquiry()}
                 className="px-6 py-3.5 rounded-xl bg-white hover:bg-amber-50/80 text-slate-800 font-semibold text-sm border border-slate-300 shadow-sm transition-colors flex items-center gap-2"
               >
-                <span>Speak to Vikramaditya (Principal Advisor)</span>
+                <span>Speak to Tejas Shah</span>
               </button>
             </div>
 
@@ -388,7 +388,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <ArrowRight className="w-4 h-4 text-amber-700" />
             </button>
             <a
-              href="https://wa.me/919820198765?text=Hello%20TrustKeys%2C%20I%20am%20exploring%20residential%20properties%20in%20Western%20Mumbai."
+              href="https://wa.me/919987154120?text=Hello%20TrustKeys%2C%20I%20am%20exploring%20residential%20properties%20in%20Western%20Mumbai."
               target="_blank"
               rel="noreferrer"
               className="px-6 py-3.5 rounded-xl bg-amber-700/60 hover:bg-amber-700 text-white font-semibold text-sm border border-white/30 backdrop-blur-xs transition-colors"

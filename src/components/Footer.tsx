@@ -49,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
             <p className="text-sm text-slate-600 leading-relaxed max-w-sm">
               {settings.aboutSummary}
             </p>
-            <div className="p-3.5 bg-white rounded-xl border border-slate-200 shadow-xs space-y-1">
+            {settings.advisorRera && <div className="p-3.5 bg-white rounded-xl border border-slate-200 shadow-xs space-y-1">
               <div className="flex items-center gap-2 text-xs font-semibold text-emerald-700">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 <span>MahaRERA Compliance Mandate</span>
@@ -57,7 +57,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
               <p className="text-[11px] text-slate-500">
                 Principal Advisory Reg: <span className="text-slate-800 font-mono font-medium">{settings.advisorRera}</span>. Every residential development is verified on the official MahaRERA portal.
               </p>
-            </div>
+            </div>}
           </div>
 
           {/* Quick Links */}
@@ -173,6 +173,17 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
                     IG
                   </a>
                 )}
+                {settings.socialLinks?.facebook && (
+                  <a
+                    href={settings.socialLinks.facebook}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors"
+                    aria-label="Facebook"
+                  >
+                    f
+                  </a>
+                )}
                 {settings.socialLinks?.linkedin && (
                   <a
                     href={settings.socialLinks.linkedin}
@@ -196,7 +207,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
                   </a>
                 )}
                 <a
-                  href={`https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}?text=Hello%20TrustKeys%20Realty%2C%20I%20would%20like%20to%20enquire%20about%20properties%20in%20Western%20Mumbai.`}
+                  href={`https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}?text=Hello%20TrustKeys%2C%20I%20would%20like%20to%20enquire%20about%20properties%20in%20Western%20Mumbai.`}
                   target="_blank"
                   rel="noreferrer"
                   className="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center gap-1 shadow-xs transition-colors"
@@ -211,7 +222,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} TrustKeys Realty LLP. All rights reserved. Registered Real Estate Consultant, Western Mumbai.</p>
+          <p>© {new Date().getFullYear()} TrustKeys. All rights reserved. Registered Real Estate Consultant, Western Mumbai.</p>
           <div className="flex items-center gap-6">
             <span className="text-slate-400">RERA Disclaimer: MahaRERA project approvals subject to official government gazettes.</span>
             <button onClick={() => handleLink('/admin')} className="text-slate-500 hover:text-amber-800">

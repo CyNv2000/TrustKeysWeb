@@ -188,7 +188,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
                   {settings.advisorName}
                 </h3>
                 <span className="text-xs text-stone-500 font-medium block">
-                  {settings.advisorTitle} • <strong className="font-mono text-stone-800">{settings.advisorRera}</strong>
+                  {settings.advisorTitle}{settings.advisorRera && <> • <strong className="font-mono text-stone-800">{settings.advisorRera}</strong></>}
                 </span>
               </div>
 
@@ -199,7 +199,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
               <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
                 <div>
                   <span className="text-stone-500 uppercase font-semibold text-[10px] block">Experience</span>
-                  <span className="font-bold text-stone-900 text-sm">18+ Years</span>
+                  <span className="font-bold text-stone-900 text-sm">15 Years</span>
                 </div>
                 <div>
                   <span className="text-stone-500 uppercase font-semibold text-[10px] block">Specialization</span>
@@ -207,8 +207,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
                 </div>
                 <div>
                   <span className="text-stone-500 uppercase font-semibold text-[10px] block">Direct Contact</span>
-                  <a href="tel:+919820198765" className="font-bold text-amber-800 text-sm hover:underline">
-                    +91 98201 98765
+                  <a href="tel:+919987154120" className="font-bold text-amber-800 text-sm hover:underline">
+                    +91 99871 54120
                   </a>
                 </div>
               </div>
@@ -221,12 +221,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
                   Schedule Private Appointment
                 </button>
                 <a
-                  href={`https://wa.me/919820198765?text=Hello%20Vikramaditya%2C%20I%20would%20like%20to%20consult%20with%20you%20regarding%20residential%20property%20in%20Western%20Mumbai.`}
+                  href={`https://wa.me/919987154120?text=Hello%20Tejas%20Shah%2C%20I%20would%20like%20to%20consult%20with%20you%20regarding%20residential%20property%20in%20Western%20Mumbai.`}
                   target="_blank"
                   rel="noreferrer"
                   className="px-5 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs transition-colors flex items-center gap-1.5"
                 >
-                  <span>WhatsApp Vikramaditya</span>
+                  <span>WhatsApp Tejas Shah</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>

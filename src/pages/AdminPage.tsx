@@ -144,7 +144,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
       await adminLogin(passwordInput);
       setIsAuthenticated(true);
       setIsLoggingIn(false);
-      showBanner('Welcome to TrustKeys Realty Advisor Management Portal');
+      showBanner('Welcome to TrustKeys Advisor Management Portal');
     } catch (err: any) {
       setLoginError(err.message || 'Authentication failed. Please verify password.');
       setIsLoggingIn(false);
@@ -460,7 +460,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
               Advisor Portal Access
             </h1>
             <p className="text-xs text-slate-600">
-              TrustKeys Realty management & leads administration console.
+              TrustKeys management & leads administration console.
             </p>
           </div>
 
@@ -523,7 +523,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
               <Building2 className="w-5 h-5" />
             </div>
             <div>
-              <span className="font-serif-display font-bold text-base text-slate-900">TrustKeys Realty</span>
+              <span className="font-serif-display font-bold text-base text-slate-900">TrustKeys</span>
               <span className="text-[10px] text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded font-mono ml-2 uppercase font-bold">Advisor Console</span>
             </div>
           </div>
@@ -1297,7 +1297,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                             <td className="py-3.5 px-4 text-right">
                               <div className="flex items-center justify-end gap-2">
                                 <a
-                                  href={`https://wa.me/${enq.mobile.replace(/\D/g, '')}?text=Hello%20${encodeURIComponent(enq.name)}%2C%20thank%20you%20for%20contacting%20TrustKeys%20Realty%20regarding%20${encodeURIComponent(enq.projectRef || 'Western Mumbai properties')}.`}
+                                  href={`https://wa.me/${enq.mobile.replace(/\D/g, '')}?text=Hello%20${encodeURIComponent(enq.name)}%2C%20thank%20you%20for%20contacting%20TrustKeys%20regarding%20${encodeURIComponent(enq.projectRef || 'Western Mumbai properties')}.`}
                                   target="_blank"
                                   rel="noreferrer"
                                   className="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200"
@@ -1400,7 +1400,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                             <td className="py-3.5 px-4 text-right">
                               <div className="flex items-center justify-end gap-2">
                                 <a
-                                  href={`https://wa.me/${lead.mobile.replace(/\D/g, '')}?text=Hello%20${encodeURIComponent(lead.name)}%2C%20thank%20you%20for%20registering%20your%20property%20at%20${encodeURIComponent(lead.location)}%20with%20TrustKeys%20Realty.`}
+                                  href={`https://wa.me/${lead.mobile.replace(/\D/g, '')}?text=Hello%20${encodeURIComponent(lead.name)}%2C%20thank%20you%20for%20registering%20your%20property%20at%20${encodeURIComponent(lead.location)}%20with%20TrustKeys.`}
                                   target="_blank"
                                   rel="noreferrer"
                                   className="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200"
@@ -1650,7 +1650,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
             </div>
 
             <div className="text-xs">
-              <label className="block font-semibold mb-1">Office Address (BKC)</label>
+              <label className="block font-semibold mb-1">Office Address</label>
               <textarea
                 rows={2}
                 value={settingsForm.address}
