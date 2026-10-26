@@ -481,12 +481,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                placeholder="Enter admin password (default: trustkeys2026)"
+                placeholder="Enter admin password"
                 className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono"
               />
-              <span className="block text-[11px] text-slate-500 mt-1">
-                Default password: <code className="text-amber-800 font-mono font-bold">trustkeys2026</code>
-              </span>
             </div>
 
             <button

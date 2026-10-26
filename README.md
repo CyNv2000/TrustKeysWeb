@@ -43,7 +43,7 @@ cp .env.example .env
 Default `.env` values:
 ```env
 PORT=3000
-ADMIN_PASSWORD="trustkeys2026"
+ADMIN_PASSWORD="set-a-strong-unique-password"
 SESSION_SECRET="trustkeys-super-secret-mumbai-realty-key-2026"
 
 # Optional: Supabase configuration (falls back to local persistent store if omitted)
@@ -91,7 +91,7 @@ In your Supabase project dashboard:
 ## 🔐 Admin Account Credentials
 
 - **Admin Portal URL**: `/admin` or `/admin/leads`
-- **Default Passkey**: `trustkeys2026`
+- **Admin Password**: Set `ADMIN_PASSWORD` in your environment before starting the server.
 - **Password Modification**: Navigate to the **Security & Password** tab inside the Admin Portal to update the passkey at any time.
 
 ---

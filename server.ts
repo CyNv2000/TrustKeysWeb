@@ -24,7 +24,7 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
   }
 
   const token = authHeader.substring(7);
-  if (!activeSessions.has(token) && token !== 'demo-admin-master-token') {
+  if (!activeSessions.has(token)) {
     return res.status(401).json({ error: 'Invalid or expired session token. Please log in again.' });
   }
 
