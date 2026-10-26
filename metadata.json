@@ -1,0 +1,6 @@
+{
+  "name": "TrustKeys Realty",
+  "description": "Premium residential real estate advisory across Western Mumbai. Explore curated homes, new launches, verified resales, and expert Vastu guidance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
