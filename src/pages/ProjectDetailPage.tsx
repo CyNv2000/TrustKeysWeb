@@ -177,7 +177,6 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
   const currentPriceFormatted = selectedConfig ? selectedConfig.priceFormatted : project.startingPriceFormatted;
   const currentPrice = selectedConfig ? selectedConfig.price : project.startingPrice;
   const currentCarpet = selectedConfig ? `${selectedConfig.carpetArea} sq.ft.` : project.carpetArea;
-  const currentParking = selectedConfig ? selectedConfig.parking : project.parking;
   const currentBalcony = selectedConfig ? selectedConfig.balcony : project.balcony;
   const currentFeatures = selectedConfig ? selectedConfig.features : [];
 
@@ -380,7 +379,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                       Select Unit Configuration
                     </h3>
                     <p className="text-xs text-stone-500">
-                      Choose a unit type to view individual pricing, carpet area, parking, and floor plans.
+                      Choose a unit type to view its pricing and carpet area. Project parking is shared across configurations.
                     </p>
                   </div>
                   <span className="text-xs font-medium text-stone-500 font-mono">
@@ -420,8 +419,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 {selectedConfig && (
                   <div className="mt-4 p-4 rounded-2xl bg-stone-50 border border-stone-200 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                     <div>
-                      <span className="text-stone-600 font-semibold block text-[10px] uppercase">Parking Allocation</span>
-                      <span className="font-semibold text-stone-800">{selectedConfig.parking}</span>
+                      <span className="text-stone-600 font-semibold block text-[10px] uppercase">Project Parking</span>
+                      <span className="font-semibold text-stone-800">{project.parking || 'Contact advisor'}</span>
                     </div>
                     <div>
                       <span className="text-stone-600 font-semibold block text-[10px] uppercase">Balcony / Sundeck</span>
@@ -520,35 +519,52 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {project.floorPlans.map((fp) => (
-                    <div
-                      key={fp.id}
-                      className="group border border-stone-200 rounded-2xl overflow-hidden bg-stone-50 hover:shadow-md transition-shadow"
-                    >
-                      <div className="relative aspect-[4/3] bg-white overflow-hidden p-3 flex items-center justify-center">
-                        <img
-                          src={fp.image}
-                          alt={fp.title}
-                          loading="lazy"
-                          decoding="async"
-                          className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform"
-                        />
-                        <button
-                          onClick={() => setViewingFloorPlan(fp.image)}
-                          className="absolute inset-0 bg-stone-950/30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs font-semibold gap-1.5 transition-opacity"
-                        >
-                          <Eye className="w-4 h-4" />
-                          <span>View Full Layout</span>
-                        </button>
+                  {project.floorPlans.map((fp) => {
+                    const isPdf = fp.image.startsWith('data:application/pdf') || /\.pdf(?:$|[?#])/i.test(fp.image);
+                    return (
+                      <div
+                        key={fp.id}
+                        className="group border border-stone-200 rounded-2xl overflow-hidden bg-stone-50 hover:shadow-md transition-shadow"
+                      >
+                        <div className="relative aspect-[4/3] bg-white overflow-hidden p-3 flex items-center justify-center">
+                          {isPdf ? (
+                            <a
+                              href={fp.image}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="flex h-full w-full flex-col items-center justify-center gap-3 text-amber-800"
+                            >
+                              <FileText className="w-12 h-12" />
+                              <span className="text-sm font-semibold">Open floor plan PDF</span>
+                            </a>
+                          ) : (
+                            <>
+                              <img
+                                src={fp.image}
+                                alt={fp.title}
+                                loading="lazy"
+                                decoding="async"
+                                className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform"
+                              />
+                              <button
+                                onClick={() => setViewingFloorPlan(fp.image)}
+                                className="absolute inset-0 bg-stone-950/30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs font-semibold gap-1.5 transition-opacity"
+                              >
+                                <Eye className="w-4 h-4" />
+                                <span>View Full Layout</span>
+                              </button>
+                            </>
+                          )}
+                        </div>
+                        <div className="p-3 border-t border-stone-200 flex items-center justify-between">
+                          <span className="text-xs font-bold text-stone-800">{fp.title}</span>
+                          <span className="text-[10px] bg-stone-200 px-2 py-0.5 rounded font-mono font-semibold text-stone-700">
+                            {fp.type}
+                          </span>
+                        </div>
                       </div>
-                      <div className="p-3 border-t border-stone-200 flex items-center justify-between">
-                        <span className="text-xs font-bold text-stone-800">{fp.title}</span>
-                        <span className="text-[10px] bg-stone-200 px-2 py-0.5 rounded font-mono font-semibold text-stone-700">
-                          {fp.type}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -625,13 +641,26 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               {/* Brochure Download (Shown only when available) */}
               {project.brochureUrl && (
                 <div className="pt-4 border-t border-stone-100">
-                  <button
-                    onClick={() => onOpenEnquiry(project.title, 'Download Brochure')}
-                    className="w-full py-2.5 px-3 rounded-xl bg-stone-50 hover:bg-stone-100 text-stone-700 text-xs font-medium border border-stone-200 flex items-center justify-center gap-2 transition-colors"
-                  >
-                    <Download className="w-4 h-4 text-amber-700" />
-                    <span>Download Brochure & Price Sheet (PDF)</span>
-                  </button>
+                  {project.brochureUrl !== '#download-brochure' ? (
+                    <a
+                      href={project.brochureUrl}
+                      download
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full py-2.5 px-3 rounded-xl bg-stone-50 hover:bg-stone-100 text-stone-700 text-xs font-medium border border-stone-200 flex items-center justify-center gap-2 transition-colors"
+                    >
+                      <Download className="w-4 h-4 text-amber-700" />
+                      <span>Download Brochure (PDF)</span>
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => onOpenEnquiry(project.title, 'Download Brochure')}
+                      className="w-full py-2.5 px-3 rounded-xl bg-stone-50 hover:bg-stone-100 text-stone-700 text-xs font-medium border border-stone-200 flex items-center justify-center gap-2 transition-colors"
+                    >
+                      <Download className="w-4 h-4 text-amber-700" />
+                      <span>Request Brochure & Price Sheet (PDF)</span>
+                    </button>
+                  )}
                 </div>
               )}
 

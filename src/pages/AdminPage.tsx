@@ -101,6 +101,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [projectSaving, setProjectSaving] = useState(false);
   const [deleteConfirmProject, setDeleteConfirmProject] = useState<Project | null>(null);
+  const [floorPlanTitle, setFloorPlanTitle] = useState('');
+  const [floorPlanType, setFloorPlanType] = useState('2 BHK');
 
   // Upload progress simulation
   const [uploadProgress, setUploadProgress] = useState<number | null>(null);
@@ -206,6 +208,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
 
   // --- Project CRUD Actions ---
   const handleStartCreateProject = () => {
+    setFloorPlanTitle('');
+    setFloorPlanType('2 BHK');
     setEditingProject({
       title: '',
       slug: '',
@@ -221,7 +225,6 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
           carpetArea: 850,
           price: 32000000,
           priceFormatted: '₹3.20 Cr',
-          parking: '1 Covered Stilt',
           balcony: '1 Sundeck',
           features: ['East Facing', 'Vastu Friendly']
         }
@@ -238,7 +241,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
       balcony: 'Expansive Sundecks',
       totalFloors: 24,
       vastuNotes: 'Ishanya (North-East) entrance with open East balcony ventilation.',
-      description: 'A prestigious new residential landmark in prime Western Mumbai with verified title and developer track record.',
+      description: '',
       images: [
         'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80'
@@ -316,42 +319,82 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
     }
   };
 
-  // Image Upload Handler
+  const uploadProjectAsset = async (file: File): Promise<string> => {
+    if (file.size > 10 * 1024 * 1024) throw new Error('File exceeds 10MB limit');
+    setUploadProgress(10);
+    try {
+      const base64Data = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve((reader.result as string).split(',')[1]);
+        reader.onerror = () => reject(new Error('Could not read the selected file'));
+        reader.readAsDataURL(file);
+      });
+      setUploadProgress(45);
+      const res = await adminUploadFile(base64Data, file.name, file.type);
+      setUploadProgress(100);
+      return res.url;
+    } finally {
+      setTimeout(() => setUploadProgress(null), 1000);
+    }
+  };
+
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    e.target.value = '';
     if (!file || !editingProject) return;
-
-    // Validate size (10MB)
-    if (file.size > 10 * 1024 * 1024) {
-      showBanner('File exceeds 10MB limit', true);
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+      showBanner('Choose an image file for project photos', true);
       return;
     }
+    try {
+      const url = await uploadProjectAsset(file);
+      setEditingProject(project => project ? { ...project, images: [...(project.images || []), url] } : project);
+      showBanner('Project photo uploaded');
+    } catch (err: any) {
+      showBanner(err.message || 'Photo upload failed', true);
+    }
+  };
 
-    setUploadProgress(10);
-    const reader = new FileReader();
+  const handleFloorPlanUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file || !editingProject) return;
+    if (!['image/jpeg', 'image/png', 'image/webp', 'application/pdf'].includes(file.type)) {
+      showBanner('Choose an image or PDF file for a floor plan', true);
+      return;
+    }
+    try {
+      const url = await uploadProjectAsset(file);
+      const title = floorPlanTitle.trim() || file.name.replace(/\.[^.]+$/, '');
+      const plan: FloorPlanItem = {
+        id: `floor-plan-${Date.now()}`,
+        title,
+        type: floorPlanType.trim() || 'Floor Plan',
+        image: url
+      };
+      setEditingProject(project => project ? { ...project, floorPlans: [...(project.floorPlans || []), plan] } : project);
+      setFloorPlanTitle('');
+      showBanner('Floor plan uploaded');
+    } catch (err: any) {
+      showBanner(err.message || 'Floor plan upload failed', true);
+    }
+  };
 
-    reader.onload = async () => {
-      const base64Data = (reader.result as string).split(',')[1];
-      try {
-        setUploadProgress(45);
-        const res = await adminUploadFile(base64Data, file.name, file.type);
-        setUploadProgress(100);
-
-        // Add to images list
-        const updatedImages = [...(editingProject.images || []), res.url];
-        setEditingProject({
-          ...editingProject,
-          images: updatedImages
-        });
-        showBanner('File uploaded and linked successfully!');
-      } catch (err: any) {
-        showBanner(err.message || 'File upload failed', true);
-      } finally {
-        setTimeout(() => setUploadProgress(null), 1000);
-      }
-    };
-
-    reader.readAsDataURL(file);
+  const handleBrochureUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file || !editingProject) return;
+    if (file.type !== 'application/pdf') {
+      showBanner('Choose a PDF file for the brochure', true);
+      return;
+    }
+    try {
+      const url = await uploadProjectAsset(file);
+      setEditingProject(project => project ? { ...project, brochureUrl: url } : project);
+      showBanner('Brochure uploaded');
+    } catch (err: any) {
+      showBanner(err.message || 'Brochure upload failed', true);
+    }
   };
 
   // CSV Export for Leads
@@ -730,6 +773,29 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                     </div>
 
                     <div>
+                      <label className="block font-semibold text-stone-700 mb-1">Description</label>
+                      <textarea
+                        rows={5}
+                        value={editingProject.description || ''}
+                        onChange={(e) => setEditingProject({ ...editingProject, description: e.target.value })}
+                        placeholder="Describe the project, location, design, and key benefits."
+                        className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs leading-relaxed"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-semibold text-stone-700 mb-1">Project Parking Type</label>
+                      <input
+                        type="text"
+                        value={editingProject.parking || ''}
+                        onChange={(e) => setEditingProject({ ...editingProject, parking: e.target.value })}
+                        placeholder="e.g. Covered podium parking"
+                        className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"
+                      />
+                      <p className="text-[10px] text-stone-500 mt-1">Set once for the building; it applies to every unit configuration.</p>
+                    </div>
+
+                    <div>
                       <label className="block font-semibold text-stone-700 mb-1">MahaRERA Number</label>
                       <input
                         type="text"
@@ -832,20 +898,90 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                     </h3>
 
                     <div>
-                      <label className="block font-semibold text-stone-700 mb-1">Upload New Photo / PDF</label>
+                      <label className="block font-semibold text-stone-700 mb-1">Upload Project Photo</label>
                       <div className="relative border-2 border-dashed border-stone-300 rounded-xl p-3 text-center bg-stone-50 hover:bg-stone-100 cursor-pointer">
                         <input
                           type="file"
-                          accept="image/*,application/pdf"
+                          accept="image/jpeg,image/png,image/webp"
                           onChange={handleImageUpload}
                           className="absolute inset-0 opacity-0 cursor-pointer"
                         />
                         <Upload className="w-5 h-5 text-stone-400 mx-auto mb-1" />
-                        <span className="text-[11px] text-stone-600 block">Click to upload image or PDF (&lt;10MB)</span>
+                        <span className="text-[11px] text-stone-600 block">Click to upload a project photo (&lt;10MB)</span>
                       </div>
                       {uploadProgress !== null && (
                         <div className="mt-1 h-1.5 bg-stone-200 rounded-full overflow-hidden">
                           <div style={{ width: `${uploadProgress}%` }} className="h-full bg-amber-500 transition-all" />
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="pt-3 border-t border-stone-200 space-y-2">
+                      <label className="block font-semibold text-stone-700">Floor Plans</label>
+                      <input
+                        type="text"
+                        value={floorPlanTitle}
+                        onChange={(e) => setFloorPlanTitle(e.target.value)}
+                        placeholder="Plan title (optional; defaults to filename)"
+                        className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"
+                      />
+                      <select
+                        value={floorPlanType}
+                        onChange={(e) => setFloorPlanType(e.target.value)}
+                        className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"
+                      >
+                        {(editingProject.configuration?.length ? editingProject.configuration : ['Floor Plan']).map(type => (
+                          <option key={type} value={type}>{type}</option>
+                        ))}
+                      </select>
+                      <div className="relative border-2 border-dashed border-stone-300 rounded-xl p-3 text-center bg-stone-50 hover:bg-stone-100 cursor-pointer">
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png,image/webp,application/pdf,.pdf"
+                          onChange={handleFloorPlanUpload}
+                          className="absolute inset-0 opacity-0 cursor-pointer"
+                        />
+                        <Upload className="w-5 h-5 text-stone-400 mx-auto mb-1" />
+                        <span className="text-[11px] text-stone-600 block">Upload a floor plan image or PDF (&lt;10MB)</span>
+                      </div>
+                      {editingProject.floorPlans?.map((plan, index) => (
+                        <div key={plan.id} className="flex items-center justify-between gap-2 rounded-lg bg-stone-50 border border-stone-200 px-3 py-2">
+                          <span className="min-w-0 truncate text-[11px] text-stone-700">{plan.title} · {plan.type}</span>
+                          <button
+                            type="button"
+                            onClick={() => setEditingProject(project => project ? { ...project, floorPlans: (project.floorPlans || []).filter((_, i) => i !== index) } : project)}
+                            className="p-1 text-red-600 hover:bg-red-50 rounded"
+                            aria-label={`Remove ${plan.title}`}
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="pt-3 border-t border-stone-200 space-y-2">
+                      <label className="block font-semibold text-stone-700">Project Brochure (PDF)</label>
+                      <div className="relative border-2 border-dashed border-stone-300 rounded-xl p-3 text-center bg-stone-50 hover:bg-stone-100 cursor-pointer">
+                        <input
+                          type="file"
+                          accept="application/pdf,.pdf"
+                          onChange={handleBrochureUpload}
+                          className="absolute inset-0 opacity-0 cursor-pointer"
+                        />
+                        <Upload className="w-5 h-5 text-stone-400 mx-auto mb-1" />
+                        <span className="text-[11px] text-stone-600 block">Upload brochure PDF (&lt;10MB)</span>
+                      </div>
+                      {editingProject.brochureUrl && editingProject.brochureUrl !== '#download-brochure' && (
+                        <div className="flex items-center justify-between gap-2 rounded-lg bg-stone-50 border border-stone-200 px-3 py-2">
+                          <a href={editingProject.brochureUrl} target="_blank" rel="noreferrer" className="min-w-0 truncate text-[11px] text-amber-800 underline">Current brochure</a>
+                          <button
+                            type="button"
+                            onClick={() => setEditingProject({ ...editingProject, brochureUrl: undefined })}
+                            className="p-1 text-red-600 hover:bg-red-50 rounded"
+                            aria-label="Remove brochure"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
                         </div>
                       )}
                     </div>
@@ -904,7 +1040,6 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                           carpetArea: 1250,
                           price: 48000000,
                           priceFormatted: '₹4.80 Cr',
-                          parking: '2 Covered Stilt',
                           balcony: '2 Sundecks',
                           features: ['East Facing', 'Vastu Compliant']
                         };
@@ -922,7 +1057,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
 
                   <div className="space-y-2">
                     {editingProject.configurations?.map((cfg, idx) => (
-                      <div key={cfg.id} className="p-3 bg-stone-50 border border-stone-200 rounded-xl grid grid-cols-1 sm:grid-cols-6 gap-2 items-center text-xs">
+                      <div key={cfg.id} className="p-3 bg-stone-50 border border-stone-200 rounded-xl grid grid-cols-1 sm:grid-cols-5 gap-2 items-center text-xs">
                         <div className="sm:col-span-2">
                           <input
                             type="text"
@@ -960,19 +1095,6 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                             }}
                             placeholder="₹ Price"
                             className="w-full px-2 py-1.5 bg-white border border-stone-300 rounded text-xs font-mono"
-                          />
-                        </div>
-                        <div>
-                          <input
-                            type="text"
-                            value={cfg.parking}
-                            onChange={(e) => {
-                              const updated = [...(editingProject.configurations || [])];
-                              updated[idx].parking = e.target.value;
-                              setEditingProject({ ...editingProject, configurations: updated });
-                            }}
-                            placeholder="Parking"
-                            className="w-full px-2 py-1.5 bg-white border border-stone-300 rounded text-xs"
                           />
                         </div>
                         <div className="text-right">
@@ -1112,6 +1234,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                               <button
                                 onClick={() => {
                                   setEditingProject({ ...p });
+                                  setFloorPlanTitle('');
+                                  setFloorPlanType(p.configuration?.[0] || 'Floor Plan');
                                   setIsCreatingNew(false);
                                   window.scrollTo({ top: 180, behavior: 'smooth' });
                                 }}

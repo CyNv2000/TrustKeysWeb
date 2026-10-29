@@ -14,7 +14,7 @@ export interface ProjectConfiguration {
   carpetArea: number; // in sq.ft
   price: number; // in INR
   priceFormatted: string; // e.g. "₹3.85 Cr"
-  parking: string; // e.g. "1 Covered Stilt"
+  parking?: string; // legacy configuration value; parking is stored at project level
   balcony: string; // e.g. "2 Sundecks"
   features: string[]; // e.g. ["East Facing", "Vaastu Compliant", "Panoramic Arabian Sea View"]
   floorPlanUrl?: string;

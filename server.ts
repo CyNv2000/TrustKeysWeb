@@ -431,8 +431,9 @@ async function startServer() {
       }
 
       // Return formatted data URL or mock CDN URL
-      const isPdf = mimeType === 'application/pdf' || (filename && filename.endsWith('.pdf'));
-      const safePrefix = isPdf ? 'data:application/pdf;base64,' : 'data:image/jpeg;base64,';
+      const isPdf = mimeType === 'application/pdf' || (filename && filename.toLowerCase().endsWith('.pdf'));
+      const resolvedMime = isPdf ? 'application/pdf' : (mimeType || 'image/jpeg');
+      const safePrefix = `data:${resolvedMime};base64,`;
       const cleanDataUrl = fileData.startsWith('data:') ? fileData : `${safePrefix}${fileData}`;
 
       res.json({
