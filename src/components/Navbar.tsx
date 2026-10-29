@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Building2, 
   Phone, 
   Compass, 
   Scale, 
@@ -10,6 +9,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { getCompareList } from '../lib/api';
+import { BrandLogo } from './BrandLogo';
 
 interface NavbarProps {
   currentRoute: string;
@@ -91,21 +91,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
           {/* Brand Logo */}
           <button 
             onClick={() => handleNavClick('/')} 
-            className="flex items-center gap-3 text-left group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg p-1"
+            className="flex items-center text-left group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg p-1"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 flex items-center justify-center text-white shadow-md shadow-amber-500/20">
-              <Building2 className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-serif-display text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-700 transition-colors">
-                  TrustKeys
-                </span>
-              </div>
-              <span className="block text-[10px] tracking-widest uppercase text-slate-600 font-semibold">
-                Western Mumbai
-              </span>
-            </div>
+            <BrandLogo className="w-[68px] h-[52px] transition-transform group-hover:scale-[1.03]" />
           </button>
 
           {/* Desktop Nav Links */}

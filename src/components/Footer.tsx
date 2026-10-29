@@ -1,6 +1,7 @@
 import React from 'react';
-import { Building2, Phone, Mail, MapPin, ShieldCheck, Clock, ExternalLink } from 'lucide-react';
+import { Phone, Mail, MapPin, ShieldCheck, Clock, ExternalLink } from 'lucide-react';
 import { SiteSettings } from '../types';
+import { BrandLogo } from './BrandLogo';
 
 interface FooterProps {
   settings: SiteSettings;
@@ -33,18 +34,11 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 flex items-center justify-center text-white font-bold shadow-md shadow-amber-500/20">
-                <Building2 className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="font-serif-display text-2xl font-bold tracking-tight text-slate-900">
-                  {settings.businessName}
-                </span>
-                <span className="block text-[11px] tracking-wider uppercase text-amber-700 font-semibold">
-                  Western Mumbai Residential Advisory
-                </span>
-              </div>
+            <div className="flex flex-col items-start gap-2">
+              <BrandLogo className="w-[92px] h-[70px]" />
+              <span className="text-[11px] tracking-wider uppercase text-amber-700 font-semibold">
+                Western Mumbai Residential Advisory
+              </span>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed max-w-sm">
               {settings.aboutSummary}
