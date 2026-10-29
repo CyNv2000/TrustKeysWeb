@@ -58,9 +58,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
           <h1 className="font-serif-display text-4xl sm:text-5xl font-bold text-stone-900 tracking-tight">
             Curating Western Mumbai’s Most Desirable Homes with Absolute Integrity
           </h1>
-          <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
-            Founded on the principle that property acquisition should be rooted in physical verification, title certainty, and client-first fiduciary representation.
+          <p className="text-sm sm:text-base text-stone-600 leading-relaxed whitespace-pre-line">
+            {settings.aboutSummary || 'Founded on the principle that property acquisition should be rooted in physical verification, title certainty, and client-first fiduciary representation.'}
           </p>
+          {settings.googleMapsUrl && (
+            <a href={settings.googleMapsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-semibold text-amber-800 hover:underline">
+              <MapPin className="w-3.5 h-3.5" /> Find our office on Google Maps
+            </a>
+          )}
         </section>
 
         {/* 2. Core Pillars Grid */}

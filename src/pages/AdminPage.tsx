@@ -253,10 +253,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
       totalFloors: 24,
       vastuNotes: 'Ishanya (North-East) entrance with open East balcony ventilation.',
       description: '',
-      images: [
-        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80'
-      ],
+      images: [],
+      googleMapsUrl: '',
       reraNumber: 'P51800045000',
       floorPlans: [],
       featured: false,
@@ -793,6 +791,32 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                     </div>
 
                     <div>
+                      <label className="block font-semibold text-stone-700 mb-1">Google Maps Link</label>
+                      <input
+                        type="url"
+                        value={editingProject.googleMapsUrl || ''}
+                        onChange={(e) => setEditingProject({ ...editingProject, googleMapsUrl: e.target.value })}
+                        placeholder="Paste this project's Google Maps link"
+                        className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs font-mono"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-semibold text-stone-700 mb-1">Amenities</label>
+                      <textarea
+                        rows={5}
+                        value={(editingProject.amenities || []).join('\n')}
+                        onChange={(e) => setEditingProject({
+                          ...editingProject,
+                          amenities: e.target.value.split('\n').map(item => item.trim()).filter(Boolean)
+                        })}
+                        placeholder="Add one amenity per line, for example:\nSwimming pool\nGymnasium\nChildren's play area"
+                        className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"
+                      />
+                      <p className="text-[10px] text-stone-500 mt-1">One amenity per line. Leave a line blank to remove it.</p>
+                    </div>
+
+                    <div>
                       <label className="block font-semibold text-stone-700 mb-1">Description</label>
                       <textarea
                         rows={5}
@@ -1020,6 +1044,24 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                         className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs font-mono"
                       />
                     </div>
+
+                    {(editingProject.images || []).length > 0 && (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        {(editingProject.images || []).map((image, index) => (
+                          <div key={`${image}-${index}`} className="relative aspect-[4/3] overflow-hidden rounded-lg border border-stone-200 bg-stone-100">
+                            <img src={image} alt={`Project photo ${index + 1}`} className="w-full h-full object-cover" />
+                            <button
+                              type="button"
+                              onClick={() => setEditingProject(project => project ? { ...project, images: (project.images || []).filter((_, imageIndex) => imageIndex !== index) } : project)}
+                              className="absolute top-1 right-1 rounded-md bg-white/95 p-1 text-red-600 shadow hover:bg-red-50"
+                              aria-label={`Remove project photo ${index + 1}`}
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
                     <div className="pt-2 space-y-2">
                       <label className="flex items-center gap-2 cursor-pointer">
@@ -1805,7 +1847,18 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
             </div>
 
             <div className="text-xs">
-              <label className="block font-semibold mb-1">About Summary</label>
+              <label className="block font-semibold mb-1">Office Google Maps Link</label>
+              <input
+                type="url"
+                value={settingsForm.googleMapsUrl || ''}
+                onChange={(e) => setSettingsForm({ ...settingsForm, googleMapsUrl: e.target.value })}
+                placeholder="Paste the TrustKeys office Google Maps link"
+                className="w-full px-3 py-2 bg-stone-50 border rounded-lg font-mono"
+              />
+            </div>
+
+            <div className="text-xs">
+              <label className="block font-semibold mb-1">About Us Summary</label>
               <textarea
                 rows={3}
                 value={settingsForm.aboutSummary}

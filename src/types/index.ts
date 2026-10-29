@@ -52,6 +52,7 @@ export interface Project {
   vastuNotes: string;
   description: string;
   images: string[];
+  googleMapsUrl?: string;
   reraNumber: string;
   floorPlans: FloorPlanItem[];
   brochureUrl?: string;
@@ -122,6 +123,7 @@ export interface SiteSettings {
   email: string;
   notificationEmail: string;
   address: string;
+  googleMapsUrl?: string;
   officeHours: string;
   aboutSummary: string;
   advisorName: string;

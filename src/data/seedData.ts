@@ -929,6 +929,7 @@ export const initialSiteSettings: SiteSettings = {
   email: 'ts472000@gmail.com',
   notificationEmail: 'ts472000@gmail.com',
   address: 'Dheeraj Savera, Siddharth Nagar, Borivali(E), Mumbai',
+  googleMapsUrl: '',
   officeHours: 'Monday – Saturday: 9:30 AM – 7:30 PM (Sundays by private appointment)',
   aboutSummary: 'TrustKeys was started in February 2026 by Tejas Shah and Shweta Shah. Tejas is an ex-banker with 15 years of underwriting experience and gained real-estate experience at Indihomes before starting TrustKeys.',
   advisorName: 'Tejas Shah',

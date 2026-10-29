@@ -20,7 +20,8 @@ import {
   ChevronRight, 
   AlertCircle,
   Eye,
-  CheckCircle2
+  CheckCircle2,
+  ExternalLink
 } from 'lucide-react';
 import { Project, ProjectConfiguration } from '../types';
 import { fetchProjectBySlug, fetchProjects, addToCompare, removeFromCompare, getCompareList } from '../lib/api';
@@ -285,9 +286,17 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 <h1 className="font-serif-display text-2xl sm:text-4xl font-bold tracking-tight text-white drop-shadow-md">
                   {project.title}
                 </h1>
-                <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-200 mt-1 font-medium">
+                <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-200 mt-1 font-medium">
                   <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
                   <span>{project.address}</span>
+                  <a
+                    href={project.googleMapsUrl || `https://maps.google.com/?q=${encodeURIComponent(project.address)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 text-amber-300 hover:text-amber-200 underline underline-offset-2"
+                  >
+                    Map <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
               </div>
 

@@ -180,7 +180,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
               <div className="p-4 bg-stone-50 border-t border-stone-200 text-xs text-stone-600 flex items-center justify-between">
                 <span>{settings.address}</span>
                 <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent(settings.address)}`}
+                  href={settings.googleMapsUrl || `https://maps.google.com/?q=${encodeURIComponent(settings.address)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="text-amber-800 font-semibold hover:underline flex items-center gap-1"
