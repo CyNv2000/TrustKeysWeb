@@ -22,9 +22,83 @@ const DEFAULT_ADMIN_PASS = process.env.ADMIN_PASSWORD || 'trustkeys2026';
 
 class LocalDatabase {
   private data: DatabaseSchema;
+  private persistenceUrl = (process.env.TRUSTKEYS_PERSISTENCE_URL || '').replace(/\/+$/, '');
+  private persistenceSecret = process.env.TRUSTKEYS_PERSISTENCE_SECRET || '';
+  private persistenceApiKey = process.env.TRUSTKEYS_PERSISTENCE_API_KEY || '';
+  private persistenceReady = false;
+  private persistenceQueue: Promise<void> = Promise.resolve();
+  private persistenceError: Error | null = null;
 
   constructor() {
     this.data = this.loadData();
+  }
+
+  private async persistenceRequest(pathname: string, init: RequestInit = {}): Promise<Response> {
+    const headers = new Headers(init.headers);
+    headers.set('x-trustkeys-persistence-secret', this.persistenceSecret);
+    if (this.persistenceApiKey) headers.set('apikey', this.persistenceApiKey);
+    const response = await fetch(`${this.persistenceUrl}/${pathname}`, { ...init, headers });
+    if (!response.ok) {
+      const body = await response.json().catch(() => ({}));
+      throw new Error(body.error || `Persistent store returned HTTP ${response.status}`);
+    }
+    return response;
+  }
+
+  async initializePersistentStorage(): Promise<void> {
+    if (!this.persistenceUrl || !this.persistenceSecret) {
+      console.warn('Supabase persistence is not configured; using local .data storage.');
+      return;
+    }
+
+    const response = await this.persistenceRequest('state');
+    const persisted = await response.json() as Partial<DatabaseSchema> | null;
+    if (persisted && typeof persisted === 'object') {
+      this.data = { ...this.data, ...persisted };
+      this.saveData(this.data, false);
+      console.log('TrustKeys data restored from Supabase.');
+    }
+
+    this.persistenceReady = true;
+    if (!persisted) {
+      this.queuePersistence(this.data);
+      await this.flushPersistentWrites();
+      console.log('Initial TrustKeys data saved to Supabase.');
+    }
+  }
+
+  private queuePersistence(data: DatabaseSchema): void {
+    const snapshot = JSON.parse(JSON.stringify(data)) as DatabaseSchema;
+    this.persistenceQueue = this.persistenceQueue.then(async () => {
+      await this.persistenceRequest('state', {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(snapshot)
+      });
+      this.persistenceError = null;
+    }).catch(error => {
+      this.persistenceError = error instanceof Error ? error : new Error('Supabase persistence failed');
+      console.error('Supabase persistence write failed:', this.persistenceError.message);
+    });
+  }
+
+  async flushPersistentWrites(): Promise<void> {
+    if (!this.persistenceReady) return;
+    await this.persistenceQueue;
+    if (this.persistenceError) throw this.persistenceError;
+  }
+
+  async uploadPersistentFile(bytes: Uint8Array, filename: string, mimeType: string): Promise<string | null> {
+    if (!this.persistenceReady) return null;
+    const query = new URLSearchParams({ filename });
+    const response = await this.persistenceRequest(`upload?${query.toString()}`, {
+      method: 'POST',
+      headers: { 'content-type': mimeType },
+      body: bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer
+    });
+    const result = await response.json() as { url?: string };
+    if (!result.url) throw new Error('Supabase Storage did not return an asset URL');
+    return result.url;
   }
 
   private loadData(): DatabaseSchema {
@@ -102,7 +176,7 @@ class LocalDatabase {
     return initialData;
   }
 
-  private saveData(dataToSave?: DatabaseSchema) {
+  private saveData(dataToSave?: DatabaseSchema, persistRemotely = true) {
     fs.mkdirSync(DATA_DIR, { recursive: true });
     const tempFile = `${DB_FILE}.${process.pid}.tmp`;
     try {
@@ -117,6 +191,7 @@ class LocalDatabase {
       console.error('Failed to save db.json:', err);
       throw new Error('Could not persist project data. Please retry or contact support.');
     }
+    if (persistRemotely && this.persistenceReady) this.queuePersistence(dataToSave || this.data);
   }
 
   // --- Projects Querying ---

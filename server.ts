@@ -56,11 +56,29 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
 
 async function startServer() {
   fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  await db.initializePersistentStorage();
   const app = express();
 
   // Middleware
   app.use(express.json({ limit: '15mb' }));
   app.use(express.urlencoded({ extended: true, limit: '15mb' }));
+  app.use((req, res, next) => {
+    const originalJson = res.json.bind(res);
+    if (req.method !== 'GET' && req.method !== 'HEAD' && req.method !== 'OPTIONS') {
+      res.json = ((body: unknown) => {
+        if (res.statusCode >= 400) return originalJson(body);
+        void db.flushPersistentWrites().then(() => originalJson(body)).catch(err => {
+          console.error('Could not confirm durable save:', err);
+          if (!res.headersSent) {
+            res.status(503);
+            originalJson({ error: 'Could not confirm the change was saved. Please retry.' });
+          }
+        });
+        return res;
+      }) as typeof res.json;
+    }
+    next();
+  });
   app.use('/uploads', express.static(UPLOADS_DIR, { maxAge: '1d', immutable: true }));
 
   // --- API Endpoints ---
@@ -445,7 +463,7 @@ async function startServer() {
   });
 
   // File Upload with Validation (size and mime type check)
-  app.post('/api/upload', requireAdmin, (req, res) => {
+  app.post('/api/upload', requireAdmin, async (req, res) => {
     try {
       const { filename, fileData, mimeType } = req.body;
 
@@ -473,6 +491,16 @@ async function startServer() {
         'application/pdf': '.pdf'
       };
       const extension = extensionByMime[resolvedMime] || '.bin';
+      const persistentUrl = await db.uploadPersistentFile(bytes, filename || 'uploaded_document', resolvedMime);
+      if (persistentUrl) {
+        return res.json({
+          success: true,
+          url: persistentUrl,
+          size: bytes.length,
+          filename: path.basename(filename || 'uploaded_document')
+        });
+      }
+
       const storedName = `${randomUUID()}${extension}`;
       const storedPath = path.join(UPLOADS_DIR, storedName);
       const tempPath = `${storedPath}.tmp`;
