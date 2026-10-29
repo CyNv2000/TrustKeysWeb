@@ -18,6 +18,18 @@ export const clearAdminToken = (): void => {
   localStorage.removeItem(TOKEN_KEY);
 };
 
+async function adminApiFetch(url: string, options: RequestInit = {}): Promise<Response> {
+  const headers = new Headers(options.headers);
+  const token = getAdminToken();
+  if (token) headers.set('Authorization', `Bearer ${token}`);
+  const response = await fetch(url, { ...options, headers });
+  if (response.status === 401) {
+    clearAdminToken();
+    window.dispatchEvent(new Event('trustkeys:admin-session-expired'));
+  }
+  return response;
+}
+
 // Fetch helper with timeout
 async function fetchWithTimeout(url: string, options: RequestInit = {}, timeoutMs = 8000): Promise<Response> {
   const controller = new AbortController();
@@ -294,12 +306,10 @@ export async function adminDeleteSellLead(id: string): Promise<void> {
 }
 
 export async function adminCreateProject(data: Partial<Project>): Promise<Project> {
-  const token = getAdminToken();
-  const res = await fetch(`${API_BASE}/projects`, {
+  const res = await adminApiFetch(`${API_BASE}/projects`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
   });
@@ -309,12 +319,10 @@ export async function adminCreateProject(data: Partial<Project>): Promise<Projec
 }
 
 export async function adminUpdateProject(id: string, data: Partial<Project>): Promise<Project> {
-  const token = getAdminToken();
-  const res = await fetch(`${API_BASE}/projects/${id}`, {
+  const res = await adminApiFetch(`${API_BASE}/projects/${id}`, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
   });
@@ -324,12 +332,13 @@ export async function adminUpdateProject(id: string, data: Partial<Project>): Pr
 }
 
 export async function adminDeleteProject(id: string): Promise<void> {
-  const token = getAdminToken();
-  const res = await fetch(`${API_BASE}/projects/${id}`, {
+  const res = await adminApiFetch(`${API_BASE}/projects/${id}`, {
     method: 'DELETE',
-    headers: { Authorization: `Bearer ${token}` }
   });
-  if (!res.ok) throw new Error('Failed to delete project');
+  if (!res.ok) {
+    const json = await res.json().catch(() => ({}));
+    throw new Error(json.error || 'Failed to delete project');
+  }
 }
 
 export async function adminCreateFAQ(faq: Partial<FAQ>): Promise<FAQ> {
@@ -380,12 +389,10 @@ export async function adminUpdateSettings(settings: Partial<SiteSettings>): Prom
 }
 
 export async function adminUploadFile(fileData: string, filename: string, mimeType: string): Promise<{ url: string }> {
-  const token = getAdminToken();
-  const res = await fetch(`${API_BASE}/upload`, {
+  const res = await adminApiFetch(`${API_BASE}/upload`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({ fileData, filename, mimeType })
   });

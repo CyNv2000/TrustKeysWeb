@@ -1,5 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
+import fs from 'fs';
 import path from 'path';
+import { createHmac, randomUUID, timingSafeEqual } from 'crypto';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import { createServer as createViteServer } from 'vite';
@@ -12,9 +14,30 @@ const __dirname = path.dirname(__filename);
 
 const PORT = Number(process.env.PORT || 3000);
 const ADMIN_TOKEN_SECRET = process.env.SESSION_SECRET || 'trustkeys-admin-secure-auth-2026';
+const UPLOADS_DIR = path.resolve(__dirname, '.data', 'uploads');
+const ADMIN_TOKEN_TTL_MS = 12 * 60 * 60 * 1000;
 
-// In-memory active tokens
-const activeSessions = new Set<string>();
+function createAdminToken(): string {
+  const payload = Buffer.from(JSON.stringify({ sub: 'admin', exp: Date.now() + ADMIN_TOKEN_TTL_MS })).toString('base64url');
+  const signature = createHmac('sha256', ADMIN_TOKEN_SECRET).update(payload).digest('base64url');
+  return `${payload}.${signature}`;
+}
+
+function isValidAdminToken(token: string): boolean {
+  const [payload, signature, extra] = token.split('.');
+  if (!payload || !signature || extra) return false;
+
+  const expected = createHmac('sha256', ADMIN_TOKEN_SECRET).update(payload).digest();
+  const received = Buffer.from(signature, 'base64url');
+  if (received.length !== expected.length || !timingSafeEqual(received, expected)) return false;
+
+  try {
+    const claims = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
+    return claims.sub === 'admin' && Number.isFinite(claims.exp) && claims.exp > Date.now();
+  } catch {
+    return false;
+  }
+}
 
 // Simple auth middleware
 function requireAdmin(req: Request, res: Response, next: NextFunction) {
@@ -24,7 +47,7 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
   }
 
   const token = authHeader.substring(7);
-  if (!activeSessions.has(token)) {
+  if (!isValidAdminToken(token)) {
     return res.status(401).json({ error: 'Invalid or expired session token. Please log in again.' });
   }
 
@@ -32,11 +55,13 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
 }
 
 async function startServer() {
+  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
   const app = express();
 
   // Middleware
   app.use(express.json({ limit: '15mb' }));
   app.use(express.urlencoded({ extended: true, limit: '15mb' }));
+  app.use('/uploads', express.static(UPLOADS_DIR, { maxAge: '1d', immutable: true }));
 
   // --- API Endpoints ---
 
@@ -382,9 +407,8 @@ async function startServer() {
         return res.status(401).json({ error: 'Invalid password. Please check your credentials.' });
       }
 
-      // Generate session token
-      const token = `tk_${Date.now()}_${Math.random().toString(36).substring(2, 10)}`;
-      activeSessions.add(token);
+      // Signed tokens remain valid across service restarts until they expire.
+      const token = createAdminToken();
 
       res.json({
         success: true,
@@ -418,29 +442,37 @@ async function startServer() {
         return res.status(400).json({ error: 'No file data received' });
       }
 
-      // Allowed types: JPEG, PNG, WEBP, PDF
+      // Store assets separately from project JSON so multiple uploads stay small.
       const allowedMimes = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'];
-      if (mimeType && !allowedMimes.includes(mimeType)) {
+      const resolvedMime = mimeType || ((filename || '').toLowerCase().endsWith('.pdf') ? 'application/pdf' : '');
+      if (!allowedMimes.includes(resolvedMime)) {
         return res.status(400).json({ error: 'Unsupported file type. Only JPEG, PNG, WebP, and PDF documents are allowed.' });
       }
 
-      // Validate base64 size (under 10 MB)
-      const approxBytes = Buffer.byteLength(fileData, 'base64');
-      if (approxBytes > 10 * 1024 * 1024) {
+      const base64Data = typeof fileData === 'string' ? fileData.replace(/^data:[^,]*,/, '') : '';
+      const bytes = Buffer.from(base64Data, 'base64');
+      if (!bytes.length || bytes.length > 10 * 1024 * 1024) {
         return res.status(400).json({ error: 'File size exceeds maximum permitted limit (10MB)' });
       }
 
-      // Return formatted data URL or mock CDN URL
-      const isPdf = mimeType === 'application/pdf' || (filename && filename.toLowerCase().endsWith('.pdf'));
-      const resolvedMime = isPdf ? 'application/pdf' : (mimeType || 'image/jpeg');
-      const safePrefix = `data:${resolvedMime};base64,`;
-      const cleanDataUrl = fileData.startsWith('data:') ? fileData : `${safePrefix}${fileData}`;
+      const extensionByMime: Record<string, string> = {
+        'image/jpeg': '.jpg',
+        'image/png': '.png',
+        'image/webp': '.webp',
+        'application/pdf': '.pdf'
+      };
+      const extension = extensionByMime[resolvedMime] || '.bin';
+      const storedName = `${randomUUID()}${extension}`;
+      const storedPath = path.join(UPLOADS_DIR, storedName);
+      const tempPath = `${storedPath}.tmp`;
+      fs.writeFileSync(tempPath, bytes, { flag: 'wx' });
+      fs.renameSync(tempPath, storedPath);
 
       res.json({
         success: true,
-        url: cleanDataUrl,
-        size: approxBytes,
-        filename: filename || 'uploaded_document'
+        url: `/uploads/${storedName}`,
+        size: bytes.length,
+        filename: path.basename(filename || storedName)
       });
     } catch (err) {
       res.status(500).json({ error: 'File processing failed' });

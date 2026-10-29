@@ -103,13 +103,19 @@ class LocalDatabase {
   }
 
   private saveData(dataToSave?: DatabaseSchema) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+    const tempFile = `${DB_FILE}.${process.pid}.tmp`;
     try {
-      if (!fs.existsSync(DATA_DIR)) {
-        fs.mkdirSync(DATA_DIR, { recursive: true });
-      }
-      fs.writeFileSync(DB_FILE, JSON.stringify(dataToSave || this.data, null, 2), 'utf-8');
+      fs.writeFileSync(tempFile, JSON.stringify(dataToSave || this.data, null, 2), 'utf-8');
+      fs.renameSync(tempFile, DB_FILE);
     } catch (err) {
-      console.error('Failed to save to db.json:', err);
+      try {
+        if (fs.existsSync(tempFile)) fs.unlinkSync(tempFile);
+      } catch {
+        // Keep the original write error for the API response.
+      }
+      console.error('Failed to save db.json:', err);
+      throw new Error('Could not persist project data. Please retry or contact support.');
     }
   }
 

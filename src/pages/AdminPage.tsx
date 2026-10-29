@@ -137,6 +137,17 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
     }
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    const handleSessionExpired = () => {
+      setIsAuthenticated(false);
+      setEditingProject(null);
+      setIsCreatingNew(false);
+      setLoginError('Your admin session expired. Please log in again.');
+    };
+    window.addEventListener('trustkeys:admin-session-expired', handleSessionExpired);
+    return () => window.removeEventListener('trustkeys:admin-session-expired', handleSessionExpired);
+  }, []);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError(null);
@@ -294,8 +305,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
       showBanner('Residence deleted successfully');
       setDeleteConfirmProject(null);
       await loadProjects();
-    } catch {
-      showBanner('Failed to delete residence', true);
+    } catch (err: any) {
+      showBanner(err.message || 'Failed to delete residence', true);
     }
   };
 
@@ -339,20 +350,29 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const files = Array.from(e.target.files || []);
     e.target.value = '';
-    if (!file || !editingProject) return;
-    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-      showBanner('Choose an image file for project photos', true);
-      return;
+    if (files.length === 0 || !editingProject) return;
+
+    const uploadedImages: string[] = [];
+    const errors: string[] = [];
+    for (const file of files) {
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+        errors.push(`${file.name}: choose a JPG, PNG, or WebP image`);
+        continue;
+      }
+      try {
+        uploadedImages.push(await uploadProjectAsset(file));
+      } catch (err: any) {
+        errors.push(`${file.name}: ${err.message || 'upload failed'}`);
+      }
     }
-    try {
-      const url = await uploadProjectAsset(file);
-      setEditingProject(project => project ? { ...project, images: [...(project.images || []), url] } : project);
-      showBanner('Project photo uploaded');
-    } catch (err: any) {
-      showBanner(err.message || 'Photo upload failed', true);
+
+    if (uploadedImages.length > 0) {
+      setEditingProject(project => project ? { ...project, images: [...(project.images || []), ...uploadedImages] } : project);
+      showBanner(`${uploadedImages.length} project photo${uploadedImages.length === 1 ? '' : 's'} uploaded`);
     }
+    if (errors.length > 0) showBanner(errors.join('. '), true);
   };
 
   const handleFloorPlanUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -903,6 +923,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                         <input
                           type="file"
                           accept="image/jpeg,image/png,image/webp"
+                          multiple
                           onChange={handleImageUpload}
                           className="absolute inset-0 opacity-0 cursor-pointer"
                         />
