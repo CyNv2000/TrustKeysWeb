@@ -246,7 +246,8 @@ class LocalDatabase {
   }
 
   getProjectBySlug(slug: string): Project | undefined {
-    return this.data.projects.find(p => p.slug === slug);
+    const normalizedSlug = slug.trim().toLowerCase();
+    return this.data.projects.find(p => p.slug.trim().toLowerCase() === normalizedSlug);
   }
 
   getProjectById(id: string): Project | undefined {

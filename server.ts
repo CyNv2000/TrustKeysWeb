@@ -135,8 +135,11 @@ async function startServer() {
         return res.status(400).json({ error: 'Missing mandatory fields: title, area, startingPrice' });
       }
 
-      // Auto-generate slug if missing
-      const slug = payload.slug || payload.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+      payload.title = String(payload.title).trim();
+      // Always canonicalize slugs so whitespace and case cannot break project links.
+      const slugSource = typeof payload.slug === 'string' && payload.slug.trim() ? payload.slug : payload.title;
+      const slug = slugSource.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      if (!slug) return res.status(400).json({ error: 'Enter a valid project title or URL slug' });
       const existing = db.getProjectBySlug(slug);
       if (existing) {
         payload.slug = `${slug}-${Date.now().toString().slice(-4)}`;
@@ -153,7 +156,15 @@ async function startServer() {
 
   app.put('/api/projects/:id', requireAdmin, (req, res) => {
     try {
-      const updated = db.updateProject(req.params.id, req.body);
+      const updates = { ...req.body };
+      if (typeof updates.title === 'string') updates.title = updates.title.trim();
+      if (typeof updates.slug === 'string') {
+        const slug = updates.slug.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        if (!slug) return res.status(400).json({ error: 'Enter a valid project URL slug' });
+        const existing = db.getProjectBySlug(slug);
+        updates.slug = existing && existing.id !== req.params.id ? `${slug}-${Date.now().toString().slice(-4)}` : slug;
+      }
+      const updated = db.updateProject(req.params.id, updates);
       if (!updated) {
         return res.status(404).json({ error: 'Project not found' });
       }

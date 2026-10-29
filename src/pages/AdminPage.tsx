@@ -279,11 +279,17 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
         editingProject.startingPriceFormatted = `₹${(editingProject.startingPrice / 10000000).toFixed(2)} Cr`;
       }
 
+      const projectData = {
+        ...editingProject,
+        title: (editingProject.title || '').trim(),
+        amenities: (editingProject.amenities || []).map(item => item.trim()).filter(Boolean)
+      };
+
       if (isCreatingNew) {
-        await adminCreateProject(editingProject);
+        await adminCreateProject(projectData);
         showBanner('New residence created and published successfully!');
       } else if (editingProject.id) {
-        await adminUpdateProject(editingProject.id, editingProject);
+        await adminUpdateProject(editingProject.id, projectData);
         showBanner('Residence details updated successfully!');
       }
 
@@ -808,7 +814,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                         value={(editingProject.amenities || []).join('\n')}
                         onChange={(e) => setEditingProject({
                           ...editingProject,
-                          amenities: e.target.value.split('\n').map(item => item.trim()).filter(Boolean)
+                          amenities: e.target.value.split('\n').map(item => item.trim())
                         })}
                         placeholder="Add one amenity per line, for example:\nSwimming pool\nGymnasium\nChildren's play area"
                         className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"

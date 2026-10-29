@@ -131,7 +131,7 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
 // Fetch single project by slug
 export async function fetchProjectBySlug(slug: string): Promise<Project> {
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/projects/${slug}`, {}, 7000);
+    const res = await fetchWithTimeout(`${API_BASE}/projects/${encodeURIComponent(slug)}`, {}, 7000);
     if (!res.ok) {
       throw new Error('Project not found');
     }

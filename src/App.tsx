@@ -52,7 +52,7 @@ export default function App() {
     if (currentPath === '/projects') {
       title = `Projects Portfolio – ${siteSettings.businessName}`;
     } else if (currentPath.startsWith('/projects/')) {
-      const slug = currentPath.replace('/projects/', '');
+      const slug = decodeURIComponent(currentPath.replace('/projects/', ''));
       const formattedSlug = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
       title = `${formattedSlug} – ${siteSettings.businessName}`;
     } else if (currentPath === '/compare') {
@@ -89,7 +89,7 @@ export default function App() {
   const renderRoute = () => {
     // 1. Projects Detail Page: /projects/:slug
     if (currentPath.startsWith('/projects/') && currentPath.length > 10) {
-      const slug = currentPath.replace('/projects/', '');
+      const slug = decodeURIComponent(currentPath.replace('/projects/', ''));
       return (
         <ProjectDetailPage
           slug={slug}
