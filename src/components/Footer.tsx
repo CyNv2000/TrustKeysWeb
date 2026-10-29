@@ -34,11 +34,16 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex flex-col items-start gap-2">
-              <BrandLogo className="w-[92px] h-[70px]" />
-              <span className="text-[11px] tracking-wider uppercase text-amber-700 font-semibold">
-                Western Mumbai Residential Advisory
-              </span>
+            <div className="flex items-center gap-3">
+              <BrandLogo className="w-10 h-11 shrink-0" />
+              <div>
+                <span className="block font-serif-display text-2xl font-bold tracking-tight text-slate-900">
+                  {settings.businessName}
+                </span>
+                <span className="block text-[11px] tracking-wider uppercase text-amber-700 font-semibold">
+                  Western Mumbai Residential Advisory
+                </span>
+              </div>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed max-w-sm">
               {settings.aboutSummary}

@@ -4,12 +4,9 @@ interface BrandLogoProps {
   className?: string;
 }
 
-/** Uses the supplied Trustkeys artwork so the original monogram is preserved. */
+/** Shows only the supplied TK mark; the site name stays in the adjacent text lockup. */
 export const BrandLogo: React.FC<BrandLogoProps> = ({ className = '' }) => (
-  <img
-    src="/trustkeys-logo.png"
-    alt="Trustkeys"
-    className={className}
-    draggable={false}
-  />
+  <svg aria-hidden="true" viewBox="46 10 54 58" className={className} xmlns="http://www.w3.org/2000/svg">
+    <image href="/trustkeys-logo.png" x="0" y="0" width="147" height="110" />
+  </svg>
 );
