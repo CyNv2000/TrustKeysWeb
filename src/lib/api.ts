@@ -109,6 +109,7 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
     }
     return await res.json();
   } catch (err) {
+    if (query.includeUnpublished) throw err;
     console.warn('API fetch failed, falling back to local dataset filter:', err);
     // Client-side fallback if server is starting or network hiccup
     let list = [...initialProjects];
