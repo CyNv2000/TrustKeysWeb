@@ -93,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
             onClick={() => handleNavClick('/')} 
             className="flex items-center gap-3 text-left group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg p-1"
           >
-            <BrandLogo className="w-10 h-11 shrink-0 transition-transform group-hover:scale-[1.03]" />
+            <BrandLogo className="w-12 h-13 shrink-0 transition-transform group-hover:scale-[1.03]" />
             <span>
               <span className="block font-serif-display text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-700 transition-colors">
                 TrustKeys
