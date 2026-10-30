@@ -89,7 +89,10 @@ async function startServer() {
   });
 
   // Projects - List & Query
-  app.get('/api/projects', (req, res) => {
+  app.get('/api/projects', (req, res, next) => {
+    if (req.query.includeUnpublished === 'true') return requireAdmin(req, res, next);
+    next();
+  }, (req, res) => {
     try {
       const {
         search,
@@ -136,7 +139,7 @@ async function startServer() {
   app.get('/api/projects/:slug', (req, res) => {
     try {
       const project = db.getProjectBySlug(req.params.slug);
-      if (!project) {
+      if (!project || !project.published) {
         return res.status(404).json({ error: 'Residence not found' });
       }
       res.json(project);
@@ -355,7 +358,10 @@ async function startServer() {
   });
 
   // FAQs
-  app.get('/api/faqs', (req, res) => {
+  app.get('/api/faqs', (req, res, next) => {
+    if (req.query.all === 'true') return requireAdmin(req, res, next);
+    next();
+  }, (req, res) => {
     try {
       const all = req.query.all === 'true';
       const faqs = db.getFAQs(!all);
