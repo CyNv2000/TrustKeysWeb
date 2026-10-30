@@ -164,7 +164,7 @@ export async function submitEnquiry(data: {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
-  }, 8000);
+  }, 25000);
 
   const json = await res.json();
   if (!res.ok) {
@@ -190,7 +190,7 @@ export async function submitSellLead(data: {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
-  }, 8000);
+  }, 25000);
 
   const json = await res.json();
   if (!res.ok) {
