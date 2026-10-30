@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import fs from 'fs';
 import path from 'path';
-import { createHmac, randomUUID, timingSafeEqual } from 'crypto';
+import { createHmac, randomBytes, randomUUID, timingSafeEqual } from 'crypto';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import { createServer as createViteServer } from 'vite';
@@ -13,7 +13,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PORT = Number(process.env.PORT || 3000);
-const ADMIN_TOKEN_SECRET = process.env.SESSION_SECRET || 'trustkeys-admin-secure-auth-2026';
+if (process.env.NODE_ENV === 'production' && !process.env.SESSION_SECRET) {
+  throw new Error('SESSION_SECRET must be configured in production.');
+}
+const ADMIN_TOKEN_SECRET = process.env.SESSION_SECRET || randomBytes(32).toString('hex');
 const UPLOADS_DIR = path.resolve(__dirname, '.data', 'uploads');
 const ADMIN_TOKEN_TTL_MS = 12 * 60 * 60 * 1000;
 
@@ -55,6 +58,9 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
 }
 
 async function startServer() {
+  if (process.env.NODE_ENV === 'production' && !process.env.ADMIN_PASSWORD) {
+    throw new Error('ADMIN_PASSWORD must be configured in production.');
+  }
   fs.mkdirSync(UPLOADS_DIR, { recursive: true });
   await db.initializePersistentStorage();
   const app = express();
