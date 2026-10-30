@@ -164,7 +164,7 @@ export async function submitEnquiry(data: {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
-  }, 25000);
+  }, 30000);
 
   const json = await res.json();
   if (!res.ok) {
