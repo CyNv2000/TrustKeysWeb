@@ -271,6 +271,11 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
       return;
     }
 
+    if (!Number.isInteger(Number(editingProject.totalFloors)) || Number(editingProject.totalFloors) < 1) {
+      showBanner('Please enter a valid total number of floors (at least 1).', true);
+      return;
+    }
+
     setProjectSaving(true);
 
     try {
@@ -843,6 +848,22 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                         className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"
                       />
                       <p className="text-[10px] text-stone-500 mt-1">Set once for the building; it applies to every unit configuration.</p>
+                    </div>
+
+                    <div>
+                      <label className="block font-semibold text-stone-700 mb-1">Total Floors / Storeys *</label>
+                      <input
+                        type="number"
+                        required
+                        min="1"
+                        step="1"
+                        inputMode="numeric"
+                        value={editingProject.totalFloors ?? ''}
+                        onChange={(e) => setEditingProject({ ...editingProject, totalFloors: e.target.value === '' ? 0 : Number(e.target.value) })}
+                        placeholder="e.g. 24"
+                        className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"
+                      />
+                      <p className="text-[10px] text-stone-500 mt-1">Enter the total number of floors in the building, including the ground floor.</p>
                     </div>
 
                     <div>
