@@ -50,7 +50,6 @@ class LocalDatabase {
     const response = await fetch(`${this.persistenceUrl}/${pathname}`, {
       ...init,
       headers,
-      signal: init.signal || AbortSignal.timeout(20000)
     });
     if (!response.ok) {
       const body = await response.json().catch(() => ({}));
