@@ -37,7 +37,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
             <div className="flex items-center gap-3">
               <BrandLogo className="w-12 h-13 shrink-0" />
               <div>
-                <span className="block font-serif-display text-2xl font-bold tracking-tight text-slate-900">
+                <span className="block font-serif-display text-2xl font-bold tracking-tight text-[#8b642f]">
                   {settings.businessName}
                 </span>
                 <span className="block text-[11px] tracking-wider uppercase text-amber-700 font-semibold">

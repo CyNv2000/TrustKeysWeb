@@ -95,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
           >
             <BrandLogo className="w-12 h-13 shrink-0 transition-transform group-hover:scale-[1.03]" />
             <span>
-              <span className="block font-serif-display text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-700 transition-colors">
+              <span className="block font-serif-display text-xl font-bold tracking-tight text-[#8b642f] group-hover:text-[#6f4b20] transition-colors">
                 TrustKeys
               </span>
               <span className="block text-[10px] tracking-widest uppercase text-slate-600 font-semibold">
