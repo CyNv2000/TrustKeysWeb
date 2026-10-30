@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <BrandLogo className="w-10 h-11 shrink-0" />
+              <BrandLogo className="w-12 h-13 shrink-0" />
               <div>
                 <span className="block font-serif-display text-2xl font-bold tracking-tight text-slate-900">
                   {settings.businessName}
