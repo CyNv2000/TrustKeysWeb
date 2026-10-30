@@ -96,7 +96,14 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
   if (query.includeUnpublished) params.set('includeUnpublished', 'true');
 
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/projects?${params.toString()}`, {}, 7000);
+    const requestOptions: RequestInit = query.includeUnpublished
+      ? { headers: { Authorization: `Bearer ${getAdminToken() || ''}` } }
+      : {};
+    const res = await fetchWithTimeout(`${API_BASE}/projects?${params.toString()}`, requestOptions, 7000);
+    if (res.status === 401 && query.includeUnpublished) {
+      clearAdminToken();
+      window.dispatchEvent(new Event('trustkeys:admin-session-expired'));
+    }
     if (!res.ok) {
       throw new Error(`Failed to fetch residences: ${res.statusText}`);
     }
@@ -194,10 +201,14 @@ export async function submitSellLead(data: {
 // FAQs
 export async function fetchFAQs(all = false): Promise<FAQ[]> {
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/faqs${all ? '?all=true' : ''}`, {}, 6000);
+    const url = `${API_BASE}/faqs${all ? '?all=true' : ''}`;
+    const res = all
+      ? await adminApiFetch(url)
+      : await fetchWithTimeout(url, {}, 6000);
     if (!res.ok) throw new Error('Failed to fetch FAQs');
     return await res.json();
-  } catch {
+  } catch (error) {
+    if (all) throw error;
     return initialFAQs;
   }
 }
