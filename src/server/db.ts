@@ -37,11 +37,7 @@ class LocalDatabase {
     const headers = new Headers(init.headers);
     headers.set('x-trustkeys-persistence-secret', this.persistenceSecret);
     if (this.persistenceApiKey) headers.set('apikey', this.persistenceApiKey);
-    const response = await fetch(`${this.persistenceUrl}/${pathname}`, {
-      ...init,
-      headers,
-      signal: init.signal || AbortSignal.timeout(20000)
-    });
+    const response = await fetch(`${this.persistenceUrl}/${pathname}`, { ...init, headers });
     if (!response.ok) {
       const body = await response.json().catch(() => ({}));
       throw new Error(body.error || `Persistent store returned HTTP ${response.status}`);
