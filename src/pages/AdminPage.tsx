@@ -1147,7 +1147,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
 
                   <div className="space-y-2">
                     {editingProject.configurations?.map((cfg, idx) => (
-                      <div key={cfg.id} className="p-3 bg-stone-50 border border-stone-200 rounded-xl grid grid-cols-1 sm:grid-cols-5 gap-2 items-center text-xs">
+                      <div key={cfg.id} className="p-3 bg-stone-50 border border-stone-200 rounded-xl grid grid-cols-1 sm:grid-cols-6 gap-2 items-center text-xs">
                         <div className="sm:col-span-2">
                           <input
                             type="text"
@@ -1185,6 +1185,20 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                             }}
                             placeholder="₹ Price"
                             className="w-full px-2 py-1.5 bg-white border border-stone-300 rounded text-xs font-mono"
+                          />
+                        </div>
+                        <div>
+                          <input
+                            type="text"
+                            value={cfg.balcony || ''}
+                            onChange={(e) => {
+                              const updated = [...(editingProject.configurations || [])];
+                              updated[idx] = { ...updated[idx], balcony: e.target.value };
+                              setEditingProject({ ...editingProject, configurations: updated });
+                            }}
+                            placeholder="Balcony / Sundeck (e.g. 1 Sundeck)"
+                            aria-label={`Balcony / Sundeck for ${cfg.type}`}
+                            className="w-full px-2 py-1.5 bg-white border border-stone-300 rounded text-xs"
                           />
                         </div>
                         <div className="text-right">
