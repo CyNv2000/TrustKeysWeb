@@ -264,7 +264,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               height={600}
               loading="eager"
               decoding="async"
-              className="w-full h-full object-cover transition-opacity duration-300"
+              className="w-full h-full object-contain transition-opacity duration-300"
             />
             
             {/* Top Badges Overlay */}

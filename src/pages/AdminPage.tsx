@@ -1096,7 +1096,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {(editingProject.images || []).map((image, index) => (
                           <div key={`${image}-${index}`} className="relative aspect-[4/3] overflow-hidden rounded-lg border border-stone-200 bg-stone-100">
-                            <img src={image} alt={`Project photo ${index + 1}`} className="w-full h-full object-cover" />
+                            <img src={image} alt={`Project photo ${index + 1}`} className="w-full h-full object-contain" />
                             <button
                               type="button"
                               onClick={() => setEditingProject(project => project ? { ...project, images: (project.images || []).filter((_, imageIndex) => imageIndex !== index) } : project)}
