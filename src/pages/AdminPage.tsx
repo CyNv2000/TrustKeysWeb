@@ -26,6 +26,7 @@ import {
   MessageSquare, 
   Phone, 
   Mail, 
+  MapPin,
   ExternalLink,
   ChevronDown,
   ChevronUp
