@@ -37,8 +37,10 @@ import {
   Enquiry, 
   SellLead, 
   FAQ, 
-  SiteSettings 
+  SiteSettings,
+  MicroMarket
 } from '../types';
+import { initialSiteSettings } from '../data/seedData';
 import { 
   adminLogin, 
   getAdminToken, 
@@ -75,7 +77,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   // Active Admin Tab
-  const [activeTab, setActiveTab] = useState<'projects' | 'leads' | 'faqs' | 'settings' | 'security'>(
+  const [activeTab, setActiveTab] = useState<'projects' | 'leads' | 'faqs' | 'settings' | 'micro-markets' | 'security'>(
     (initialTab as any) || 'projects'
   );
 
@@ -121,6 +123,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
   // --- SETTINGS TAB STATE ---
   const [settingsForm, setSettingsForm] = useState<SiteSettings | null>(null);
   const [settingsSaving, setSettingsSaving] = useState(false);
+  const [microMarkets, setMicroMarkets] = useState<MicroMarket[]>(initialSiteSettings.microMarkets || []);
+  const [microMarketsSaving, setMicroMarketsSaving] = useState(false);
 
   // --- SECURITY TAB STATE ---
   const [newPassword, setNewPassword] = useState('');
@@ -212,6 +216,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
     try {
       const s = await fetchSiteSettings();
       setSettingsForm(s);
+      setMicroMarkets(s.microMarkets || initialSiteSettings.microMarkets || []);
     } catch {
       // ignore
     }
@@ -476,6 +481,19 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
     }
   };
 
+  const handleSaveMicroMarkets = async () => {
+    setMicroMarketsSaving(true);
+    try {
+      const updated = await adminUpdateSettings({ microMarkets });
+      setMicroMarkets(updated.microMarkets || microMarkets);
+      showBanner('Micro-market content updated successfully!');
+    } catch (err: any) {
+      showBanner(err.message || 'Failed to save micro-market content', true);
+    } finally {
+      setMicroMarketsSaving(false);
+    }
+  };
+
   // --- Password Change ---
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -627,6 +645,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
             { id: 'leads', label: 'Buyer & Seller Leads', icon: Users2, count: enquiries.length + sellLeads.length },
             { id: 'faqs', label: 'FAQs Management', icon: HelpCircle, count: faqsList.length },
             { id: 'settings', label: 'Business & Advisor Info', icon: SettingsIcon },
+            { id: 'micro-markets', label: 'Micro-Markets', icon: MapPin },
             { id: 'security', label: 'Security & Password', icon: Key }
           ].map((tab) => {
             const isActive = activeTab === tab.id;
@@ -1960,6 +1979,51 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
               {settingsSaving ? 'Saving Changes...' : 'Save Site Settings'}
             </button>
           </form>
+        )}
+
+        {/* ========================================================================= */}
+        {/* MICRO-MARKETS CONTENT MANAGEMENT */}
+        {/* ========================================================================= */}
+        {activeTab === 'micro-markets' && (
+          <div className="space-y-6">
+            <div className="bg-white p-5 rounded-2xl border border-stone-200">
+              <h2 className="font-serif-display text-lg font-bold text-stone-900">Western Mumbai Micro-Markets</h2>
+              <p className="text-xs text-stone-500 mt-1">Update the heading text, descriptions, price ranges and project filter for each homepage card. Images are fixed and cannot be changed here.</p>
+            </div>
+
+            {microMarkets.map((market, index) => (
+              <div key={market.id} className="bg-white rounded-2xl border border-stone-200 p-5 space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="font-bold text-sm text-stone-900">Card {index + 1}</h3>
+                  <span className="text-[10px] text-stone-500">Image managed in code</span>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-stone-700 mb-1">Neighbourhood title</label>
+                  <input type="text" value={market.name} onChange={(e) => setMicroMarkets(items => items.map((item, i) => i === index ? { ...item, name: e.target.value } : item))} className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-stone-700 mb-1">Description</label>
+                  <textarea rows={3} value={market.desc} onChange={(e) => setMicroMarkets(items => items.map((item, i) => i === index ? { ...item, desc: e.target.value } : item))} className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs" />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-semibold text-stone-700 mb-1">Price range</label>
+                    <input type="text" value={market.priceAvg} onChange={(e) => setMicroMarkets(items => items.map((item, i) => i === index ? { ...item, priceAvg: e.target.value } : item))} placeholder="e.g. ₹65,000 - ₹1,10,000 / sq.ft." className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-stone-700 mb-1">Project area filter</label>
+                    <input type="text" value={market.areaFilter} onChange={(e) => setMicroMarkets(items => items.map((item, i) => i === index ? { ...item, areaFilter: e.target.value } : item))} className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs" />
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            <div className="flex justify-end">
+              <button type="button" onClick={handleSaveMicroMarkets} disabled={microMarketsSaving} className="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md disabled:opacity-50">
+                {microMarketsSaving ? 'Saving...' : 'Save Micro-Markets'}
+              </button>
+            </div>
+          </div>
         )}
 
         {/* ========================================================================= */}
