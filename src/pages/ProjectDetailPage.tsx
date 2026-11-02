@@ -256,7 +256,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         
         {/* 2. Photo Gallery & Hero Media */}
         <section className="space-y-4">
-          <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full rounded-3xl overflow-hidden bg-stone-900 shadow-xl border border-stone-200">
+          <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-[16/7] w-full rounded-3xl overflow-hidden bg-stone-900 shadow-xl border border-stone-200">
             <img
               src={project.images[activeImageIdx] || project.images[0]}
               alt={`${project.title} view ${activeImageIdx + 1}`}
@@ -268,7 +268,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             />
             
             {/* Top Badges Overlay */}
-            <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
+            <div className="absolute top-4 left-4 right-4 z-10 flex flex-wrap items-center gap-2">
               {getStatusBadge(project.status)}
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/95 backdrop-blur-md text-slate-900 border border-slate-200 shadow-xs">
                 {project.category}
@@ -281,7 +281,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             </div>
 
             {/* Bottom Info Gradient */}
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/70 via-slate-950/40 to-transparent p-6 sm:p-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-white">
+            <div className="absolute bottom-0 inset-x-0 z-10 bg-gradient-to-t from-slate-950/80 via-slate-950/45 to-transparent p-6 sm:p-8 pt-16 flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-white">
               <div>
                 <h1 className="font-serif-display text-2xl sm:text-4xl font-bold tracking-tight text-white drop-shadow-md">
                   {project.title}
