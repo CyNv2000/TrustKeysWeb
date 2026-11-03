@@ -155,7 +155,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               </span>
               {[
                 { label: 'Ready to Move', val: 'Ready', badge: 'Immediate Handover', color: 'bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100' },
-                { label: 'Ongoing Developments', val: 'Ongoing', badge: 'Under Construction', color: 'bg-amber-50 text-amber-800 border-amber-300 hover:bg-amber-100' },
+                { label: 'Ongoing Developments', val: 'Ongoing', badge: 'Under Construction', color: 'bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200' },
                 { label: 'Upcoming / New Launches', val: 'Upcoming', badge: 'Pre-launch Rates', color: 'bg-sky-50 text-sky-800 border-sky-300 hover:bg-sky-100' }
               ].map(item => (
                 <button
@@ -175,7 +175,6 @@ export const HomePage: React.FC<HomePageProps> = ({
                 Categories:
               </span>
               {[
-                'Luxury Apartments',
                 'Penthouse Suites',
                 'Boutique Seafront',
                 'Gated Community'
@@ -302,7 +301,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 onClick={() => handleApplyPreset('area', market.areaFilter)}
                 className="group relative rounded-2xl overflow-hidden bg-white border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
               >
-                <div className="aspect-[16/9] w-full overflow-hidden bg-stone-100">
+                <div className="aspect-[4/3] w-full overflow-hidden bg-sky-100">
                   <img
                     src={market.img}
                     alt={market.name}
@@ -314,11 +313,9 @@ export const HomePage: React.FC<HomePageProps> = ({
                   />
         <span className="pointer-events-none absolute bottom-2 right-2 z-10 text-[10px] font-bold tracking-wider text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md text-slate-900 text-[11px] font-bold px-3 py-1 rounded-lg border border-slate-200 shadow-sm">
-                    {market.priceAvg}
-                  </div>
                 </div>
                 <div className="p-5">
+                  <span className="inline-flex mb-2 bg-sky-50 text-sky-900 border border-sky-100 text-[11px] font-bold px-3 py-1 rounded-lg">{market.priceAvg}</span>
                   <h3 className="font-serif-display text-base font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
                     {market.name}
                   </h3>
