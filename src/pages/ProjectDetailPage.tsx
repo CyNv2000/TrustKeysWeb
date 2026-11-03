@@ -186,20 +186,20 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
     switch (status) {
       case 'Ready':
         return (
-          <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-700 text-white">
+          <span style={{ backgroundColor: "var(--status-ready-bg, #047857)" }} className="px-3 py-1 rounded-full text-xs font-bold text-white">
             Ready to Move
           </span>
         );
       case 'Ongoing':
         return (
-          <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-600 text-white">
+          <span style={{ backgroundColor: "var(--status-ongoing-bg, #64748b)" }} className="px-3 py-1 rounded-full text-xs font-bold text-white">
             Under Construction
           </span>
         );
       case 'Upcoming':
       default:
         return (
-          <span className="px-3 py-1 rounded-full text-xs font-bold bg-sky-700 text-white">
+          <span style={{ backgroundColor: "var(--status-upcoming-bg, #0369a1)" }} className="px-3 py-1 rounded-full text-xs font-bold text-white">
             New Launch / Upcoming
           </span>
         );
