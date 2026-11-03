@@ -142,6 +142,7 @@ export interface SiteSettings {
   advisorImage: string;
   whatsappNumber: string;
   microMarkets?: MicroMarket[];
+  statusBadgeColors?: { ready: string; ongoing: string; upcoming: string };
   socialLinks: {
     instagram?: string;
     linkedin?: string;
