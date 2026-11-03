@@ -88,7 +88,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, isF
       className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-amber-400 transition-all duration-300 flex flex-col cursor-pointer"
     >
       {/* Media Carousel Header */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-sky-100">
         <img
           src={images[currentImgIdx]}
           alt={`${project.title} - ${project.area}`}
@@ -98,6 +98,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, isF
           decoding="async"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
+        <span className="pointer-events-none absolute bottom-2 right-2 z-10 text-[10px] font-bold tracking-wider text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
 
         {/* Soft Sunlit Gradient Overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-slate-950/20 pointer-events-none" />
