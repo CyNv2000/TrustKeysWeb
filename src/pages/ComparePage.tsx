@@ -172,7 +172,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({
                   {projects.map((p) => (
                     <th key={p.id} className="p-4 sm:p-6 w-1/4 min-w-[260px] align-top">
                       <div className="space-y-3">
-                        <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-stone-100">
+                        <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-sky-100">
                           <img
                             src={p.images[0]}
                             alt={p.title}
@@ -180,6 +180,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({
                             height={250}
                             className="w-full h-full object-cover"
                           />
+        <span className="pointer-events-none absolute bottom-2 right-2 z-10 text-[10px] font-bold tracking-wider text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
                           <button
                             onClick={() => handleRemove(p.slug)}
                             className="absolute top-2 right-2 p-1.5 rounded-lg bg-stone-900/80 hover:bg-red-600 text-white text-xs transition-colors"
