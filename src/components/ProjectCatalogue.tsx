@@ -40,7 +40,6 @@ const NEIGHBOURHOODS = [
 const BHK_OPTIONS = ['All', '1 BHK', '2 BHK', '3 BHK', '4 BHK', 'Penthouse'];
 
 const PROPERTY_TYPES = [
-  'Luxury Apartments',
   'Premium Residences',
   'Penthouse Suites',
   'Boutique Seafront',
@@ -398,12 +397,14 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
               {[
                 { val: 'All', label: 'All Stages', activeClass: 'bg-amber-500 text-white' },
                 { val: 'Ready', label: 'Ready to Move', activeClass: 'bg-emerald-600 text-white', color: 'hover:text-emerald-700 bg-emerald-50 text-emerald-800 border border-emerald-200' },
-                { val: 'Ongoing', label: 'Under Construction', activeClass: 'bg-amber-500 text-white', color: 'hover:text-amber-700 bg-amber-50 text-amber-800 border border-amber-200' },
+                { val: 'Ongoing', label: 'Under Construction', activeClass: 'text-white', color: 'hover:text-slate-800 bg-slate-100 text-slate-700 border border-slate-200' },
                 { val: 'Upcoming', label: 'New Launch', activeClass: 'bg-sky-600 text-white', color: 'hover:text-sky-700 bg-sky-50 text-sky-800 border border-sky-200' }
               ].map(st => (
                 <button
                   key={st.val}
                   onClick={() => setSelectedStatus(st.val)}
+                  style={st.val === 'Ongoing' && selectedStatus === st.val ? { backgroundColor: 'var(--status-ongoing-bg, #64748b)' } : undefined}
+
                   className={`px-3 py-1 rounded-lg font-bold transition-colors ${
                     selectedStatus === st.val
                       ? `${st.activeClass} shadow-xs`
