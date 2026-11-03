@@ -34,7 +34,10 @@ export default function App() {
 
   // Load site settings on mount
   useEffect(() => {
-    fetchSiteSettings().then(setSiteSettings).catch(console.error);
+    const refreshSettings = () => fetchSiteSettings().then(setSiteSettings).catch(console.error);
+    refreshSettings();
+    window.addEventListener('trustkeys:settings-updated', refreshSettings);
+    return () => window.removeEventListener('trustkeys:settings-updated', refreshSettings);
   }, []);
 
   // Sync browser back/forward buttons
@@ -182,7 +185,14 @@ export default function App() {
   const isAdminRoute = currentPath.startsWith('/admin');
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50/60 text-slate-900 selection:bg-amber-500 selection:text-white">
+    <div
+      className="flex flex-col min-h-screen bg-slate-50/60 text-slate-900 selection:bg-amber-500 selection:text-white"
+      style={{
+        ["--status-ready-bg" as any]: siteSettings.statusBadgeColors?.ready || "#047857",
+        ["--status-ongoing-bg" as any]: siteSettings.statusBadgeColors?.ongoing || "#64748b",
+        ["--status-upcoming-bg" as any]: siteSettings.statusBadgeColors?.upcoming || "#0369a1"
+      }}
+    >
       {/* Public Navbar (Hidden on Admin pages to preserve dedicated dashboard layout) */}
       {!isAdminRoute && (
         <Navbar
