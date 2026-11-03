@@ -216,7 +216,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
   const loadSettings = async () => {
     try {
       const s = await fetchSiteSettings();
-      setSettingsForm(s);
+      setSettingsForm({ ...s, statusBadgeColors: { ready: '#047857', ongoing: '#64748b', upcoming: '#0369a1', ...(s.statusBadgeColors || {}) } });
       setMicroMarkets(s.microMarkets || initialSiteSettings.microMarkets || []);
     } catch {
       // ignore
@@ -528,6 +528,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
     setSettingsSaving(true);
     try {
       await adminUpdateSettings(settingsForm);
+      window.dispatchEvent(new Event('trustkeys:settings-updated'));
       showBanner('Site settings & business info updated successfully!');
     } catch (err: any) {
       showBanner(err.message || 'Failed to save settings', true);
@@ -1835,6 +1836,26 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
               Business Profile & Public Settings
             </h2>
 
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 space-y-4">
+              <div>
+                <h3 className="font-bold text-slate-900 text-sm">Project Status Badge Colours</h3>
+                <p className="text-[11px] text-slate-500 mt-1">Choose the colours used for project stages across the public website. Save settings to apply your choices.</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3">
+                  <input type="color" value={settingsForm.statusBadgeColors?.ready || "#047857"} onChange={(e) => setSettingsForm({ ...settingsForm, statusBadgeColors: { ready: e.target.value, ongoing: settingsForm.statusBadgeColors?.ongoing || "#64748b", upcoming: settingsForm.statusBadgeColors?.upcoming || "#0369a1" } })} className="h-10 w-12 cursor-pointer rounded border-0 bg-transparent" />
+                  <span className="text-xs font-semibold text-slate-700">Ready to Move</span>
+                </label>
+                <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3">
+                  <input type="color" value={settingsForm.statusBadgeColors?.ongoing || "#64748b"} onChange={(e) => setSettingsForm({ ...settingsForm, statusBadgeColors: { ready: settingsForm.statusBadgeColors?.ready || "#047857", ongoing: e.target.value, upcoming: settingsForm.statusBadgeColors?.upcoming || "#0369a1" } })} className="h-10 w-12 cursor-pointer rounded border-0 bg-transparent" />
+                  <span className="text-xs font-semibold text-slate-700">Under Construction</span>
+                </label>
+                <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3">
+                  <input type="color" value={settingsForm.statusBadgeColors?.upcoming || "#0369a1"} onChange={(e) => setSettingsForm({ ...settingsForm, statusBadgeColors: { ready: settingsForm.statusBadgeColors?.ready || "#047857", ongoing: settingsForm.statusBadgeColors?.ongoing || "#64748b", upcoming: e.target.value } })} className="h-10 w-12 cursor-pointer rounded border-0 bg-transparent" />
+                  <span className="text-xs font-semibold text-slate-700">New Launch / Upcoming</span>
+                </label>
+              </div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
                 <label className="block font-semibold mb-1">Business Name</label>
