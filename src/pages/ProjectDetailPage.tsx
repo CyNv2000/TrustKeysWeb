@@ -265,9 +265,6 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   <ShieldCheck className="w-3 h-3 inline mr-1" /> RERA Registered
                 </span>
               )}
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white text-slate-900 border border-stone-200">
-                {project.category}
-              </span>
             </div>
             <h1 className="font-serif-display text-2xl font-bold tracking-tight text-slate-950">
               {project.title}
@@ -312,9 +309,6 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             {/* Top Badges Overlay */}
             <div className="hidden sm:flex absolute top-4 left-4 right-4 z-10 flex-wrap items-center gap-2">
               {getStatusBadge(project.status)}
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/95 backdrop-blur-md text-slate-900 border border-slate-200 shadow-xs">
-                {project.category}
-              </span>
               {project.featured && (
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-400 text-slate-950 flex items-center gap-1 shadow-sm border border-amber-300">
                   <Sparkles className="w-3.5 h-3.5" /> Featured Residence
