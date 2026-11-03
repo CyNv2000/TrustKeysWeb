@@ -312,6 +312,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+        <span className="pointer-events-none absolute bottom-2 right-2 z-10 text-[10px] font-bold tracking-wider text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
                   <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md text-slate-900 text-[11px] font-bold px-3 py-1 rounded-lg border border-slate-200 shadow-sm">
                     {market.priceAvg}
