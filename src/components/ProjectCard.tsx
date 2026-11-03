@@ -88,7 +88,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, isF
       className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-amber-400 transition-all duration-300 flex flex-col cursor-pointer"
     >
       {/* Media Carousel Header */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-sky-100">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-sky-100">
         <img
           src={images[currentImgIdx]}
           alt={`${project.title} - ${project.area}`}
@@ -100,22 +100,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, isF
         />
         <span className="pointer-events-none absolute bottom-2 right-2 z-10 text-[10px] font-bold tracking-wider text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
 
-        {/* Soft Sunlit Gradient Overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-slate-950/20 pointer-events-none" />
-
-        {/* Top Badges */}
-        <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-auto">
-          <div className="flex items-center gap-1.5">
-            {getStatusBadge(project.status)}
-            {project.featured && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-400 text-slate-950 shadow-sm border border-amber-300">
-                <Sparkles className="w-3 h-3 text-slate-950" />
-                Featured
-              </span>
-            )}
-          </div>
-
-          {/* Quick Compare Button */}
+        {/* Quick Compare Button */}
+        <div className="absolute top-3 right-3 pointer-events-auto">
           <button
             onClick={handleCompareToggle}
             className={`px-2 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md transition-all flex items-center gap-1 shadow-sm ${
@@ -171,18 +157,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, isF
           </>
         )}
 
-        {/* Bottom Locality Badge */}
-        <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-xs">
-          <span className="inline-flex items-center gap-1 text-white font-semibold drop-shadow-sm">
-            <MapPin className="w-3.5 h-3.5 text-amber-400" />
-            {project.area}
-          </span>
-        </div>
       </div>
 
       {/* Body Content */}
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex flex-wrap items-center gap-1.5">
+              {getStatusBadge(project.status)}
+              {project.featured && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-200">
+                  <Sparkles className="w-3 h-3" />
+                  Featured
+                </span>
+              )}
+            </div>
+            <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-600">
+              <MapPin className="w-3.5 h-3.5 text-slate-400" />
+              {project.area}
+            </span>
+          </div>
           {/* Title & MahaRERA */}
           <div className="mb-2">
             <h3 className="font-serif-display text-lg font-bold text-slate-900 group-hover:text-amber-700 transition-colors line-clamp-1">
