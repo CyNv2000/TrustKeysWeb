@@ -256,6 +256,47 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         
         {/* 2. Photo Gallery & Hero Media */}
         <section className="space-y-4">
+          {/* Mobile project information sits above the image so it never covers the property. */}
+          <div className="sm:hidden space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
+              {getStatusBadge(project.status)}
+              {project.reraNumber && (
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white">
+                  <ShieldCheck className="w-3 h-3 inline mr-1" /> RERA Registered
+                </span>
+              )}
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white text-slate-900 border border-stone-200">
+                {project.category}
+              </span>
+            </div>
+            <h1 className="font-serif-display text-2xl font-bold tracking-tight text-slate-950">
+              {project.title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-2 text-sm text-stone-600">
+              <MapPin className="w-4 h-4 text-amber-600 shrink-0" />
+              <span>{project.address}</span>
+              <a
+                href={project.googleMapsUrl || `https://maps.google.com/?q=${encodeURIComponent(project.address)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-amber-700 underline underline-offset-2"
+              >
+                Map <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+            <div className="pt-1">
+              <span className="block text-[10px] uppercase font-bold tracking-wider text-stone-500">
+                {selectedConfig ? `${selectedConfig.type} Starting Price` : 'Starting Price'}
+              </span>
+              <span className="font-serif-display text-2xl font-bold text-slate-950">
+                {currentPriceFormatted}
+              </span>
+              <span className="block text-[11px] text-stone-500">
+                Possession: <strong className="text-slate-800 font-semibold">{project.possession}</strong>
+              </span>
+            </div>
+          </div>
+
           <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-[16/7] w-full rounded-3xl overflow-hidden bg-stone-900 shadow-xl border border-stone-200">
             <img
               src={project.images[activeImageIdx] || project.images[0]}
@@ -268,7 +309,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             />
             
             {/* Top Badges Overlay */}
-            <div className="absolute top-4 left-4 right-4 z-10 flex flex-wrap items-center gap-2">
+            <div className="hidden sm:flex absolute top-4 left-4 right-4 z-10 flex-wrap items-center gap-2">
               {getStatusBadge(project.status)}
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/95 backdrop-blur-md text-slate-900 border border-slate-200 shadow-xs">
                 {project.category}
@@ -281,7 +322,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             </div>
 
             {/* Bottom Info Gradient */}
-            <div className="absolute bottom-0 inset-x-0 z-10 bg-gradient-to-t from-slate-950/80 via-slate-950/45 to-transparent p-6 sm:p-8 pt-16 flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-white">
+            <div className="hidden sm:flex absolute bottom-0 inset-x-0 z-10 bg-gradient-to-t from-slate-950/80 via-slate-950/45 to-transparent p-6 sm:p-8 pt-16 flex-col sm:flex-row sm:items-end justify-between gap-4 text-white">
               <div>
                 <h1 className="font-serif-display text-2xl sm:text-4xl font-bold tracking-tight text-white drop-shadow-md">
                   {project.title}
