@@ -192,7 +192,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
             </div>
 
             {/* Principal Advisor Badge - Bright Luxury Card */}
-            <div className="p-5 bg-gradient-to-r from-amber-50 via-white to-amber-100/60 text-slate-900 rounded-3xl border border-amber-200/90 shadow-xs flex items-center gap-4">
+            <div className="relative p-5 bg-gradient-to-r from-amber-50 via-white to-amber-100/60 text-slate-900 rounded-3xl border border-amber-200/90 shadow-xs flex items-center gap-4">
               <img
                 src={settings.advisorImage}
                 alt={settings.advisorName}
@@ -200,7 +200,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                 height={80}
                 className="w-16 h-16 rounded-2xl object-cover border-2 border-amber-400/60 shrink-0 shadow-sm"
               />
-              <span className="pointer-events-none absolute bottom-2 left-7 z-10 text-[8px] font-bold tracking-wider text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
+              <span className="pointer-events-none absolute bottom-7 left-7 z-10 text-[8px] font-bold tracking-wider text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
               <div className="text-xs space-y-1">
                 <span className="font-serif-display text-base font-bold text-slate-950 block">
                   {settings.advisorName}
