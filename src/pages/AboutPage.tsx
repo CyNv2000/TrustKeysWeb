@@ -177,6 +177,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
                   decoding="async"
                   className="w-full h-full object-cover"
                 />
+                <span className="pointer-events-none absolute bottom-16 right-3 z-10 text-[10px] font-bold tracking-wider text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">Trustkeys</span>
                 <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-stone-950 p-4 text-white">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-amber-400">Principal Advisor</span>
                   <div className="font-serif-display text-lg font-bold">{settings.advisorName}</div>
