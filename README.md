@@ -44,7 +44,9 @@ Default `.env` values:
 ```env
 PORT=3000
 ADMIN_PASSWORD="set-a-strong-unique-password"
-SESSION_SECRET="trustkeys-super-secret-mumbai-realty-key-2026"
+SESSION_SECRET="generate-a-long-random-secret"
+TRUSTKEYS_PERSISTENCE_URL="https://your-project.supabase.co/functions/v1/trustkeysweb-persistence"
+TRUSTKEYS_PERSISTENCE_SECRET="same-long-random-secret-configured-in-the-edge-function"
 
 # Optional: Supabase configuration (falls back to local persistent store if omitted)
 SUPABASE_URL="https://your-project.supabase.co"
@@ -69,6 +71,7 @@ In your Supabase project dashboard:
 1. Navigate to the **SQL Editor**.
 2. Open the file `supabase/migrations/20261019000000_trustkeys_schema.sql`.
 3. Paste the entire script and click **Run**.
+4. Repeat with `supabase/migrations/20261030000000_trustkeys_persistence_state.sql`.
 
 ### 2. What the Migration Configures
 - **Tables**: `projects`, `enquiries`, `sell_leads`, `faqs`, `site_settings`.
@@ -110,7 +113,10 @@ To deploy the full-stack Express + React application on [Render](https://render.
    - `NODE_ENV`: `production`
    - `PORT`: `3000` (or leave default)
    - `ADMIN_PASSWORD`: Your custom admin password
-   - `SESSION_SECRET`: A long random secret string
+   - `SESSION_SECRET`: A long random secret string (required)
+   - `TRUSTKEYS_PERSISTENCE_URL`: Supabase Edge Function URL ending in `/trustkeysweb-persistence`
+   - `TRUSTKEYS_PERSISTENCE_SECRET`: Same long random secret configured in the Edge Function
+   - Configure `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and `TRUSTKEYS_PERSISTENCE_SECRET` as Edge Function secrets
    - (Optional) `SUPABASE_URL` & `SUPABASE_SERVICE_ROLE_KEY`
 4. Click **Create Web Service**. Render will install dependencies, build the Vite production bundle to `dist/`, and start `server.ts` serving the API and static SPA assets.
 

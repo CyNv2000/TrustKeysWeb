@@ -1,5 +1,5 @@
 // @ts-nocheck -- Supabase Edge Function runtime provides Deno globals.
-const BACKEND_SECRET = "__TRUSTKEYS_BACKEND_SECRET__";
+const BACKEND_SECRET = Deno.env.get("TRUSTKEYS_PERSISTENCE_SECRET") ?? "";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ??
   (Deno.env.get("SUPABASE_SECRET_KEYS")
@@ -32,7 +32,7 @@ function serviceHeaders(extra: Record<string, string> = {}): Headers {
 }
 
 Deno.serve(async (request: Request) => {
-  if (!SUPABASE_URL || !SERVICE_KEY) {
+  if (!SUPABASE_URL || !SERVICE_KEY || !BACKEND_SECRET) {
     console.error("Supabase function is missing its built-in service credentials");
     return json({ error: "Persistence service is not configured" }, 503);
   }
@@ -87,7 +87,7 @@ Deno.serve(async (request: Request) => {
 
       const path = `trustkeysweb/${crypto.randomUUID()}${extension}`;
       const response = await fetch(
-        `${SUPABASE_URL}/storage/v1/object/project-images/${path}`,
+        `${SUPABASE_URL}/storage/v1/object/project-media/${path}`,
         {
           method: "POST",
           headers: serviceHeaders({
@@ -101,7 +101,7 @@ Deno.serve(async (request: Request) => {
 
       return json({
         success: true,
-        url: `${SUPABASE_URL}/storage/v1/object/public/project-images/${path}`,
+        url: `${SUPABASE_URL}/storage/v1/object/public/project-media/${path}`,
         size: bytes.length,
       });
     }
