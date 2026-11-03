@@ -990,6 +990,7 @@ export const initialSiteSettings: SiteSettings = {
   advisorImage: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80',
   whatsappNumber: '+919987154120',
   microMarkets: defaultMicroMarkets,
+  statusBadgeColors: { ready: '#047857', ongoing: '#64748b', upcoming: '#0369a1' },
   socialLinks: {
     instagram: 'https://www.instagram.com/trustkeys_realtors',
     facebook: 'https://www.facebook.com/people/Trustkeys-Realtors/61585075687649/'
