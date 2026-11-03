@@ -59,14 +59,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, isF
     switch (status) {
       case 'Ready':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold tracking-wide bg-emerald-600 text-white shadow-sm">
+          <span style={{ backgroundColor: "var(--status-ready-bg, #047857)" }} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold tracking-wide text-white shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             Ready to Move
           </span>
         );
       case 'Ongoing':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold tracking-wide bg-amber-500 text-white shadow-sm">
+          <span style={{ backgroundColor: "var(--status-ongoing-bg, #64748b)" }} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold tracking-wide text-white shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-white" />
             Under Construction
           </span>
@@ -74,7 +74,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, isF
       case 'Upcoming':
       default:
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold tracking-wide bg-sky-600 text-white shadow-sm">
+          <span style={{ backgroundColor: "var(--status-upcoming-bg, #0369a1)" }} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold tracking-wide text-white shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-white" />
             New Launch / Upcoming
           </span>
@@ -176,9 +176,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, isF
           <span className="inline-flex items-center gap-1 text-white font-semibold drop-shadow-sm">
             <MapPin className="w-3.5 h-3.5 text-amber-400" />
             {project.area}
-          </span>
-          <span className="text-[11px] text-slate-900 font-semibold tracking-tight bg-white/95 px-2.5 py-0.5 rounded-md shadow-xs backdrop-blur-xs border border-white/60">
-            {project.category}
           </span>
         </div>
       </div>
