@@ -297,7 +297,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-[16/7] w-full rounded-3xl overflow-hidden bg-stone-900 shadow-xl border border-stone-200">
+          <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-[16/7] w-full rounded-3xl overflow-hidden bg-sky-100 shadow-xl border border-stone-200">
             <img
               src={project.images[activeImageIdx] || project.images[0]}
               alt={`${project.title} view ${activeImageIdx + 1}`}
@@ -307,6 +307,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               decoding="async"
               className="w-full h-full object-contain transition-opacity duration-300"
             />
+            <span className="pointer-events-none absolute bottom-4 right-4 z-10 text-xs font-bold tracking-[0.18em] text-slate-700/75 drop-shadow-sm">Trustkeys</span>
             
             {/* Top Badges Overlay */}
             <div className="hidden sm:flex absolute top-4 left-4 right-4 z-10 flex-wrap items-center gap-2">
@@ -378,6 +379,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     decoding="async"
                     className="w-full h-full object-cover"
                   />
+                  <span className="pointer-events-none absolute bottom-1 right-1 z-10 text-[8px] font-bold tracking-wider text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
                 </button>
               ))}
             </div>
@@ -596,6 +598,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                                 decoding="async"
                                 className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform"
                               />
+                  <span className="pointer-events-none absolute bottom-1 right-1 z-10 text-[8px] font-bold tracking-wider text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
                               <button
                                 onClick={() => setViewingFloorPlan(fp.image)}
                                 className="absolute inset-0 bg-stone-950/30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs font-semibold gap-1.5 transition-opacity"
@@ -793,6 +796,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               alt="Enlarged floor plan"
               className="max-h-[80vh] w-auto object-contain mx-auto"
             />
+            <span className="pointer-events-none absolute bottom-4 right-4 z-10 text-xs font-bold tracking-[0.18em] text-slate-700/75 drop-shadow-sm">Trustkeys</span>
           </div>
         </div>
       )}
