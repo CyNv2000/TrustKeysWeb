@@ -301,7 +301,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 onClick={() => handleApplyPreset('area', market.areaFilter)}
                 className="group relative rounded-2xl overflow-hidden bg-white border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
               >
-                <div className="aspect-[4/3] w-full overflow-hidden bg-sky-100">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-sky-100">
                   <img
                     src={market.img}
                     alt={market.name}
