@@ -29,7 +29,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
   ];
 
   return (
-    <footer className="bg-white text-slate-700 pt-16 pb-12 border-t border-amber-200/80 shadow-xs">
+    <footer className="bg-white text-slate-700 pt-16 pb-12 border-t border-gold-200/80 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand Col */}
@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
                 <span className="block font-serif-display text-2xl font-bold tracking-tight text-[#8b642f]">
                   {settings.businessName}
                 </span>
-                <span className="block text-[11px] tracking-wider uppercase text-amber-700 font-semibold">
+                <span className="block text-[11px] tracking-wider uppercase text-gold-700 font-semibold">
                   Western Mumbai Residential Advisory
                 </span>
               </div>
@@ -66,43 +66,43 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
             </h4>
             <ul className="space-y-2 text-sm text-slate-600">
               <li>
-                <button onClick={() => handleLink('/')} className="hover:text-amber-700 transition-colors">
+                <button onClick={() => handleLink('/')} className="hover:text-gold-700 transition-colors">
                   Home Residences
                 </button>
               </li>
               <li>
-                <button onClick={() => handleLink('/projects')} className="hover:text-amber-700 transition-colors">
+                <button onClick={() => handleLink('/projects')} className="hover:text-gold-700 transition-colors">
                   Projects Catalogue
                 </button>
               </li>
               <li>
-                <button onClick={() => handleLink('/resale')} className="hover:text-amber-700 transition-colors">
+                <button onClick={() => handleLink('/resale')} className="hover:text-gold-700 transition-colors">
                   Verified Resale Homes
                 </button>
               </li>
               <li>
-                <button onClick={() => handleLink('/sell')} className="hover:text-amber-700 transition-colors">
+                <button onClick={() => handleLink('/sell')} className="hover:text-gold-700 transition-colors">
                   Sell Your Property
                 </button>
               </li>
               <li>
-                <button onClick={() => handleLink('/compare')} className="hover:text-amber-700 transition-colors">
+                <button onClick={() => handleLink('/compare')} className="hover:text-gold-700 transition-colors">
                   Compare Projects
                 </button>
               </li>
               <li>
-                <button onClick={() => handleLink('/vastu')} className="hover:text-amber-700 transition-colors flex items-center gap-1">
+                <button onClick={() => handleLink('/vastu')} className="hover:text-gold-700 transition-colors flex items-center gap-1">
                   <span>Vastu Shastra Tool</span>
-                  <span className="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.2 rounded font-semibold border border-amber-200">Free</span>
+                  <span className="text-[10px] bg-gold-100 text-gold-800 px-1.5 py-0.2 rounded font-semibold border border-gold-200">Free</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => handleLink('/about')} className="hover:text-amber-700 transition-colors">
+                <button onClick={() => handleLink('/about')} className="hover:text-gold-700 transition-colors">
                   About TrustKeys
                 </button>
               </li>
               <li>
-                <button onClick={() => handleLink('/contact')} className="hover:text-amber-700 transition-colors">
+                <button onClick={() => handleLink('/contact')} className="hover:text-gold-700 transition-colors">
                   Contact Advisory
                 </button>
               </li>
@@ -121,7 +121,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
                   onClick={() => {
                     handleLink(`/projects?area=${encodeURIComponent(market)}`);
                   }}
-                  className="px-2.5 py-1 text-xs rounded-lg bg-white hover:bg-amber-50 text-slate-700 hover:text-amber-900 border border-slate-200 shadow-xs transition-colors"
+                  className="px-2.5 py-1 text-xs rounded-lg bg-white hover:bg-gold-50 text-slate-700 hover:text-gold-900 border border-slate-200 shadow-xs transition-colors"
                 >
                   {market}
                 </button>
@@ -136,23 +136,23 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
             </h4>
             <div className="space-y-2.5 text-xs text-slate-600">
               <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-gold-600 shrink-0 mt-0.5" />
                 <span className="leading-snug">{settings.address}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-amber-600 shrink-0" />
-                <a href={`tel:${settings.phone.replace(/\s+/g, '')}`} className="hover:text-amber-700 font-medium text-slate-800 transition-colors">
+                <Phone className="w-4 h-4 text-gold-600 shrink-0" />
+                <a href={`tel:${settings.phone.replace(/\s+/g, '')}`} className="hover:text-gold-700 font-medium text-slate-800 transition-colors">
                   {settings.phone}
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-amber-600 shrink-0" />
-                <a href={`mailto:${settings.email}`} className="hover:text-amber-700 font-medium text-slate-800 transition-colors">
+                <Mail className="w-4 h-4 text-gold-600 shrink-0" />
+                <a href={`mailto:${settings.email}`} className="hover:text-gold-700 font-medium text-slate-800 transition-colors">
                   {settings.email}
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-amber-600 shrink-0" />
+                <Clock className="w-4 h-4 text-gold-600 shrink-0" />
                 <span>{settings.officeHours}</span>
               </div>
             </div>
@@ -224,7 +224,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, navigate }) => {
           <p>© {new Date().getFullYear()} TrustKeys. All rights reserved. Registered Real Estate Consultant, Western Mumbai.</p>
           <div className="flex items-center gap-6">
             <span className="text-slate-400">RERA Disclaimer: MahaRERA project approvals subject to official government gazettes.</span>
-            <button onClick={() => handleLink('/admin')} className="text-slate-500 hover:text-amber-800">
+            <button onClick={() => handleLink('/admin')} className="text-slate-500 hover:text-gold-800">
               Admin
             </button>
           </div>
