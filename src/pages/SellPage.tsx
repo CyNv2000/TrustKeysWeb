@@ -92,8 +92,8 @@ export const SellPage: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-xs font-semibold">
-            <TrendingUp className="w-4 h-4 text-amber-700" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-100 text-gold-900 border border-gold-300 text-xs font-semibold">
+            <TrendingUp className="w-4 h-4 text-gold-700" />
             <span>Maximize Property Value in Western Mumbai</span>
           </div>
           <h1 className="font-serif-display text-4xl sm:text-5xl font-bold text-stone-900 tracking-tight">
@@ -107,7 +107,7 @@ export const SellPage: React.FC = () => {
         {/* 4-Step Selling Advisory Roadmap */}
         <section className="bg-white rounded-3xl p-8 sm:p-10 border border-stone-200 shadow-sm space-y-8">
           <div className="text-center max-w-xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-widest text-amber-800">
+            <span className="text-xs font-bold uppercase tracking-widest text-gold-800">
               The Advisory Roadmap
             </span>
             <h2 className="font-serif-display text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
@@ -139,7 +139,7 @@ export const SellPage: React.FC = () => {
               }
             ].map((p, idx) => (
               <div key={p.step} className="p-6 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-3 relative">
-                <span className="text-xs font-mono font-bold text-amber-700 uppercase tracking-wider block">
+                <span className="text-xs font-mono font-bold text-gold-700 uppercase tracking-wider block">
                   {p.step}
                 </span>
                 <h3 className="font-serif-display text-base font-bold text-stone-900">
@@ -208,7 +208,7 @@ export const SellPage: React.FC = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Anand K. Parekh"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                     />
                   </div>
 
@@ -227,7 +227,7 @@ export const SellPage: React.FC = () => {
                         onChange={(e) => setMobile(e.target.value)}
                         placeholder="98201 12345"
                         maxLength={14}
-                        className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono"
+                        className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500 font-mono"
                       />
                     </div>
                   </div>
@@ -242,7 +242,7 @@ export const SellPage: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="anand@example.com"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                     />
                   </div>
                 </div>
@@ -259,7 +259,7 @@ export const SellPage: React.FC = () => {
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
                       placeholder="e.g. Pali Crest, Pali Hill, Bandra West"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                     />
                   </div>
 
@@ -270,7 +270,7 @@ export const SellPage: React.FC = () => {
                     <select
                       value={category}
                       onChange={(e) => setCategory(e.target.value as 'Residential' | 'Commercial')}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                     >
                       <option value="Residential">Residential Residence</option>
                       <option value="Commercial">Commercial / Office Space</option>
@@ -287,7 +287,7 @@ export const SellPage: React.FC = () => {
                     <select
                       value={configuration}
                       onChange={(e) => setConfiguration(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                     >
                       <option value="1 BHK">1 BHK</option>
                       <option value="2 BHK">2 BHK</option>
@@ -309,7 +309,7 @@ export const SellPage: React.FC = () => {
                       value={carpetArea}
                       onChange={(e) => setCarpetArea(e.target.value ? Number(e.target.value) : '')}
                       placeholder="e.g. 1350"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                     />
                   </div>
 
@@ -322,7 +322,7 @@ export const SellPage: React.FC = () => {
                       value={expectedPrice}
                       onChange={(e) => setExpectedPrice(e.target.value)}
                       placeholder="e.g. ₹8.50 Cr or Open to Valuation"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                     />
                   </div>
                 </div>
@@ -335,7 +335,7 @@ export const SellPage: React.FC = () => {
                   <select
                     value={propertyStatus}
                     onChange={(e) => setPropertyStatus(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                   >
                     <option value="Ready / Vacant">Ready to Move & Vacant</option>
                     <option value="Self Occupied">Self Occupied by Owner</option>
@@ -354,7 +354,7 @@ export const SellPage: React.FC = () => {
                     value={extraDetails}
                     onChange={(e) => setExtraDetails(e.target.value)}
                     placeholder="Mention if you have dedicated stilt parking, sea views, recent interior renovations, or special society amenities..."
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                   />
                 </div>
 
@@ -362,7 +362,7 @@ export const SellPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md shadow-amber-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 disabled:opacity-50"
+                  className="w-full py-3.5 px-4 rounded-xl bg-gold-600 hover:bg-gold-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md shadow-gold-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
@@ -414,15 +414,15 @@ export const SellPage: React.FC = () => {
               </h4>
               <div className="space-y-3 text-xs text-stone-600">
                 <div className="flex items-start gap-2.5">
-                  <ShieldCheck className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+                  <ShieldCheck className="w-4 h-4 text-gold-700 shrink-0 mt-0.5" />
                   <span><strong>Total Confidentiality:</strong> No open public gate banners or noisy crowd showings without consent.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <Users2 className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+                  <Users2 className="w-4 h-4 text-gold-700 shrink-0 mt-0.5" />
                   <span><strong>Pre-Qualified Buyers:</strong> Every prospective purchaser is vetted for financial readiness.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <TrendingUp className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+                  <TrendingUp className="w-4 h-4 text-gold-700 shrink-0 mt-0.5" />
                   <span><strong>Data-Driven Pricing:</strong> Real-time Sub-Registrar data ensures you never underprice your asset.</span>
                 </div>
               </div>
