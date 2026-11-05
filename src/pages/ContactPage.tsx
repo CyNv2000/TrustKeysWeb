@@ -81,8 +81,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-xs font-semibold">
-            <Building2 className="w-4 h-4 text-amber-700" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-100 text-gold-900 border border-gold-300 text-xs font-semibold">
+            <Building2 className="w-4 h-4 text-gold-700" />
             <span>TrustKeys Office • Borivali, Mumbai</span>
           </div>
           <h1 className="font-serif-display text-4xl sm:text-5xl font-bold text-stone-900 tracking-tight">
@@ -107,7 +107,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
               
               <div className="space-y-4 text-xs sm:text-sm text-stone-700">
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+                  <MapPin className="w-5 h-5 text-gold-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold block text-stone-900">Registered Office</span>
                     <p className="text-stone-600 leading-relaxed mt-0.5">{settings.address}</p>
@@ -115,14 +115,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+                  <Phone className="w-5 h-5 text-gold-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold block text-stone-900">Telephone Hotlines</span>
-                    <a href={`tel:${settings.phone.replace(/\s+/g, '')}`} className="text-stone-800 hover:text-amber-800 font-mono block">
+                    <a href={`tel:${settings.phone.replace(/\s+/g, '')}`} className="text-stone-800 hover:text-gold-800 font-mono block">
                       Primary: {settings.phone}
                     </a>
                     {settings.phoneSecondary && (
-                      <a href={`tel:${settings.phoneSecondary.replace(/\s+/g, '')}`} className="text-stone-600 hover:text-amber-800 font-mono block">
+                      <a href={`tel:${settings.phoneSecondary.replace(/\s+/g, '')}`} className="text-stone-600 hover:text-gold-800 font-mono block">
                         Boardline: {settings.phoneSecondary}
                       </a>
                     )}
@@ -130,10 +130,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Mail className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+                  <Mail className="w-5 h-5 text-gold-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold block text-stone-900">Electronic Correspondence</span>
-                    <a href={`mailto:${settings.email}`} className="text-stone-800 hover:text-amber-800 block">
+                    <a href={`mailto:${settings.email}`} className="text-stone-800 hover:text-gold-800 block">
                       {settings.email}
                     </a>
                     <span className="text-[11px] text-stone-400">Leads: {settings.notificationEmail}</span>
@@ -141,7 +141,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+                  <Clock className="w-5 h-5 text-gold-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold block text-stone-900">Advisory Hours</span>
                     <p className="text-stone-600">{settings.officeHours}</p>
@@ -183,7 +183,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                   href={settings.googleMapsUrl || `https://maps.google.com/?q=${encodeURIComponent(settings.address)}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-amber-800 font-semibold hover:underline flex items-center gap-1"
+                  className="text-gold-800 font-semibold hover:underline flex items-center gap-1"
                 >
                   <span>Open in Google Maps</span>
                   <ExternalLink className="w-3 h-3" />
@@ -192,13 +192,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
             </div>
 
             {/* Principal Advisor Badge - Bright Luxury Card */}
-            <div className="relative p-5 bg-gradient-to-r from-amber-50 via-white to-amber-100/60 text-slate-900 rounded-3xl border border-amber-200/90 shadow-xs flex items-center gap-4">
+            <div className="relative p-5 bg-gradient-to-r from-gold-50 via-white to-gold-100/60 text-slate-900 rounded-3xl border border-gold-200/90 shadow-xs flex items-center gap-4">
               <img
                 src={settings.advisorImage}
                 alt={settings.advisorName}
                 width={80}
                 height={80}
-                className="w-16 h-16 rounded-2xl object-cover border-2 border-amber-400/60 shrink-0 shadow-sm"
+                className="w-16 h-16 rounded-2xl object-cover border-2 border-gold-400/60 shrink-0 shadow-sm"
               />
               <span className="pointer-events-none absolute bottom-7 left-7 z-10 text-[8px] font-bold tracking-wider text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
               <div className="text-xs space-y-1">
@@ -206,7 +206,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                   {settings.advisorName}
                 </span>
                 <p className="text-slate-600 font-medium">{settings.advisorTitle}</p>
-                <span className="font-mono text-[11px] text-amber-800 block font-bold">
+                <span className="font-mono text-[11px] text-gold-800 block font-bold">
                   {settings.advisorRera}
                 </span>
               </div>
@@ -218,7 +218,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
           <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-stone-200 shadow-lg">
             
             <div className="mb-6">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-gold-800 bg-gold-50 px-2.5 py-1 rounded-md border border-gold-200">
                 Direct Submission
               </span>
               <h3 className="font-serif-display text-2xl font-bold text-stone-900 mt-2">
@@ -263,7 +263,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                   <select
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                   >
                     <option value="Buying Advisory">Looking to Buy a Residence (New Launch / Ready)</option>
                     <option value="Selling Mandate">Looking to Sell My Property</option>
@@ -285,7 +285,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g. Tejas Shah"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                   />
                 </div>
 
@@ -306,7 +306,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                         onChange={(e) => setMobile(e.target.value)}
                         placeholder="98201 12345"
                         maxLength={14}
-                        className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono"
+                        className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500 font-mono"
                       />
                     </div>
                   </div>
@@ -321,7 +321,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="vikram@example.com"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                     />
                   </div>
                 </div>
@@ -337,7 +337,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Please specify your preferred locations (e.g. Bandra, Juhu, Andheri), budget range, configuration, or any specific questions..."
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                   />
                 </div>
 
@@ -345,7 +345,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md shadow-amber-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 disabled:opacity-50"
+                  className="w-full py-3.5 px-4 rounded-xl bg-gold-600 hover:bg-gold-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md shadow-gold-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
