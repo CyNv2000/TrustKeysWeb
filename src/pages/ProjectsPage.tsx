@@ -28,12 +28,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
   return (
     <div className="min-h-screen bg-slate-50/60 pb-16">
       {/* Header Banner - Bright & Luminous */}
-      <div className="bg-gradient-to-r from-amber-50 via-white to-amber-50/70 text-slate-900 py-12 border-b border-amber-200/80">
+      <div className="bg-gradient-to-r from-gold-50 via-white to-gold-50/70 text-slate-900 py-12 border-b border-gold-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300 mb-2">
-                <ShieldCheck className="w-4 h-4 text-amber-700" />
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-gold-900 bg-gold-100 px-3 py-1 rounded-full border border-gold-300 mb-2">
+                <ShieldCheck className="w-4 h-4 text-gold-700" />
                 <span>Western Mumbai Real Estate Portfolio</span>
               </div>
               <h1 className="font-serif-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-950">
@@ -44,8 +44,8 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
               </p>
             </div>
             
-            <div className="flex items-center gap-2 self-start md:self-auto bg-white p-3.5 rounded-2xl border border-amber-200 text-xs text-slate-700 shadow-xs">
-              <Compass className="w-4 h-4 text-amber-600 shrink-0" />
+            <div className="flex items-center gap-2 self-start md:self-auto bg-white p-3.5 rounded-2xl border border-gold-200 text-xs text-slate-700 shadow-xs">
+              <Compass className="w-4 h-4 text-gold-600 shrink-0" />
               <span>Looking for Vastu-aligned homes? Use our Vastu filter or tool.</span>
             </div>
           </div>
