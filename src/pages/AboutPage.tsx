@@ -51,8 +51,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
         
         {/* 1. Hero & Philosophy */}
         <section className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-xs font-semibold">
-            <Award className="w-4 h-4 text-amber-700" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-100 text-gold-900 border border-gold-300 text-xs font-semibold">
+            <Award className="w-4 h-4 text-gold-700" />
             <span>Fiduciary Real Estate Consultancy</span>
           </div>
           <h1 className="font-serif-display text-4xl sm:text-5xl font-bold text-stone-900 tracking-tight">
@@ -62,7 +62,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
             {settings.aboutSummary || 'Founded on the principle that property acquisition should be rooted in physical verification, title certainty, and client-first fiduciary representation.'}
           </p>
           {settings.googleMapsUrl && (
-            <a href={settings.googleMapsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-semibold text-amber-800 hover:underline">
+            <a href={settings.googleMapsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-semibold text-gold-800 hover:underline">
               <MapPin className="w-3.5 h-3.5" /> Find our office on Google Maps
             </a>
           )}
@@ -72,7 +72,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <div className="bg-white rounded-3xl p-8 border border-stone-200 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center border border-amber-200">
+            <div className="w-12 h-12 rounded-2xl bg-gold-50 text-gold-700 flex items-center justify-center border border-gold-200">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <h3 className="font-serif-display text-xl font-bold text-stone-900">
@@ -84,7 +84,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
           </div>
 
           <div className="bg-white rounded-3xl p-8 border border-stone-200 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center border border-amber-200">
+            <div className="w-12 h-12 rounded-2xl bg-gold-50 text-gold-700 flex items-center justify-center border border-gold-200">
               <FileCheck2 className="w-6 h-6" />
             </div>
             <h3 className="font-serif-display text-xl font-bold text-stone-900">
@@ -96,7 +96,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
           </div>
 
           <div className="bg-white rounded-3xl p-8 border border-stone-200 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center border border-amber-200">
+            <div className="w-12 h-12 rounded-2xl bg-gold-50 text-gold-700 flex items-center justify-center border border-gold-200">
               <Users2 className="w-6 h-6" />
             </div>
             <h3 className="font-serif-display text-xl font-bold text-stone-900">
@@ -110,9 +110,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
         </section>
 
         {/* 3. Comprehensive Services Matrix - Radiant, Bright & Luxury */}
-        <section className="bg-gradient-to-br from-amber-50 via-white to-amber-100/60 rounded-3xl p-8 sm:p-12 border border-amber-200/90 shadow-xs space-y-10">
+        <section className="bg-gradient-to-br from-gold-50 via-white to-gold-100/60 rounded-3xl p-8 sm:p-12 border border-gold-200/90 shadow-xs space-y-10">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-3 py-1 rounded-full border border-amber-200">
+            <span className="text-xs font-bold uppercase tracking-widest text-gold-800 bg-gold-100 px-3 py-1 rounded-full border border-gold-200">
               Full-Spectrum Support
             </span>
             <h2 className="font-serif-display text-3xl font-bold text-slate-900">
@@ -124,7 +124,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 rounded-2xl bg-white border border-amber-200/80 shadow-xs space-y-2 hover:shadow-md transition-shadow">
+            <div className="p-6 rounded-2xl bg-white border border-gold-200/80 shadow-xs space-y-2 hover:shadow-md transition-shadow">
               <h4 className="font-serif-display text-base font-bold text-slate-900">
                 Buyer Representation
               </h4>
@@ -133,7 +133,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-amber-200/80 shadow-xs space-y-2 hover:shadow-md transition-shadow">
+            <div className="p-6 rounded-2xl bg-white border border-gold-200/80 shadow-xs space-y-2 hover:shadow-md transition-shadow">
               <h4 className="font-serif-display text-base font-bold text-slate-900">
                 Seller Mandate
               </h4>
@@ -142,7 +142,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-amber-200/80 shadow-xs space-y-2 hover:shadow-md transition-shadow">
+            <div className="p-6 rounded-2xl bg-white border border-gold-200/80 shadow-xs space-y-2 hover:shadow-md transition-shadow">
               <h4 className="font-serif-display text-base font-bold text-slate-900">
                 Home Loan Guidance
               </h4>
@@ -151,7 +151,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-amber-200/80 shadow-xs space-y-2 hover:shadow-md transition-shadow">
+            <div className="p-6 rounded-2xl bg-white border border-gold-200/80 shadow-xs space-y-2 hover:shadow-md transition-shadow">
               <h4 className="font-serif-display text-base font-bold text-slate-900">
                 Vastu Shastra Audits
               </h4>
@@ -179,7 +179,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
                 />
                 <span className="pointer-events-none absolute bottom-16 right-3 z-10 text-[10px] font-bold tracking-wider text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">Trustkeys</span>
                 <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-stone-950 p-4 text-white">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-amber-400">Principal Advisor</span>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-gold-400">Principal Advisor</span>
                   <div className="font-serif-display text-lg font-bold">{settings.advisorName}</div>
                 </div>
               </div>
@@ -187,7 +187,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
 
             <div className="md:col-span-8 space-y-5">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                <span className="text-xs font-bold uppercase tracking-wider text-gold-800 bg-gold-50 px-3 py-1 rounded-full border border-gold-200">
                   Leadership Profile
                 </span>
                 <h3 className="font-serif-display text-3xl font-bold text-stone-900 mt-2">
@@ -213,7 +213,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
                 </div>
                 <div>
                   <span className="text-stone-500 uppercase font-semibold text-[10px] block">Direct Contact</span>
-                  <a href="tel:+919987154120" className="font-bold text-amber-800 text-sm hover:underline">
+                  <a href="tel:+919987154120" className="font-bold text-gold-800 text-sm hover:underline">
                     +91 99871 54120
                   </a>
                 </div>
@@ -222,7 +222,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <button
                   onClick={onOpenEnquiry}
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-amber-500/25 transition-all"
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-gold-500/25 transition-all"
                 >
                   Schedule Private Appointment
                 </button>
@@ -244,7 +244,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
         {/* 5. Dynamically Loaded FAQs with Category Tabs */}
         <section className="bg-white rounded-3xl p-8 sm:p-12 border border-stone-200 shadow-sm space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-amber-800">
+            <span className="text-xs font-bold uppercase tracking-widest text-gold-800">
               Frequently Asked Questions
             </span>
             <h2 className="font-serif-display text-3xl font-bold text-stone-900">
@@ -260,7 +260,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onOpenEnquiry })
                 onClick={() => setSelectedFaqCategory(cat)}
                 className={`px-4 py-2 rounded-xl text-xs font-semibold transition-colors shrink-0 ${
                   selectedFaqCategory === cat
-                    ? 'bg-amber-600 text-white shadow-sm'
+                    ? 'bg-gold-600 text-white shadow-sm'
                     : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
                 }`}
               >
