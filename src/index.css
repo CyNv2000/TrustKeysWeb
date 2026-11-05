@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-gold-50: #fbf8ef;
+  --color-gold-100: #f4ecd4;
+  --color-gold-200: #e9d9a9;
+  --color-gold-300: #d9bd72;
+  --color-gold-400: #c5a04a;
+  --color-gold-500: #ad842d;
+  --color-gold-600: #8f6a20;
+  --color-gold-700: #73521b;
+  --color-gold-800: #5d431b;
+  --color-gold-900: #4d391b;
+  --color-gold-950: #2b1f0e;
+}
+
 @layer base {
   :root {
     --font-serif: 'Playfair Display', Georgia, serif;
