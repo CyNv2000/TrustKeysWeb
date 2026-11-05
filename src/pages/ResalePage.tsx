@@ -73,8 +73,8 @@ export const ResalePage: React.FC = () => {
         
         {/* Hero Section */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-xs font-semibold">
-            <ShieldCheck className="w-4 h-4 text-amber-700" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-100 text-gold-900 border border-gold-300 text-xs font-semibold">
+            <ShieldCheck className="w-4 h-4 text-gold-700" />
             <span>Zero-Litigation Secondary Market Desk</span>
           </div>
           <h1 className="font-serif-display text-4xl sm:text-5xl font-bold text-stone-900 tracking-tight">
@@ -88,7 +88,7 @@ export const ResalePage: React.FC = () => {
         {/* 5-Step Resale Process Roadmap */}
         <section className="bg-white rounded-3xl p-8 sm:p-10 border border-stone-200 shadow-sm space-y-8">
           <div className="text-center max-w-xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-widest text-amber-800">
+            <span className="text-xs font-bold uppercase tracking-widest text-gold-800">
               Transparent Framework
             </span>
             <h2 className="font-serif-display text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
@@ -125,7 +125,7 @@ export const ResalePage: React.FC = () => {
               }
             ].map((s) => (
               <div key={s.step} className="p-5 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-3">
-                <span className="font-mono text-2xl font-bold text-amber-700 block">
+                <span className="font-mono text-2xl font-bold text-gold-700 block">
                   {s.step}
                 </span>
                 <h3 className="font-serif-display text-base font-bold text-stone-900">
@@ -191,7 +191,7 @@ export const ResalePage: React.FC = () => {
                       onClick={() => setIntent('buy')}
                       className={`py-3 px-4 rounded-xl text-xs font-bold border transition-all ${
                         intent === 'buy'
-                          ? 'bg-amber-600 text-white border-amber-600 shadow-sm'
+                          ? 'bg-gold-600 text-white border-gold-600 shadow-sm'
                           : 'bg-stone-50 hover:bg-stone-100 text-stone-700 border-stone-200'
                       }`}
                     >
@@ -202,7 +202,7 @@ export const ResalePage: React.FC = () => {
                       onClick={() => setIntent('sell')}
                       className={`py-3 px-4 rounded-xl text-xs font-bold border transition-all ${
                         intent === 'sell'
-                          ? 'bg-amber-600 text-white border-amber-600 shadow-sm'
+                          ? 'bg-gold-600 text-white border-gold-600 shadow-sm'
                           : 'bg-stone-50 hover:bg-stone-100 text-stone-700 border-stone-200'
                       }`}
                     >
@@ -222,7 +222,7 @@ export const ResalePage: React.FC = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g. Sunil V. Singhania"
-                    className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                   />
                 </div>
 
@@ -243,7 +243,7 @@ export const ResalePage: React.FC = () => {
                         onChange={(e) => setMobile(e.target.value)}
                         placeholder="98200 54321"
                         maxLength={14}
-                        className="w-full pl-11 pr-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono"
+                        className="w-full pl-11 pr-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500 font-mono"
                       />
                     </div>
                   </div>
@@ -258,7 +258,7 @@ export const ResalePage: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="sunil@example.com"
-                      className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                     />
                   </div>
                 </div>
@@ -271,7 +271,7 @@ export const ResalePage: React.FC = () => {
                   <select
                     value={preferredArea}
                     onChange={(e) => setPreferredArea(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                   >
                     <option value="Bandra West">Bandra West (Pali Hill, Carter Rd, Turner Rd)</option>
                     <option value="Bandra East">Bandra East (BKC vicinity, Kalanagar)</option>
@@ -296,7 +296,7 @@ export const ResalePage: React.FC = () => {
                     value={requirements}
                     onChange={(e) => setRequirements(e.target.value)}
                     placeholder="Mention preferred budget, BHK configuration, society age, parking requirements, or expected handover date..."
-                    className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                   />
                 </div>
 
@@ -304,7 +304,7 @@ export const ResalePage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md shadow-amber-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 disabled:opacity-60"
+                  className="w-full py-3.5 px-4 rounded-xl bg-gold-600 hover:bg-gold-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md shadow-gold-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     <>
@@ -351,20 +351,20 @@ export const ResalePage: React.FC = () => {
             {/* Advisory Guarantee Box */}
             <div className="bg-white rounded-3xl p-6 border border-stone-200 shadow-sm space-y-3">
               <h4 className="font-serif-display text-lg font-bold text-stone-900 flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-amber-600" />
+                <ShieldCheck className="w-5 h-5 text-gold-600" />
                 The TrustKeys Resale Guarantee
               </h4>
               <ul className="space-y-2 text-xs text-stone-600">
                 <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0 mt-1.5" />
                   <span><strong>Zero Disputed Titles:</strong> We decline properties with unclear ancestral succession or pending litigation.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0 mt-1.5" />
                   <span><strong>Accurate Carpet Verification:</strong> Physical on-ground measurement before token payment.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0 mt-1.5" />
                   <span><strong>Escrow Protection:</strong> Advance tokens held in institutional escrow accounts until title clearance.</span>
                 </li>
               </ul>
