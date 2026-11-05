@@ -186,7 +186,7 @@ export default function App() {
 
   return (
     <div
-      className="flex flex-col min-h-screen bg-slate-50/60 text-slate-900 selection:bg-amber-500 selection:text-white"
+      className="flex flex-col min-h-screen bg-slate-50/60 text-slate-900 selection:bg-gold-500 selection:text-white"
       style={{
         ["--status-ready-bg" as any]: siteSettings.statusBadgeColors?.ready || "#047857",
         ["--status-ongoing-bg" as any]: siteSettings.statusBadgeColors?.ongoing || "#64748b",
