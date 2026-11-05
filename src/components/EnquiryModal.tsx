@@ -122,7 +122,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
             </div>
             <button
               onClick={handleReset}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-sm shadow-md shadow-amber-500/25 transition-all active:scale-[0.99]"
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white font-bold text-sm shadow-md shadow-gold-500/25 transition-all active:scale-[0.99]"
             >
               Done
             </button>
@@ -131,7 +131,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
           /* Form */
           <div>
             <div className="mb-6">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-gold-700 bg-gold-50 px-2.5 py-1 rounded-md border border-gold-200">
                 Priority Advisory
               </span>
               <h3 className="font-serif-display text-2xl font-bold text-stone-900 mt-2">
@@ -158,7 +158,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                 <select
                   value={requirement}
                   onChange={(e) => setRequirement(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                 >
                   <option value="Schedule Site Visit">Schedule a Private Site Visit</option>
                   <option value="Instant Callback">Request Urgent Callback</option>
@@ -179,7 +179,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                       value={preferredDate}
                       onChange={(e) => setPreferredDate(e.target.value)}
                       min={new Date().toISOString().split('T')[0]}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                     />
                     <Calendar className="w-4 h-4 text-stone-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   </div>
@@ -197,7 +197,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Rahul Sharma"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                 />
               </div>
 
@@ -218,7 +218,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                       onChange={(e) => setMobile(e.target.value)}
                       placeholder="98200 12345"
                       maxLength={14}
-                      className="w-full pl-11 pr-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono"
+                      className="w-full pl-11 pr-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500 font-mono"
                     />
                   </div>
                 </div>
@@ -233,7 +233,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@company.com"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                   />
                 </div>
               </div>
@@ -248,7 +248,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Mention preferred floor level, budget ceiling, or specific questions..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
                 />
               </div>
 
@@ -256,7 +256,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full mt-2 py-3 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md shadow-amber-900/20 flex items-center justify-center gap-2 transition-all active:scale-[0.99] disabled:opacity-60"
+                className="w-full mt-2 py-3 px-4 rounded-xl bg-gold-600 hover:bg-gold-700 text-white font-bold text-sm shadow-md shadow-gold-900/20 flex items-center justify-center gap-2 transition-all active:scale-[0.99] disabled:opacity-60"
               >
                 {isSubmitting ? (
                   <>
@@ -273,8 +273,8 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
 
               <div className="flex items-center justify-between text-[11px] text-stone-400 pt-1">
                 <span>RERA Compliant Advisory</span>
-                <a href="tel:+919987154120" className="hover:text-amber-700 flex items-center gap-1 font-medium">
-                  <Phone className="w-3 h-3 text-amber-600" />
+                <a href="tel:+919987154120" className="hover:text-gold-700 flex items-center gap-1 font-medium">
+                  <Phone className="w-3 h-3 text-gold-600" />
                   <span>Direct Hotline: +91 99871 54120</span>
                 </a>
               </div>
