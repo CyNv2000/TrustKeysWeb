@@ -50,10 +50,10 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
   };
 
   return (
-    <div className="bg-gradient-to-br from-amber-50/90 via-white to-amber-100/60 text-slate-900 rounded-3xl p-6 sm:p-8 border border-amber-200/90 shadow-xs">
-      <div className="flex items-center justify-between mb-6 border-b border-amber-200/70 pb-4">
+    <div className="bg-gradient-to-br from-gold-50/90 via-white to-gold-100/60 text-slate-900 rounded-3xl p-6 sm:p-8 border border-gold-200/90 shadow-xs">
+      <div className="flex items-center justify-between mb-6 border-b border-gold-200/70 pb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center border border-amber-300 shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-gold-100 text-gold-700 flex items-center justify-center border border-gold-300 shadow-xs">
             <Calculator className="w-5 h-5" />
           </div>
           <div>
@@ -65,7 +65,7 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
             </p>
           </div>
         </div>
-        <span className="hidden sm:inline-block text-[11px] font-mono font-bold bg-amber-100 text-amber-950 px-3 py-1 rounded-full border border-amber-300">
+        <span className="hidden sm:inline-block text-[11px] font-mono font-bold bg-gold-100 text-gold-950 px-3 py-1 rounded-full border border-gold-300">
           Max 80% LTV
         </span>
       </div>
@@ -77,10 +77,10 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
           <div>
             <div className="flex items-center justify-between text-xs mb-2">
               <span className="font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1">
-                <IndianRupee className="w-3.5 h-3.5 text-amber-600" />
+                <IndianRupee className="w-3.5 h-3.5 text-gold-600" />
                 Loan Amount
               </span>
-              <span className="font-mono text-sm font-bold text-amber-900 bg-white px-3 py-1 rounded-lg border border-amber-200 shadow-xs">
+              <span className="font-mono text-sm font-bold text-gold-900 bg-white px-3 py-1 rounded-lg border border-gold-200 shadow-xs">
                 {formatINR(loanAmount)}
               </span>
             </div>
@@ -91,7 +91,7 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
               step={500000}
               value={loanAmount}
               onChange={(e) => setLoanAmount(Number(e.target.value))}
-              className="w-full accent-amber-600 bg-slate-200 h-2 rounded-lg cursor-pointer"
+              className="w-full accent-gold-600 bg-slate-200 h-2 rounded-lg cursor-pointer"
             />
             <div className="flex justify-between text-[11px] text-slate-500 mt-1 font-mono font-medium">
               <span>₹10 Lakhs</span>
@@ -103,10 +103,10 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
           <div>
             <div className="flex items-center justify-between text-xs mb-2">
               <span className="font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1">
-                <Percent className="w-3.5 h-3.5 text-amber-600" />
+                <Percent className="w-3.5 h-3.5 text-gold-600" />
                 Interest Rate (p.a.)
               </span>
-              <span className="font-mono text-sm font-bold text-amber-900 bg-white px-3 py-1 rounded-lg border border-amber-200 shadow-xs">
+              <span className="font-mono text-sm font-bold text-gold-900 bg-white px-3 py-1 rounded-lg border border-gold-200 shadow-xs">
                 {interestRate}%
               </span>
             </div>
@@ -117,7 +117,7 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
               step={0.1}
               value={interestRate}
               onChange={(e) => setInterestRate(Number(e.target.value))}
-              className="w-full accent-amber-600 bg-slate-200 h-2 rounded-lg cursor-pointer"
+              className="w-full accent-gold-600 bg-slate-200 h-2 rounded-lg cursor-pointer"
             />
             <div className="flex justify-between text-[11px] text-slate-500 mt-1 font-mono font-medium">
               <span>7.5%</span>
@@ -129,10 +129,10 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
           <div>
             <div className="flex items-center justify-between text-xs mb-2">
               <span className="font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5 text-amber-600" />
+                <Clock className="w-3.5 h-3.5 text-gold-600" />
                 Loan Tenure (Years)
               </span>
-              <span className="font-mono text-sm font-bold text-amber-900 bg-white px-3 py-1 rounded-lg border border-amber-200 shadow-xs">
+              <span className="font-mono text-sm font-bold text-gold-900 bg-white px-3 py-1 rounded-lg border border-gold-200 shadow-xs">
                 {tenureYears} Years ({tenureYears * 12} Months)
               </span>
             </div>
@@ -143,7 +143,7 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
               step={1}
               value={tenureYears}
               onChange={(e) => setTenureYears(Number(e.target.value))}
-              className="w-full accent-amber-600 bg-slate-200 h-2 rounded-lg cursor-pointer"
+              className="w-full accent-gold-600 bg-slate-200 h-2 rounded-lg cursor-pointer"
             />
             <div className="flex justify-between text-[11px] text-slate-500 mt-1 font-mono font-medium">
               <span>5 Years</span>
@@ -153,9 +153,9 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
         </div>
 
         {/* Results & Visual Breakdown Column - Bright Clean White Card */}
-        <div className="lg:col-span-5 bg-white rounded-2xl p-6 border border-amber-200/90 shadow-md space-y-5">
+        <div className="lg:col-span-5 bg-white rounded-2xl p-6 border border-gold-200/90 shadow-md space-y-5">
           <div>
-            <span className="text-[11px] uppercase font-bold text-amber-800 tracking-wider">
+            <span className="text-[11px] uppercase font-bold text-gold-800 tracking-wider">
               Estimated Monthly EMI
             </span>
             <div className="font-serif-display text-3xl sm:text-4xl font-bold text-slate-950 mt-1">
@@ -172,7 +172,7 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
             </div>
             <div className="flex justify-between text-slate-600">
               <span>Total Interest Payable:</span>
-              <span className="font-mono font-bold text-amber-700">{formatINR(calculation.totalInterest)}</span>
+              <span className="font-mono font-bold text-gold-700">{formatINR(calculation.totalInterest)}</span>
             </div>
             <div className="flex justify-between text-slate-700 font-bold pt-1.5 border-t border-slate-100">
               <span>Total Repayment:</span>
@@ -185,21 +185,21 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
             <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden flex">
               <div 
                 style={{ width: `${calculation.principalRatio}%` }} 
-                className="bg-amber-500 transition-all duration-300" 
+                className="bg-gold-500 transition-all duration-300" 
                 title={`Principal: ${calculation.principalRatio}%`}
               />
               <div 
                 style={{ width: `${100 - calculation.principalRatio}%` }} 
-                className="bg-amber-300 transition-all duration-300" 
+                className="bg-gold-300 transition-all duration-300" 
                 title={`Interest: ${100 - calculation.principalRatio}%`}
               />
             </div>
             <div className="flex items-center justify-between text-[10px] text-slate-500 mt-1.5 font-mono">
               <span className="flex items-center gap-1 font-semibold text-slate-700">
-                <span className="w-2 h-2 rounded-full bg-amber-500 inline-block" /> Principal ({calculation.principalRatio}%)
+                <span className="w-2 h-2 rounded-full bg-gold-500 inline-block" /> Principal ({calculation.principalRatio}%)
               </span>
               <span className="flex items-center gap-1 font-semibold text-slate-700">
-                <span className="w-2 h-2 rounded-full bg-amber-300 inline-block" /> Interest ({100 - calculation.principalRatio}%)
+                <span className="w-2 h-2 rounded-full bg-gold-300 inline-block" /> Interest ({100 - calculation.principalRatio}%)
               </span>
             </div>
           </div>
@@ -208,7 +208,7 @@ export const EmiCalculator: React.FC<EmiCalculatorProps> = ({
           {onLoanEnquiry && (
             <button
               onClick={onLoanEnquiry}
-              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/25 active:scale-95"
+              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md shadow-gold-500/25 active:scale-95"
             >
               <span>Apply for Pre-Approved Home Loan</span>
             </button>
