@@ -60,7 +60,7 @@ export const HomePage: React.FC<HomePageProps> = ({
     <div className="min-h-screen bg-white">
       
       {/* 1. Hero Section - Bright, Sunlit & Modern Luxury */}
-      <section className="relative bg-gradient-to-b from-amber-50/90 via-white to-amber-50/40 text-slate-900 overflow-hidden py-16 lg:py-24 border-b border-amber-200/70">
+      <section className="relative bg-gradient-to-b from-gold-50/90 via-white to-gold-50/40 text-slate-900 overflow-hidden py-16 lg:py-24 border-b border-gold-200/70">
         {/* Soft Sunlit Architectural Backdrop */}
         <div className="absolute inset-0 z-0 opacity-15 mix-blend-multiply pointer-events-none">
           <img
@@ -78,14 +78,14 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="max-w-3xl space-y-6">
             
             {/* Trust Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/90 text-amber-950 border border-amber-300 text-xs font-bold shadow-xs">
-              <ShieldCheck className="w-4 h-4 text-amber-700" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-100/90 text-gold-950 border border-gold-300 text-xs font-bold shadow-xs">
+              <ShieldCheck className="w-4 h-4 text-gold-700" />
               <span>Western Mumbai’s Premier Residential Advisory • 100% MahaRERA Verified</span>
             </div>
 
             {/* Headline */}
             <h1 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-950 leading-[1.15]">
-              Discreet, Verified Residential Properties Across <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-amber-600 to-amber-500">Western Mumbai</span>
+              Discreet, Verified Residential Properties Across <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-700 via-gold-600 to-gold-500">Western Mumbai</span>
             </h1>
 
             {/* Sub-headline */}
@@ -97,7 +97,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 onClick={scrollToCatalogue}
-                className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-sm shadow-lg shadow-amber-600/25 flex items-center gap-2 transition-all duration-200 active:scale-95"
+                className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-white font-bold text-sm shadow-lg shadow-gold-600/25 flex items-center gap-2 transition-all duration-200 active:scale-95"
               >
                 <span>Explore All Residences</span>
                 <ArrowRight className="w-4 h-4" />
@@ -105,34 +105,34 @@ export const HomePage: React.FC<HomePageProps> = ({
 
               <button
                 onClick={() => onOpenEnquiry()}
-                className="px-6 py-3.5 rounded-xl bg-white hover:bg-amber-50/80 text-slate-800 font-semibold text-sm border border-slate-300 shadow-sm transition-colors flex items-center gap-2"
+                className="px-6 py-3.5 rounded-xl bg-white hover:bg-gold-50/80 text-slate-800 font-semibold text-sm border border-slate-300 shadow-sm transition-colors flex items-center gap-2"
               >
                 <span>Speak to Tejas Shah (Principal Advisor)</span>
               </button>
             </div>
 
             {/* Quick Metrics */}
-            <div className="pt-8 border-t border-amber-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-amber-200/80 shadow-xs">
-                <span className="font-serif-display text-2xl sm:text-3xl font-bold text-amber-700 block">
+            <div className="pt-8 border-t border-gold-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-gold-200/80 shadow-xs">
+                <span className="font-serif-display text-2xl sm:text-3xl font-bold text-gold-700 block">
                   ₹450 Cr+
                 </span>
                 <span className="text-xs text-slate-600 font-medium">Transacted Advisory</span>
               </div>
-              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-amber-200/80 shadow-xs">
+              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-gold-200/80 shadow-xs">
                 <span className="font-serif-display text-2xl sm:text-3xl font-bold text-slate-900 block">
                   100%
                 </span>
                 <span className="text-xs text-slate-600 font-medium">RERA Title Audits</span>
               </div>
-              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-amber-200/80 shadow-xs">
+              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-gold-200/80 shadow-xs">
                 <span className="font-serif-display text-2xl sm:text-3xl font-bold text-slate-900 block">
                   18+ Yrs
                 </span>
                 <span className="text-xs text-slate-600 font-medium">Western Suburbs Focus</span>
               </div>
-              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-amber-200/80 shadow-xs">
-                <span className="font-serif-display text-2xl sm:text-3xl font-bold text-amber-700 block">
+              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-gold-200/80 shadow-xs">
+                <span className="font-serif-display text-2xl sm:text-3xl font-bold text-gold-700 block">
                   0
                 </span>
                 <span className="text-xs text-slate-600 font-medium">Litigation Record</span>
@@ -203,11 +203,11 @@ export const HomePage: React.FC<HomePageProps> = ({
       />
 
       {/* 4. The TrustKeys Approach Section - Bright & Luminous */}
-      <section className="py-20 bg-gradient-to-b from-white via-amber-50/40 to-slate-50 text-slate-900 border-y border-slate-200">
+      <section className="py-20 bg-gradient-to-b from-white via-gold-50/40 to-slate-50 text-slate-900 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-3.5 py-1 rounded-full border border-amber-300">
+            <span className="text-xs font-bold uppercase tracking-widest text-gold-800 bg-gold-100 px-3.5 py-1 rounded-full border border-gold-300">
               The TrustKeys Standard
             </span>
             <h2 className="font-serif-display text-3xl sm:text-4xl font-bold text-slate-900 mt-3 mb-4">
@@ -220,8 +220,8 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             
-            <div className="bg-white p-7 rounded-3xl border border-amber-200/80 hover:border-amber-400 hover:shadow-lg transition-all shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+            <div className="bg-white p-7 rounded-3xl border border-gold-200/80 hover:border-gold-400 hover:shadow-lg transition-all shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-gold-100 text-gold-700 flex items-center justify-center mb-4">
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <h3 className="font-serif-display text-lg font-bold text-slate-900">
@@ -232,8 +232,8 @@ export const HomePage: React.FC<HomePageProps> = ({
               </p>
             </div>
 
-            <div className="bg-white p-7 rounded-3xl border border-amber-200/80 hover:border-amber-400 hover:shadow-lg transition-all shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+            <div className="bg-white p-7 rounded-3xl border border-gold-200/80 hover:border-gold-400 hover:shadow-lg transition-all shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-gold-100 text-gold-700 flex items-center justify-center mb-4">
                 <FileCheck2 className="w-6 h-6" />
               </div>
               <h3 className="font-serif-display text-lg font-bold text-slate-900">
@@ -244,8 +244,8 @@ export const HomePage: React.FC<HomePageProps> = ({
               </p>
             </div>
 
-            <div className="bg-white p-7 rounded-3xl border border-amber-200/80 hover:border-amber-400 hover:shadow-lg transition-all shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+            <div className="bg-white p-7 rounded-3xl border border-gold-200/80 hover:border-gold-400 hover:shadow-lg transition-all shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-gold-100 text-gold-700 flex items-center justify-center mb-4">
                 <Compass className="w-6 h-6" />
               </div>
               <h3 className="font-serif-display text-lg font-bold text-slate-900">
@@ -256,8 +256,8 @@ export const HomePage: React.FC<HomePageProps> = ({
               </p>
             </div>
 
-            <div className="bg-white p-7 rounded-3xl border border-amber-200/80 hover:border-amber-400 hover:shadow-lg transition-all shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+            <div className="bg-white p-7 rounded-3xl border border-gold-200/80 hover:border-gold-400 hover:shadow-lg transition-all shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-gold-100 text-gold-700 flex items-center justify-center mb-4">
                 <Users2 className="w-6 h-6" />
               </div>
               <h3 className="font-serif-display text-lg font-bold text-slate-900">
@@ -278,7 +278,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-amber-700 bg-amber-100 px-3 py-1 rounded-full">
+              <span className="text-xs font-bold uppercase tracking-widest text-gold-700 bg-gold-100 px-3 py-1 rounded-full">
                 Western Mumbai Corridors
               </span>
               <h2 className="font-serif-display text-3xl sm:text-4xl font-bold text-stone-900 mt-2">
@@ -287,7 +287,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
             <button
               onClick={() => navigate('/projects')}
-              className="text-xs font-semibold text-amber-800 hover:text-amber-900 flex items-center gap-1 group"
+              className="text-xs font-semibold text-gold-800 hover:text-gold-900 flex items-center gap-1 group"
             >
               <span>Explore all neighbourhoods</span>
               <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -316,13 +316,13 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </div>
                 <div className="p-5">
                   <span className="inline-flex mb-2 bg-sky-50 text-sky-900 border border-sky-100 text-[11px] font-bold px-3 py-1 rounded-lg">{market.priceAvg}</span>
-                  <h3 className="font-serif-display text-base font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
+                  <h3 className="font-serif-display text-base font-bold text-slate-900 group-hover:text-gold-700 transition-colors">
                     {market.name}
                   </h3>
                   <p className="text-xs text-slate-600 mt-1 line-clamp-2">
                     {market.desc}
                   </p>
-                  <div className="mt-3 flex items-center gap-1.5 text-xs font-bold text-amber-700">
+                  <div className="mt-3 flex items-center gap-1.5 text-xs font-bold text-gold-700">
                     <span>View Residences in this Sector</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -334,7 +334,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* 6. High-Conversion Enquiry CTA - Warm, Bright & Radiant */}
-      <section className="py-20 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-white shadow-lg">
+      <section className="py-20 bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 text-white shadow-lg">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <div className="w-14 h-14 rounded-2xl bg-white/20 border border-white/30 text-white flex items-center justify-center mx-auto shadow-sm">
             <Sparkles className="w-7 h-7" />
@@ -342,22 +342,22 @@ export const HomePage: React.FC<HomePageProps> = ({
           <h2 className="font-serif-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white drop-shadow-xs">
             Planning Your Next Residential Acquisition in Western Mumbai?
           </h2>
-          <p className="text-sm sm:text-base text-amber-50 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-gold-50 max-w-2xl mx-auto leading-relaxed">
             Schedule a private consultation with our principal advisors. Gain confidential access to off-market penthouses, builder floor allocations, and pre-launch pricing.
           </p>
           <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => onOpenEnquiry()}
-              className="px-8 py-3.5 rounded-xl bg-white hover:bg-amber-50 text-slate-950 font-bold text-sm shadow-xl flex items-center gap-2 transition-transform active:scale-95"
+              className="px-8 py-3.5 rounded-xl bg-white hover:bg-gold-50 text-slate-950 font-bold text-sm shadow-xl flex items-center gap-2 transition-transform active:scale-95"
             >
               <span>Schedule Advisory Call</span>
-              <ArrowRight className="w-4 h-4 text-amber-700" />
+              <ArrowRight className="w-4 h-4 text-gold-700" />
             </button>
             <a
               href="https://wa.me/919987154120?text=Hello%20TrustKeys%2C%20I%20am%20exploring%20residential%20properties%20in%20Western%20Mumbai."
               target="_blank"
               rel="noreferrer"
-              className="px-6 py-3.5 rounded-xl bg-amber-700/60 hover:bg-amber-700 text-white font-semibold text-sm border border-white/30 backdrop-blur-xs transition-colors"
+              className="px-6 py-3.5 rounded-xl bg-gold-700/60 hover:bg-gold-700 text-white font-semibold text-sm border border-white/30 backdrop-blur-xs transition-colors"
             >
               WhatsApp Us Instantly
             </a>
