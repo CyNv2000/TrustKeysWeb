@@ -79,8 +79,8 @@ export const ComparePage: React.FC<ComparePageProps> = ({
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-stone-200 gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-amber-800 uppercase tracking-wider mb-1">
-              <Scale className="w-4 h-4 text-amber-700" />
+            <div className="flex items-center gap-2 text-xs font-semibold text-gold-800 uppercase tracking-wider mb-1">
+              <Scale className="w-4 h-4 text-gold-700" />
               <span>Multi-Property Evaluation Matrix</span>
             </div>
             <h1 className="font-serif-display text-3xl sm:text-4xl font-bold text-stone-900">
@@ -102,7 +102,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({
               </button>
               <button
                 onClick={() => navigate('/projects')}
-                className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold transition-all shadow-md shadow-amber-500/20 flex items-center gap-1.5 active:scale-95"
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white text-xs font-bold transition-all shadow-md shadow-gold-500/20 flex items-center gap-1.5 active:scale-95"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add More</span>
@@ -119,7 +119,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({
         ) : projects.length === 0 ? (
           /* Empty State: Instructions on how to add */
           <div className="bg-white rounded-3xl border border-stone-200 p-12 text-center max-w-xl mx-auto shadow-sm space-y-6">
-            <div className="w-16 h-16 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mx-auto border border-amber-200">
+            <div className="w-16 h-16 rounded-2xl bg-gold-50 text-gold-700 flex items-center justify-center mx-auto border border-gold-200">
               <Scale className="w-8 h-8" />
             </div>
             <div>
@@ -133,19 +133,19 @@ export const ComparePage: React.FC<ComparePageProps> = ({
 
             <div className="bg-stone-50 rounded-2xl p-5 text-left text-xs text-stone-700 space-y-3 border border-stone-200">
               <div className="flex items-start gap-3">
-                <span className="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+                <span className="w-5 h-5 rounded-full bg-gold-600 text-white flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
                   1
                 </span>
                 <span>Browse our verified properties on the <strong>Home</strong> or <strong>Projects</strong> page.</span>
               </div>
               <div className="flex items-start gap-3">
-                <span className="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+                <span className="w-5 h-5 rounded-full bg-gold-600 text-white flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
                   2
                 </span>
                 <span>Click the <strong>Compare</strong> button located on any project card or detail page.</span>
               </div>
               <div className="flex items-start gap-3">
-                <span className="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+                <span className="w-5 h-5 rounded-full bg-gold-600 text-white flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
                   3
                 </span>
                 <span>Return here to review prices, possession timelines, carpet specifications, and amenities side by side.</span>
@@ -154,7 +154,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({
 
             <button
               onClick={() => navigate('/projects')}
-              className="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md shadow-amber-900/20 inline-flex items-center gap-2"
+              className="px-6 py-3 rounded-xl bg-gold-600 hover:bg-gold-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md shadow-gold-900/20 inline-flex items-center gap-2"
             >
               <span>Explore Projects Catalogue</span>
               <ArrowRight className="w-4 h-4" />
@@ -200,7 +200,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => onSelectProject(p.slug)}
-                            className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold transition-all flex items-center justify-center gap-1 shadow-xs"
+                            className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white text-xs font-bold transition-all flex items-center justify-center gap-1 shadow-xs"
                           >
                             <span>View Details</span>
                             <ArrowRight className="w-3.5 h-3.5" />
@@ -234,7 +234,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({
                 <tr className="hover:bg-stone-50/50">
                   <td className="p-4 sm:p-6 font-semibold text-stone-600">Starting Price</td>
                   {projects.map((p) => (
-                    <td key={p.id} className="p-4 sm:p-6 font-serif-display text-lg font-bold text-amber-900">
+                    <td key={p.id} className="p-4 sm:p-6 font-serif-display text-lg font-bold text-gold-900">
                       {p.startingPriceFormatted}
                     </td>
                   ))}
@@ -247,7 +247,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({
                   {projects.map((p) => (
                     <td key={p.id} className="p-4 sm:p-6">
                       <span className={`px-2.5 py-1 rounded-md text-xs font-bold text-white ${
-                        p.status === 'Ready' ? 'bg-emerald-700' : p.status === 'Ongoing' ? 'bg-amber-600' : 'bg-sky-700'
+                        p.status === 'Ready' ? 'bg-emerald-700' : p.status === 'Ongoing' ? 'bg-gold-600' : 'bg-sky-700'
                       }`}>
                         {p.status}
                       </span>
@@ -340,7 +340,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({
                     <td key={p.id} className="p-4 sm:p-6">
                       <button
                         onClick={() => onOpenEnquiry(p.title)}
-                        className="w-full py-2.5 px-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider transition-colors shadow-sm"
+                        className="w-full py-2.5 px-3 rounded-xl bg-gold-600 hover:bg-gold-500 text-stone-950 font-bold text-xs uppercase tracking-wider transition-colors shadow-sm"
                       >
                         Enquire Now
                       </button>
