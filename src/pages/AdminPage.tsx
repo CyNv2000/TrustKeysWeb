@@ -542,10 +542,10 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
   // --------------------------------------------------------------------------
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50/80 via-white to-amber-100/50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-gold-50/80 via-white to-gold-100/50 flex items-center justify-center p-4">
         <div className="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl text-slate-900 space-y-6">
           <div className="text-center space-y-2">
-            <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mx-auto border border-amber-300 shadow-sm">
+            <div className="w-12 h-12 rounded-2xl bg-gold-100 text-gold-700 flex items-center justify-center mx-auto border border-gold-300 shadow-sm">
               <Lock className="w-6 h-6" />
             </div>
             <h1 className="font-serif-display text-2xl font-bold text-slate-950">
@@ -574,14 +574,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 placeholder="Enter admin password"
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-gold-500 font-mono"
               />
             </div>
 
             <button
               type="submit"
               disabled={isLoggingIn}
-              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 disabled:opacity-50 active:scale-95"
+              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-gold-500/25 flex items-center justify-center gap-2 disabled:opacity-50 active:scale-95"
             >
               {isLoggingIn ? (
                 <>
@@ -611,12 +611,12 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
       <header className="bg-white text-slate-900 border-b border-slate-200 sticky top-0 z-30 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 text-white flex items-center justify-center font-bold shadow-md shadow-amber-500/20">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-gold-600 via-gold-500 to-gold-400 text-white flex items-center justify-center font-bold shadow-md shadow-gold-500/20">
               <Building2 className="w-5 h-5" />
             </div>
             <div>
               <span className="font-serif-display font-bold text-base text-slate-900">TrustKeys</span>
-              <span className="text-[10px] text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded font-mono ml-2 uppercase font-bold">Advisor Console</span>
+              <span className="text-[10px] text-gold-700 bg-gold-50 border border-gold-200 px-2 py-0.5 rounded font-mono ml-2 uppercase font-bold">Advisor Console</span>
             </div>
           </div>
 
@@ -625,7 +625,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
               href="/"
               target="_blank"
               rel="noreferrer"
-              className="text-xs font-semibold text-slate-600 hover:text-amber-700 flex items-center gap-1 transition-colors"
+              className="text-xs font-semibold text-slate-600 hover:text-gold-700 flex items-center gap-1 transition-colors"
             >
               <span>View Live Website</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -660,7 +660,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                 }}
                 className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-2 whitespace-nowrap transition-all ${
                   isActive
-                    ? 'bg-amber-100/80 text-amber-950 border border-amber-300 shadow-xs'
+                    ? 'bg-gold-100/80 text-gold-950 border border-gold-300 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
@@ -668,7 +668,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                 <span>{tab.label}</span>
                 {tab.count !== undefined && (
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
-                    isActive ? 'bg-amber-600 text-white' : 'bg-slate-200 text-slate-700'
+                    isActive ? 'bg-gold-600 text-white' : 'bg-slate-200 text-slate-700'
                   }`}>
                     {tab.count}
                   </span>
@@ -716,7 +716,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                     value={projectsSearch}
                     onChange={(e) => setProjectsSearch(e.target.value)}
                     placeholder="Search residences by title, area, or RERA ID..."
-                    className="pl-9 pr-4 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500 w-64 sm:w-80"
+                    className="pl-9 pr-4 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-gold-500 w-64 sm:w-80"
                   />
                 </div>
               </div>
@@ -731,9 +731,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                 </button>
                 <button
                   onClick={handleStartCreateProject}
-                  className="px-4 py-2 rounded-xl bg-stone-900 hover:bg-amber-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-sm"
+                  className="px-4 py-2 rounded-xl bg-stone-900 hover:bg-gold-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-sm"
                 >
-                  <Plus className="w-4 h-4 text-amber-400" />
+                  <Plus className="w-4 h-4 text-gold-400" />
                   <span>Add New Residence</span>
                 </button>
               </div>
@@ -741,7 +741,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
 
             {/* Project Editor Modal / Drawer */}
             {editingProject && (
-              <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-amber-500/40 shadow-xl space-y-6 animate-in fade-in duration-200">
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-gold-500/40 shadow-xl space-y-6 animate-in fade-in duration-200">
                 <div className="flex items-center justify-between pb-4 border-b border-stone-200">
                   <div>
                     <h2 className="font-serif-display text-xl font-bold text-stone-900">
@@ -1004,7 +1004,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                       </div>
                       {uploadProgress !== null && (
                         <div className="mt-1 h-1.5 bg-stone-200 rounded-full overflow-hidden">
-                          <div style={{ width: `${uploadProgress}%` }} className="h-full bg-amber-500 transition-all" />
+                          <div style={{ width: `${uploadProgress}%` }} className="h-full bg-gold-500 transition-all" />
                         </div>
                       )}
                     </div>
@@ -1066,7 +1066,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                       </div>
                       {editingProject.brochureUrl && editingProject.brochureUrl !== '#download-brochure' && (
                         <div className="flex items-center justify-between gap-2 rounded-lg bg-stone-50 border border-stone-200 px-3 py-2">
-                          <a href={editingProject.brochureUrl} target="_blank" rel="noreferrer" className="min-w-0 truncate text-[11px] text-amber-800 underline">Current brochure</a>
+                          <a href={editingProject.brochureUrl} target="_blank" rel="noreferrer" className="min-w-0 truncate text-[11px] text-gold-800 underline">Current brochure</a>
                           <button
                             type="button"
                             onClick={() => setEditingProject({ ...editingProject, brochureUrl: undefined })}
@@ -1117,7 +1117,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                           type="checkbox"
                           checked={editingProject.published ?? true}
                           onChange={(e) => setEditingProject({ ...editingProject, published: e.target.checked })}
-                          className="rounded text-amber-600 focus:ring-amber-500 w-4 h-4"
+                          className="rounded text-gold-600 focus:ring-gold-500 w-4 h-4"
                         />
                         <span className="font-bold text-stone-800">Published on Live Website</span>
                       </label>
@@ -1127,9 +1127,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                           type="checkbox"
                           checked={editingProject.featured ?? false}
                           onChange={(e) => setEditingProject({ ...editingProject, featured: e.target.checked })}
-                          className="rounded text-amber-600 focus:ring-amber-500 w-4 h-4"
+                          className="rounded text-gold-600 focus:ring-gold-500 w-4 h-4"
                         />
-                        <span className="font-bold text-amber-800">Featured in Hero / Top Picks</span>
+                        <span className="font-bold text-gold-800">Featured in Hero / Top Picks</span>
                       </label>
                     </div>
                   </div>
@@ -1253,7 +1253,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                     type="button"
                     disabled={projectSaving}
                     onClick={handleSaveProject}
-                    className="px-6 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-stone-950 text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-md shadow-amber-900/20 disabled:opacity-50"
+                    className="px-6 py-2.5 rounded-xl bg-gold-600 hover:bg-gold-500 text-stone-950 text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-md shadow-gold-900/20 disabled:opacity-50"
                   >
                     {projectSaving ? (
                       <>
@@ -1320,13 +1320,13 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                               p.status === 'Ready'
                                 ? 'bg-emerald-100 text-emerald-800'
                                 : p.status === 'Ongoing'
-                                ? 'bg-amber-100 text-amber-800'
+                                ? 'bg-gold-100 text-gold-800'
                                 : 'bg-sky-100 text-sky-800'
                             }`}>
                               {p.status}
                             </span>
                           </td>
-                          <td className="py-3 px-4 font-mono font-bold text-amber-900">
+                          <td className="py-3 px-4 font-mono font-bold text-gold-900">
                             {p.startingPriceFormatted}
                           </td>
                           <td className="py-3 px-4 font-mono text-[11px] text-stone-600">
@@ -1347,7 +1347,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                             <button
                               onClick={() => handleToggleFeature(p)}
                               className={`p-1.5 rounded-lg transition-colors ${
-                                p.featured ? 'text-amber-500 bg-amber-50' : 'text-stone-300 hover:text-stone-500'
+                                p.featured ? 'text-gold-500 bg-gold-50' : 'text-stone-300 hover:text-stone-500'
                               }`}
                               title="Toggle featured status"
                             >
@@ -1458,7 +1458,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                   value={leadsSearch}
                   onChange={(e) => setLeadsSearch(e.target.value)}
                   placeholder="Search by customer name, phone, or email..."
-                  className="px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-900 w-64 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-900 w-64 focus:outline-none focus:ring-2 focus:ring-gold-500"
                 />
                 <button
                   onClick={handleExportCSV}
@@ -1515,7 +1515,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                                 </p>
                               )}
                             </td>
-                            <td className="py-3.5 px-4 font-medium text-amber-900">
+                            <td className="py-3.5 px-4 font-medium text-gold-900">
                               {enq.projectRef || 'General Inquiry'}
                             </td>
                             <td className="py-3.5 px-4">
@@ -1529,7 +1529,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                                 }}
                                 className={`px-2 py-1 rounded text-xs font-bold border ${
                                   enq.status === 'New'
-                                    ? 'bg-amber-100 text-amber-900 border-amber-300'
+                                    ? 'bg-gold-100 text-gold-900 border-gold-300'
                                     : enq.status === 'Contacted'
                                     ? 'bg-blue-100 text-blue-900 border-blue-300'
                                     : enq.status === 'Site Visit Scheduled'
@@ -1626,7 +1626,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                               <span className="font-bold text-stone-900 block">{lead.configuration}</span>
                               <span className="text-stone-600 font-mono text-[11px]">{lead.carpetArea} sq.ft.</span>
                             </td>
-                            <td className="py-3.5 px-4 font-mono font-bold text-amber-900">
+                            <td className="py-3.5 px-4 font-mono font-bold text-gold-900">
                               {lead.expectedPrice}
                             </td>
                             <td className="py-3.5 px-4">
@@ -1697,7 +1697,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
               </div>
               <button
                 onClick={() => setEditingFaq({ question: '', answer: '', category: 'Buying', sortOrder: faqsList.length + 1, published: true })}
-                className="px-4 py-2 rounded-xl bg-stone-900 hover:bg-amber-800 text-white text-xs font-semibold flex items-center gap-1.5"
+                className="px-4 py-2 rounded-xl bg-stone-900 hover:bg-gold-800 text-white text-xs font-semibold flex items-center gap-1.5"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add FAQ</span>
@@ -1706,7 +1706,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
 
             {/* FAQ Editor Drawer */}
             {editingFaq && (
-              <div className="bg-white rounded-3xl p-6 border-2 border-amber-500/40 shadow-lg space-y-4">
+              <div className="bg-white rounded-3xl p-6 border-2 border-gold-500/40 shadow-lg space-y-4">
                 <h3 className="font-bold text-stone-900 text-sm">
                   {editingFaq.id ? 'Edit FAQ' : 'Add New Question'}
                 </h3>
@@ -1780,7 +1780,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                       await loadFaqs();
                       showBanner('FAQ saved successfully');
                     }}
-                    className="px-5 py-2 rounded-lg bg-amber-600 text-stone-950 text-xs font-bold"
+                    className="px-5 py-2 rounded-lg bg-gold-600 text-stone-950 text-xs font-bold"
                   >
                     Save FAQ
                   </button>
@@ -1794,7 +1794,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                 <div key={faq.id} className="bg-white p-5 rounded-2xl border border-stone-200 flex items-start justify-between gap-4 text-xs">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-amber-700 font-bold">#{faq.sortOrder}</span>
+                      <span className="font-mono text-gold-700 font-bold">#{faq.sortOrder}</span>
                       <span className="px-2 py-0.5 rounded bg-stone-100 font-medium text-stone-700">{faq.category}</span>
                       {!faq.published && <span className="text-red-600 font-bold">(Unpublished)</span>}
                     </div>
@@ -1996,7 +1996,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
             <button
               type="submit"
               disabled={settingsSaving}
-              className="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md"
+              className="px-6 py-3 rounded-xl bg-gold-600 hover:bg-gold-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md"
             >
               {settingsSaving ? 'Saving Changes...' : 'Save Site Settings'}
             </button>
@@ -2041,7 +2041,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
             ))}
 
             <div className="flex justify-end">
-              <button type="button" onClick={handleSaveMicroMarkets} disabled={microMarketsSaving} className="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md disabled:opacity-50">
+              <button type="button" onClick={handleSaveMicroMarkets} disabled={microMarketsSaving} className="px-6 py-3 rounded-xl bg-gold-600 hover:bg-gold-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-md disabled:opacity-50">
                 {microMarketsSaving ? 'Saving...' : 'Save Micro-Markets'}
               </button>
             </div>
@@ -2092,7 +2092,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
               <button
                 type="submit"
                 disabled={changingPassword}
-                className="w-full py-3 rounded-xl bg-stone-900 hover:bg-amber-800 text-white font-bold text-xs transition-colors"
+                className="w-full py-3 rounded-xl bg-stone-900 hover:bg-gold-800 text-white font-bold text-xs transition-colors"
               >
                 {changingPassword ? 'Updating Password...' : 'Update Admin Password'}
               </button>
