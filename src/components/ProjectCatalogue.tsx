@@ -267,8 +267,8 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-6 border-b border-slate-200 gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-950 border border-amber-300 mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-gold-100 text-gold-950 border border-gold-300 mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-gold-600" />
               <span>Verified MahaRERA Properties</span>
             </div>
             <h2 className="font-serif-display text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
@@ -288,7 +288,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="appearance-none bg-white text-slate-800 text-xs font-semibold pl-3 pr-8 py-2 rounded-xl border border-slate-200 shadow-xs focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer"
+                className="appearance-none bg-white text-slate-800 text-xs font-semibold pl-3 pr-8 py-2 rounded-xl border border-slate-200 shadow-xs focus:outline-none focus:ring-2 focus:ring-gold-500 cursor-pointer"
                 aria-label="Sort residences by"
               >
                 <option value="newest">Sort: Newly Listed</option>
@@ -315,7 +315,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search residence name, locality, BHK, amenities, or RERA ID..."
-                className="w-full pl-10 pr-10 py-2.5 bg-slate-50 focus:bg-white text-sm text-slate-900 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-colors"
+                className="w-full pl-10 pr-10 py-2.5 bg-slate-50 focus:bg-white text-sm text-slate-900 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-colors"
               />
               {searchTerm && (
                 <button
@@ -339,7 +339,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                   onClick={() => setSelectedBHK(bhk)}
                   className={`px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
                     selectedBHK === bhk
-                      ? 'bg-gradient-to-r from-amber-600 to-amber-500 text-white shadow-sm'
+                      ? 'bg-gradient-to-r from-gold-600 to-gold-500 text-white shadow-sm'
                       : 'bg-slate-100 hover:bg-slate-200/80 text-slate-700'
                   }`}
                 >
@@ -353,14 +353,14 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
               onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
               className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold border transition-colors ${
                 showAdvancedFilters || activeFilterCount > 0
-                  ? 'bg-amber-50 border-amber-300 text-amber-950 shadow-xs'
+                  ? 'bg-gold-50 border-gold-300 text-gold-950 shadow-xs'
                   : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-700'
               }`}
             >
-              <SlidersHorizontal className="w-4 h-4 text-amber-600" />
+              <SlidersHorizontal className="w-4 h-4 text-gold-600" />
               <span>Filters</span>
               {activeFilterCount > 0 && (
-                <span className="w-5 h-5 rounded-full bg-amber-500 text-white text-[11px] font-bold flex items-center justify-center">
+                <span className="w-5 h-5 rounded-full bg-gold-500 text-white text-[11px] font-bold flex items-center justify-center">
                   {activeFilterCount}
                 </span>
               )}
@@ -379,7 +379,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                   onClick={() => setSelectedArea(area)}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors shrink-0 ${
                     selectedArea === area
-                      ? 'bg-amber-500 text-white font-bold shadow-sm shadow-amber-500/30'
+                      ? 'bg-gold-500 text-white font-bold shadow-sm shadow-gold-500/30'
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                   }`}
                 >
@@ -395,7 +395,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
             <div className="flex items-center gap-1">
               <span className="text-slate-500 font-bold uppercase mr-1">Stage:</span>
               {[
-                { val: 'All', label: 'All Stages', activeClass: 'bg-amber-500 text-white' },
+                { val: 'All', label: 'All Stages', activeClass: 'bg-gold-500 text-white' },
                 { val: 'Ready', label: 'Ready to Move', activeClass: 'bg-emerald-600 text-white', color: 'hover:text-emerald-700 bg-emerald-50 text-emerald-800 border border-emerald-200' },
                 { val: 'Ongoing', label: 'Under Construction', activeClass: 'text-white', color: 'hover:text-slate-800 bg-slate-100 text-slate-700 border border-slate-200' },
                 { val: 'Upcoming', label: 'New Launch', activeClass: 'bg-sky-600 text-white', color: 'hover:text-sky-700 bg-sky-50 text-sky-800 border border-sky-200' }
@@ -431,7 +431,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                   onClick={() => setBudgetTier(b.val)}
                   className={`px-3 py-1 rounded-lg font-bold transition-colors ${
                     budgetTier === b.val
-                      ? 'bg-amber-500 text-white shadow-xs'
+                      ? 'bg-gold-500 text-white shadow-xs'
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                   }`}
                 >
@@ -443,7 +443,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
             {activeFilterCount > 0 && (
               <button
                 onClick={handleResetFilters}
-                className="text-amber-800 hover:text-amber-950 font-bold flex items-center gap-1 underline underline-offset-2 ml-auto"
+                className="text-gold-800 hover:text-gold-950 font-bold flex items-center gap-1 underline underline-offset-2 ml-auto"
               >
                 <X className="w-3.5 h-3.5" />
                 <span>Reset all</span>
@@ -454,10 +454,10 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
 
         {/* Expandable Advanced Filters Drawer */}
         {showAdvancedFilters && (
-          <div className="bg-amber-50/50 rounded-2xl p-5 border border-amber-200/80 mb-8 space-y-5 animate-in slide-in-from-top-3 duration-200 shadow-xs">
-            <div className="flex items-center justify-between border-b border-amber-200/70 pb-3">
+          <div className="bg-gold-50/50 rounded-2xl p-5 border border-gold-200/80 mb-8 space-y-5 animate-in slide-in-from-top-3 duration-200 shadow-xs">
+            <div className="flex items-center justify-between border-b border-gold-200/70 pb-3">
               <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide flex items-center gap-2">
-                <SlidersHorizontal className="w-4 h-4 text-amber-600" />
+                <SlidersHorizontal className="w-4 h-4 text-gold-600" />
                 Refine Residence Criteria
               </h3>
               <button
@@ -487,12 +487,12 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                         }}
                         className={`w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-medium border text-left transition-colors ${
                           isSelected
-                            ? 'bg-amber-100 border-amber-300 text-amber-900'
+                            ? 'bg-gold-100 border-gold-300 text-gold-900'
                             : 'bg-white border-stone-200 text-stone-700 hover:bg-stone-50'
                         }`}
                       >
                         <span>{cat}</span>
-                        {isSelected && <Check className="w-3.5 h-3.5 text-amber-700" />}
+                        {isSelected && <Check className="w-3.5 h-3.5 text-gold-700" />}
                       </button>
                     );
                   })}
@@ -510,14 +510,14 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                     placeholder="Min sq.ft"
                     value={minAreaInput || ''}
                     onChange={(e) => setMinAreaInput(e.target.value ? Number(e.target.value) : undefined)}
-                    className="px-3 py-2 bg-white text-xs border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="px-3 py-2 bg-white text-xs border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500"
                   />
                   <input
                     type="number"
                     placeholder="Max sq.ft"
                     value={maxAreaInput || ''}
                     onChange={(e) => setMaxAreaInput(e.target.value ? Number(e.target.value) : undefined)}
-                    className="px-3 py-2 bg-white text-xs border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="px-3 py-2 bg-white text-xs border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500"
                   />
                 </div>
 
@@ -530,7 +530,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                       type="checkbox"
                       checked={hasParkingOnly}
                       onChange={(e) => setHasParkingOnly(e.target.checked)}
-                      className="rounded text-amber-600 focus:ring-amber-500 w-4 h-4"
+                      className="rounded text-gold-600 focus:ring-gold-500 w-4 h-4"
                     />
                     <span>Must include reserved covered parking</span>
                   </label>
@@ -539,7 +539,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                       type="checkbox"
                       checked={hasBalconyOnly}
                       onChange={(e) => setHasBalconyOnly(e.target.checked)}
-                      className="rounded text-amber-600 focus:ring-amber-500 w-4 h-4"
+                      className="rounded text-gold-600 focus:ring-gold-500 w-4 h-4"
                     />
                     <span>Must include sundeck / balcony</span>
                   </label>
@@ -564,12 +564,12 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                         }}
                         className={`w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-medium border text-left transition-colors ${
                           isSelected
-                            ? 'bg-amber-100 border-amber-300 text-amber-900'
+                            ? 'bg-gold-100 border-gold-300 text-gold-900'
                             : 'bg-white border-stone-200 text-stone-700 hover:bg-stone-50'
                         }`}
                       >
                         <span>{amenity}</span>
-                        {isSelected && <Check className="w-3.5 h-3.5 text-amber-700" />}
+                        {isSelected && <Check className="w-3.5 h-3.5 text-gold-700" />}
                       </button>
                     );
                   })}
@@ -624,7 +624,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
         ) : projects.length === 0 ? (
           /* No Results State with Clear Action */
           <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center max-w-md mx-auto my-12 shadow-sm">
-            <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mx-auto mb-4 border border-amber-200">
+            <div className="w-14 h-14 rounded-2xl bg-gold-50 text-gold-700 flex items-center justify-center mx-auto mb-4 border border-gold-200">
               <Building2 className="w-7 h-7" />
             </div>
             <h3 className="font-serif-display text-lg font-bold text-slate-900 mb-2">
@@ -635,7 +635,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
             </p>
             <button
               onClick={handleResetFilters}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold transition-all shadow-md shadow-amber-500/25 active:scale-95"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white text-xs font-bold transition-all shadow-md shadow-gold-500/25 active:scale-95"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               <span>Reset All Filters</span>
@@ -661,7 +661,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                 <button
                   onClick={handleLoadMore}
                   disabled={isLoadingMore}
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white text-sm font-bold transition-all shadow-lg shadow-amber-500/25 active:scale-95 disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white text-sm font-bold transition-all shadow-lg shadow-gold-500/25 active:scale-95 disabled:opacity-50"
                 >
                   {isLoadingMore ? (
                     <>
