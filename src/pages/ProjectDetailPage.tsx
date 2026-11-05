@@ -164,7 +164,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           </p>
           <button
             onClick={onNavigateBack}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-stone-900 text-white font-semibold text-xs hover:bg-amber-800 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-stone-900 text-white font-semibold text-xs hover:bg-gold-800 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Projects Catalogue</span>
@@ -213,7 +213,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
       <div className="bg-white border-b border-stone-200 py-3 sticky top-16 z-30 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-stone-500">
           <div className="flex items-center gap-2 overflow-x-auto">
-            <button onClick={onNavigateBack} className="hover:text-amber-800 flex items-center gap-1 font-semibold text-stone-700">
+            <button onClick={onNavigateBack} className="hover:text-gold-800 flex items-center gap-1 font-semibold text-stone-700">
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Catalogue</span>
             </button>
@@ -228,7 +228,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               onClick={handleCompareToggle}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1.5 ${
                 inCompare
-                  ? 'bg-amber-500 text-stone-950 border-amber-600 shadow-sm'
+                  ? 'bg-gold-500 text-stone-950 border-gold-600 shadow-sm'
                   : 'bg-white hover:bg-stone-50 text-stone-700 border-stone-200'
               }`}
             >
@@ -270,13 +270,13 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               {project.title}
             </h1>
             <div className="flex flex-wrap items-center gap-2 text-sm text-stone-600">
-              <MapPin className="w-4 h-4 text-amber-600 shrink-0" />
+              <MapPin className="w-4 h-4 text-gold-600 shrink-0" />
               <span>{project.address}</span>
               <a
                 href={project.googleMapsUrl || `https://maps.google.com/?q=${encodeURIComponent(project.address)}`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 text-amber-700 underline underline-offset-2"
+                className="inline-flex items-center gap-1 text-gold-700 underline underline-offset-2"
               >
                 Map <ExternalLink className="w-3 h-3" />
               </a>
@@ -310,7 +310,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             <div className="hidden sm:flex absolute top-4 left-4 right-4 z-10 flex-wrap items-center gap-2">
               {getStatusBadge(project.status)}
               {project.featured && (
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-400 text-slate-950 flex items-center gap-1 shadow-sm border border-amber-300">
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-gold-400 text-slate-950 flex items-center gap-1 shadow-sm border border-gold-300">
                   <Sparkles className="w-3.5 h-3.5" /> Featured Residence
                 </span>
               )}
@@ -323,13 +323,13 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   {project.title}
                 </h1>
                 <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-200 mt-1 font-medium">
-                  <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
+                  <MapPin className="w-4 h-4 text-gold-400 shrink-0" />
                   <span>{project.address}</span>
                   <a
                     href={project.googleMapsUrl || `https://maps.google.com/?q=${encodeURIComponent(project.address)}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1 text-amber-300 hover:text-amber-200 underline underline-offset-2"
+                    className="inline-flex items-center gap-1 text-gold-300 hover:text-gold-200 underline underline-offset-2"
                   >
                     Map <ExternalLink className="w-3 h-3" />
                   </a>
@@ -338,7 +338,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
               {/* Starting Price Box - Light, Crisp, High-Contrast */}
               <div className="text-left sm:text-right bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-white/80 shadow-xl text-slate-900">
-                <span className="block text-[10px] uppercase font-bold tracking-wider text-amber-700">
+                <span className="block text-[10px] uppercase font-bold tracking-wider text-gold-700">
                   {selectedConfig ? `${selectedConfig.type} Starting Price` : 'Starting Price'}
                 </span>
                 <span className="font-serif-display text-2xl sm:text-3xl font-bold text-slate-950">
@@ -360,7 +360,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   onClick={() => setActiveImageIdx(idx)}
                   className={`relative aspect-[16/10] w-24 sm:w-32 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${
                     activeImageIdx === idx
-                      ? 'border-amber-500 scale-95 shadow-md'
+                      ? 'border-gold-500 scale-95 shadow-md'
                       : 'border-transparent opacity-60 hover:opacity-100'
                   }`}
                 >
@@ -443,14 +443,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                         onClick={() => setSelectedConfig(cfg)}
                         className={`p-4 rounded-2xl border text-left transition-all ${
                           isSelected
-                            ? 'bg-amber-50/70 border-amber-500 ring-2 ring-amber-500/20 shadow-sm'
+                            ? 'bg-gold-50/70 border-gold-500 ring-2 ring-gold-500/20 shadow-sm'
                             : 'bg-stone-50 hover:bg-stone-100 border-stone-200'
                         }`}
                       >
                         <span className="block font-serif-display text-base font-bold text-stone-900">
                           {cfg.type}
                         </span>
-                        <span className="block font-mono text-sm font-semibold text-amber-800 mt-0.5">
+                        <span className="block font-mono text-sm font-semibold text-gold-800 mt-0.5">
                           {cfg.priceFormatted}
                         </span>
                         <span className="block text-xs text-stone-500 mt-1">
@@ -474,7 +474,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     </div>
                     <div>
                       <span className="text-stone-600 font-semibold block text-[10px] uppercase">Unit Pricing</span>
-                      <span className="font-mono font-bold text-amber-800">{selectedConfig.priceFormatted}</span>
+                      <span className="font-mono font-bold text-gold-800">{selectedConfig.priceFormatted}</span>
                     </div>
                     <div>
                       <span className="text-stone-600 font-semibold block text-[10px] uppercase">Carpet Area</span>
@@ -516,9 +516,9 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             </div>
 
             {/* Vastu Shastra Compliance Summary */}
-            <div className="bg-amber-50/60 rounded-3xl p-6 sm:p-8 border border-amber-200/80 shadow-sm space-y-3">
-              <div className="flex items-center gap-2.5 text-amber-900">
-                <Compass className="w-6 h-6 text-amber-700" />
+            <div className="bg-gold-50/60 rounded-3xl p-6 sm:p-8 border border-gold-200/80 shadow-sm space-y-3">
+              <div className="flex items-center gap-2.5 text-gold-900">
+                <Compass className="w-6 h-6 text-gold-700" />
                 <h3 className="font-serif-display text-xl font-bold">
                   Vastu Shastra Orientation Audit
                 </h3>
@@ -526,7 +526,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                 {project.vastuNotes}
               </p>
-              <div className="pt-2 flex items-center gap-2 text-xs text-amber-800 font-medium">
+              <div className="pt-2 flex items-center gap-2 text-xs text-gold-800 font-medium">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 <span>Verified Ishanya (Water) & Agneya (Fire) spatial harmony.</span>
               </div>
@@ -543,7 +543,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     key={amenity}
                     className="flex items-center gap-2.5 p-3 rounded-xl bg-stone-50 border border-stone-200/80 text-xs font-medium text-stone-800"
                   >
-                    <div className="w-2 h-2 rounded-full bg-amber-500" />
+                    <div className="w-2 h-2 rounded-full bg-gold-500" />
                     <span>{amenity}</span>
                   </div>
                 ))}
@@ -578,7 +578,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                               href={fp.image}
                               target="_blank"
                               rel="noreferrer"
-                              className="flex h-full w-full flex-col items-center justify-center gap-3 text-amber-800"
+                              className="flex h-full w-full flex-col items-center justify-center gap-3 text-gold-800"
                             >
                               <FileText className="w-12 h-12" />
                               <span className="text-sm font-semibold">Open floor plan PDF</span>
@@ -647,7 +647,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             {/* Primary Action Card */}
             <div className="bg-white rounded-3xl p-6 border border-stone-200 shadow-lg space-y-6">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-800">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-800">
                   Direct Developer Access
                 </span>
                 <div className="font-serif-display text-3xl font-bold text-stone-900 mt-1">
@@ -662,7 +662,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               <div className="space-y-3">
                 <button
                   onClick={() => onOpenEnquiry(project.title, 'Schedule Site Visit')}
-                  className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-amber-500/25 flex items-center justify-center gap-2 transition-transform active:scale-95"
+                  className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-gold-500/25 flex items-center justify-center gap-2 transition-transform active:scale-95"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>Book Private Site Visit</span>
@@ -672,15 +672,15 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   onClick={() => onOpenEnquiry(project.title, 'Instant Callback')}
                   className="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors shadow-xs"
                 >
-                  <Phone className="w-4 h-4 text-amber-400" />
+                  <Phone className="w-4 h-4 text-gold-400" />
                   <span>Request Instant Callback</span>
                 </button>
 
                 <button
                   onClick={() => onOpenEnquiry(project.title, 'Pricing & Negotiation')}
-                  className="w-full py-3 px-4 rounded-xl bg-amber-50 hover:bg-amber-100/80 text-amber-950 font-bold text-xs flex items-center justify-center gap-2 transition-colors border border-amber-200"
+                  className="w-full py-3 px-4 rounded-xl bg-gold-50 hover:bg-gold-100/80 text-gold-950 font-bold text-xs flex items-center justify-center gap-2 transition-colors border border-gold-200"
                 >
-                  <MessageSquare className="w-4 h-4 text-amber-700" />
+                  <MessageSquare className="w-4 h-4 text-gold-700" />
                   <span>Submit Purchase Offer / Negotiation</span>
                 </button>
               </div>
@@ -696,7 +696,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                       rel="noreferrer"
                       className="w-full py-2.5 px-3 rounded-xl bg-stone-50 hover:bg-stone-100 text-stone-700 text-xs font-medium border border-stone-200 flex items-center justify-center gap-2 transition-colors"
                     >
-                      <Download className="w-4 h-4 text-amber-700" />
+                      <Download className="w-4 h-4 text-gold-700" />
                       <span>Download Brochure (PDF)</span>
                     </a>
                   ) : (
@@ -704,7 +704,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                       onClick={() => onOpenEnquiry(project.title, 'Download Brochure')}
                       className="w-full py-2.5 px-3 rounded-xl bg-stone-50 hover:bg-stone-100 text-stone-700 text-xs font-medium border border-stone-200 flex items-center justify-center gap-2 transition-colors"
                     >
-                      <Download className="w-4 h-4 text-amber-700" />
+                      <Download className="w-4 h-4 text-gold-700" />
                       <span>Request Brochure & Price Sheet (PDF)</span>
                     </button>
                   )}
@@ -712,10 +712,10 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               )}
 
               {/* Direct Hotline */}
-              <div className="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200/80 text-xs space-y-1">
-                <span className="font-semibold text-amber-950 block">Assigned Senior Advisor:</span>
-                <p className="text-amber-900">Tejas Shah</p>
-                <a href="tel:+919987154120" className="font-mono text-amber-800 font-bold block pt-1 hover:underline">
+              <div className="p-3.5 rounded-2xl bg-gold-50/80 border border-gold-200/80 text-xs space-y-1">
+                <span className="font-semibold text-gold-950 block">Assigned Senior Advisor:</span>
+                <p className="text-gold-900">Tejas Shah</p>
+                <a href="tel:+919987154120" className="font-mono text-gold-800 font-bold block pt-1 hover:underline">
                   +91 99871 54120
                 </a>
               </div>
@@ -750,7 +750,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               </div>
               <button
                 onClick={onNavigateBack}
-                className="text-xs font-semibold text-amber-800 hover:text-amber-900 flex items-center gap-1"
+                className="text-xs font-semibold text-gold-800 hover:text-gold-900 flex items-center gap-1"
               >
                 <span>View all catalogue</span>
                 <ChevronRight className="w-4 h-4" />
