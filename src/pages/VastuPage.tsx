@@ -62,8 +62,8 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-xs font-semibold">
-            <Compass className="w-4 h-4 text-amber-700" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-100 text-gold-900 border border-gold-300 text-xs font-semibold">
+            <Compass className="w-4 h-4 text-gold-700" />
             <span>Interactive Vedic Architecture Assessment</span>
           </div>
           <h1 className="font-serif-display text-4xl sm:text-5xl font-bold text-stone-900 tracking-tight">
@@ -74,11 +74,11 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
           </p>
 
           {/* Traditional Guidance Disclaimer Notice */}
-          <div className="p-4 bg-amber-50/80 border border-amber-200/80 rounded-2xl text-xs text-amber-900 flex items-start gap-3 text-left">
-            <Info className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+          <div className="p-4 bg-gold-50/80 border border-gold-200/80 rounded-2xl text-xs text-gold-900 flex items-start gap-3 text-left">
+            <Info className="w-5 h-5 text-gold-700 shrink-0 mt-0.5" />
             <div className="space-y-0.5">
               <span className="font-bold">Informational Guidance Disclaimer:</span>
-              <p className="text-[11px] text-amber-800 leading-relaxed">
+              <p className="text-[11px] text-gold-800 leading-relaxed">
                 This digital tool is presented solely as traditional informational guidance and cultural reference based on classical Sthapatya Veda texts. It does not constitute a legal guarantee, structural engineering review, or certified architectural inspection.
               </p>
             </div>
@@ -86,13 +86,13 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
         </div>
 
         {/* Live Score Overview Card - Bright, Sunlit & Radiant */}
-        <div className="bg-gradient-to-br from-amber-50/90 via-white to-amber-100/60 text-slate-900 rounded-3xl p-6 sm:p-10 border border-amber-200/90 shadow-sm">
+        <div className="bg-gradient-to-br from-gold-50/90 via-white to-gold-100/60 text-slate-900 rounded-3xl p-6 sm:p-10 border border-gold-200/90 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Score Ring & Rating */}
             <div className="lg:col-span-5 text-center sm:text-left flex flex-col sm:flex-row items-center gap-6">
-              <div className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-white flex flex-col items-center justify-center border-4 border-amber-500 shadow-lg shrink-0">
-                <span className="font-serif-display text-4xl sm:text-5xl font-bold text-amber-600">
+              <div className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-white flex flex-col items-center justify-center border-4 border-gold-500 shadow-lg shrink-0">
+                <span className="font-serif-display text-4xl sm:text-5xl font-bold text-gold-600">
                   {evaluation.score}
                 </span>
                 <span className="text-[10px] uppercase font-bold tracking-widest text-slate-400">
@@ -110,7 +110,7 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
             </div>
 
             {/* Element Balance Bars */}
-            <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-amber-200/80 shadow-xs space-y-3.5">
+            <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-gold-200/80 shadow-xs space-y-3.5">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">
                 Pancha Bhoota (Five Elements) Balance:
               </span>
@@ -130,11 +130,11 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
                 {/* Fire */}
                 <div>
                   <div className="flex justify-between text-slate-700 mb-1">
-                    <span className="flex items-center gap-1.5 font-medium"><Flame className="w-3.5 h-3.5 text-amber-500" /> Fire (Agni)</span>
+                    <span className="flex items-center gap-1.5 font-medium"><Flame className="w-3.5 h-3.5 text-gold-500" /> Fire (Agni)</span>
                     <span className="font-mono font-bold text-slate-900">{evaluation.elementBalance.fire}%</span>
                   </div>
                   <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                    <div style={{ width: `${evaluation.elementBalance.fire}%` }} className="h-full bg-amber-500 rounded-full" />
+                    <div style={{ width: `${evaluation.elementBalance.fire}%` }} className="h-full bg-gold-500 rounded-full" />
                   </div>
                 </div>
 
@@ -165,26 +165,26 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
           </div>
 
           {/* Quick Action Controls in Score Box */}
-          <div className="mt-8 pt-6 border-t border-amber-200/70 flex flex-wrap items-center justify-between gap-4">
+          <div className="mt-8 pt-6 border-t border-gold-200/70 flex flex-wrap items-center justify-between gap-4">
             <button
               onClick={handleReset}
               className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold flex items-center gap-1.5 transition-colors"
             >
-              <RotateCcw className="w-3.5 h-3.5 text-amber-600" />
+              <RotateCcw className="w-3.5 h-3.5 text-gold-600" />
               <span>Reset Assessment</span>
             </button>
 
             <div className="flex items-center gap-3">
               <button
                 onClick={() => navigate('/projects')}
-                className="px-4 py-2 rounded-xl bg-white hover:bg-amber-50 text-amber-950 text-xs font-bold border border-amber-200 transition-colors flex items-center gap-1.5"
+                className="px-4 py-2 rounded-xl bg-white hover:bg-gold-50 text-gold-950 text-xs font-bold border border-gold-200 transition-colors flex items-center gap-1.5"
               >
-                <Building2 className="w-3.5 h-3.5 text-amber-600" />
+                <Building2 className="w-3.5 h-3.5 text-gold-600" />
                 <span>Filter Vastu Compliant Homes</span>
               </button>
               <button
                 onClick={onOpenEnquiry}
-                className="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold transition-all shadow-md shadow-amber-500/25 active:scale-95"
+                className="px-5 py-2 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white text-xs font-bold transition-all shadow-md shadow-gold-500/25 active:scale-95"
               >
                 <span>Request Custom Layout Audit</span>
               </button>
@@ -212,7 +212,7 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
                   className="bg-white rounded-3xl p-6 sm:p-7 border border-stone-200 shadow-sm space-y-4"
                 >
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-200">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-gold-800 bg-gold-50 px-2.5 py-0.5 rounded border border-gold-200">
                       {q.category}
                     </span>
                     <h3 className="font-serif-display text-lg font-bold text-stone-900 mt-1.5">
@@ -233,7 +233,7 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
                           onClick={() => handleSelectOption(q.id, opt.value)}
                           className={`p-3.5 rounded-2xl border text-xs cursor-pointer transition-all ${
                             isSelected
-                              ? 'bg-amber-50/70 border-amber-500 ring-2 ring-amber-500/20 shadow-sm'
+                              ? 'bg-gold-50/70 border-gold-500 ring-2 ring-gold-500/20 shadow-sm'
                               : 'bg-stone-50 hover:bg-stone-100 border-stone-200 text-stone-700'
                           }`}
                         >
@@ -245,7 +245,7 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
                               opt.score >= 8
                                 ? 'bg-emerald-100 text-emerald-800'
                                 : opt.score >= 5
-                                ? 'bg-amber-100 text-amber-800'
+                                ? 'bg-gold-100 text-gold-800'
                                 : 'bg-rose-100 text-rose-800'
                             }`}>
                               {opt.score}/10 pts
@@ -277,7 +277,7 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
             </div>
             <button
               onClick={() => setShowFullReport(!showFullReport)}
-              className="text-xs font-semibold text-amber-800 hover:text-amber-900 underline"
+              className="text-xs font-semibold text-gold-800 hover:text-gold-900 underline"
             >
               {showFullReport ? 'Hide Detail Table' : 'Show Complete Matrix'}
             </button>
@@ -295,7 +295,7 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
                     item.status === 'optimal'
                       ? 'bg-emerald-100 text-emerald-800'
                       : item.status === 'moderate'
-                      ? 'bg-amber-100 text-amber-800'
+                      ? 'bg-gold-100 text-gold-800'
                       : 'bg-rose-100 text-rose-800'
                   }`}>
                     {item.scorePercent}% Aligned
@@ -306,7 +306,7 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
                 </div>
                 {item.selectedOption.remedy && (
                   <div className="p-2.5 rounded-xl bg-white border border-stone-200 text-[11px] text-stone-600 space-y-1">
-                    <span className="font-semibold text-amber-800 block">Traditional Harmonizer:</span>
+                    <span className="font-semibold text-gold-800 block">Traditional Harmonizer:</span>
                     <p>{item.selectedOption.remedy}</p>
                   </div>
                 )}
@@ -321,7 +321,7 @@ export const VastuPage: React.FC<VastuPageProps> = ({ onOpenEnquiry, navigate })
             </div>
             <button
               onClick={onOpenEnquiry}
-              className="px-6 py-2.5 rounded-xl bg-stone-900 hover:bg-amber-800 text-white font-semibold text-xs transition-colors"
+              className="px-6 py-2.5 rounded-xl bg-stone-900 hover:bg-gold-800 text-white font-semibold text-xs transition-colors"
             >
               Book Advisory Consultation
             </button>
