@@ -63,22 +63,22 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
         : 'bg-white text-slate-800 py-3.5 border-b border-slate-200'
     }`}>
       {/* Top Banner Notice - Light & Warm */}
-      <div className="hidden lg:block bg-gradient-to-r from-amber-50 via-white to-amber-50/80 text-amber-950 text-xs py-1.5 px-6 border-b border-amber-200/70">
+      <div className="hidden lg:block bg-gradient-to-r from-gold-50 via-white to-gold-50/80 text-gold-950 text-xs py-1.5 px-6 border-b border-gold-200/70">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-amber-800 font-semibold">
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" /> 100% MahaRERA Verified Western Mumbai Portfolio
+            <span className="flex items-center gap-1.5 text-gold-800 font-semibold">
+              <Sparkles className="w-3.5 h-3.5 text-gold-600" /> 100% MahaRERA Verified Western Mumbai Portfolio
             </span>
-            <span className="text-amber-300">•</span>
+            <span className="text-gold-300">•</span>
             <span className="text-slate-600">Bandra | Khar | Santacruz | Juhu | Andheri | Borivali</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="tel:+919987154120" className="hover:text-amber-700 text-slate-700 transition-colors flex items-center gap-1 font-medium">
-              <Phone className="w-3 h-3 text-amber-600" /> +91 99871 54120
+            <a href="tel:+919987154120" className="hover:text-gold-700 text-slate-700 transition-colors flex items-center gap-1 font-medium">
+              <Phone className="w-3 h-3 text-gold-600" /> +91 99871 54120
             </a>
             <button 
               onClick={() => handleNavClick('/admin')} 
-              className="hover:text-amber-800 transition-colors text-slate-500 font-medium"
+              className="hover:text-gold-800 transition-colors text-slate-500 font-medium"
             >
               Advisor Portal
             </button>
@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
           {/* Brand Logo */}
           <button 
             onClick={() => handleNavClick('/')} 
-            className="flex items-center gap-3 text-left group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg p-1"
+            className="flex items-center gap-3 text-left group focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-lg p-1"
           >
             <BrandLogo className="w-12 h-13 shrink-0 transition-transform group-hover:scale-[1.03]" />
             <span>
@@ -114,14 +114,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
                   onClick={() => handleNavClick(link.route)}
                   className={`px-3 py-2 rounded-xl text-sm font-medium transition-all relative flex items-center gap-1.5 ${
                     isActive
-                      ? 'text-amber-800 bg-amber-50 font-bold border border-amber-200/80 shadow-xs'
+                      ? 'text-gold-800 bg-gold-50 font-bold border border-gold-200/80 shadow-xs'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
                   }`}
                 >
-                  {link.icon && <link.icon className="w-4 h-4 text-amber-600" />}
+                  {link.icon && <link.icon className="w-4 h-4 text-gold-600" />}
                   <span>{link.label}</span>
                   {link.badge !== undefined && (
-                    <span className="ml-1 px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-amber-500 text-white shadow-xs">
+                    <span className="ml-1 px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-gold-500 text-white shadow-xs">
                       {link.badge}
                     </span>
                   )}
@@ -134,14 +134,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
           <div className="hidden md:flex items-center gap-3">
             <a
               href="tel:+919987154120"
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-gold-50 hover:bg-gold-100 text-gold-900 border border-gold-200 transition-colors"
             >
-              <Phone className="w-3.5 h-3.5 text-amber-600" />
+              <Phone className="w-3.5 h-3.5 text-gold-600" />
               <span>Call Advisory</span>
             </a>
             <button
               onClick={() => onOpenEnquiry()}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white transition-all shadow-md shadow-amber-600/25 active:scale-95"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-white transition-all shadow-md shadow-gold-600/25 active:scale-95"
             >
               <span>Enquire Now</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -153,18 +153,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
             {compareCount > 0 && (
               <button
                 onClick={() => handleNavClick('/compare')}
-                className="relative p-2 rounded-lg text-amber-700 bg-amber-50 border border-amber-200"
+                className="relative p-2 rounded-lg text-gold-700 bg-gold-50 border border-gold-200"
                 aria-label="View Compare List"
               >
                 <Scale className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-amber-500 text-white text-[10px] font-bold flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold-500 text-white text-[10px] font-bold flex items-center justify-center">
                   {compareCount}
                 </span>
               </button>
             )}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-gold-500"
               aria-expanded={mobileMenuOpen}
               aria-label="Toggle navigation menu"
             >
@@ -186,16 +186,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
                   onClick={() => handleNavClick(link.route)}
                   className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-amber-50 text-amber-800 font-bold border border-amber-200'
+                      ? 'bg-gold-50 text-gold-800 font-bold border border-gold-200'
                       : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
                   }`}
                 >
                   <span className="flex items-center gap-2">
-                    {link.icon && <link.icon className="w-4 h-4 text-amber-600" />}
+                    {link.icon && <link.icon className="w-4 h-4 text-gold-600" />}
                     {link.label}
                   </span>
                   {link.badge !== undefined && (
-                    <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-amber-500 text-white">
+                    <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-gold-500 text-white">
                       {link.badge}
                     </span>
                   )}
@@ -207,9 +207,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
           <div className="mt-4 pt-4 border-t border-slate-200 space-y-2">
             <a
               href="tel:+919987154120"
-              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 font-semibold text-sm hover:bg-amber-100"
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gold-50 border border-gold-200 text-gold-950 font-semibold text-sm hover:bg-gold-100"
             >
-              <Phone className="w-4 h-4 text-amber-600" />
+              <Phone className="w-4 h-4 text-gold-600" />
               <span>Call Advisor: +91 99871 54120</span>
             </a>
             <button
@@ -217,7 +217,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
                 setMobileMenuOpen(false);
                 onOpenEnquiry();
               }}
-              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold text-sm shadow-md shadow-amber-600/20"
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-gold-600 to-gold-500 text-white font-bold text-sm shadow-md shadow-gold-600/20"
             >
               <span>Instant Property Enquiry</span>
               <ArrowRight className="w-4 h-4" />
@@ -225,7 +225,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, onOpenEn
             <div className="pt-2 text-center">
               <button 
                 onClick={() => handleNavClick('/admin')} 
-                className="text-xs text-slate-500 hover:text-amber-800 underline"
+                className="text-xs text-slate-500 hover:text-gold-800 underline"
               >
                 Advisor Admin Portal
               </button>
