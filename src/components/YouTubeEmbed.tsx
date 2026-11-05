@@ -61,7 +61,7 @@ export const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
 
           {/* Central Play Button */}
           <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-amber-500 hover:bg-amber-400 text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gold-500 hover:bg-gold-400 text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300">
               <Play className="w-8 h-8 fill-white ml-1" />
             </div>
             <span className="mt-4 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-slate-900 text-xs font-bold tracking-wide border border-slate-200 shadow-md">
