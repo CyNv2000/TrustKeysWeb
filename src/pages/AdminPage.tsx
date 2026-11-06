@@ -252,7 +252,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
       parking: '1 to 2 Covered Stilt',
       balcony: 'Expansive Sundecks',
       totalFloors: 24,
-      vastuNotes: 'Ishanya (North-East) entrance with open East balcony ventilation.',
+      vastuTitle: 'Vastu Shastra Orientation Audit',
+      vastuNotes: '',
+      vastuVerificationText: 'Verified Ishanya (Water) & Agneya (Fire) spatial harmony.',
       description: '',
       images: [],
       googleMapsUrl: '',
@@ -842,6 +844,43 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                         className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"
                       />
                       <p className="text-[10px] text-stone-500 mt-1">One amenity per line. Leave a line blank to remove it.</p>
+                    </div>
+
+                    <div className="md:col-span-3 rounded-xl border border-gold-200 bg-gold-50/40 p-4 space-y-3">
+                      <div>
+                        <h4 className="font-bold text-stone-900">Vastu Shastra Display</h4>
+                        <p className="text-[10px] text-stone-500 mt-1">These fields control the Vastu information card shown on this project's detail page.</p>
+                      </div>
+                      <div>
+                        <label className="block font-semibold text-stone-700 mb-1">Card Heading</label>
+                        <input
+                          type="text"
+                          value={editingProject.vastuTitle ?? 'Vastu Shastra Orientation Audit'}
+                          onChange={(e) => setEditingProject({ ...editingProject, vastuTitle: e.target.value })}
+                          placeholder="Vastu Shastra Orientation Audit"
+                          className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-semibold text-stone-700 mb-1">Orientation / Vastu Description</label>
+                        <textarea
+                          rows={2}
+                          value={editingProject.vastuNotes || ''}
+                          onChange={(e) => setEditingProject({ ...editingProject, vastuNotes: e.target.value })}
+                          placeholder="Describe the entrance direction, balcony orientation and Vastu details."
+                          className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-semibold text-stone-700 mb-1">Verification Statement</label>
+                        <input
+                          type="text"
+                          value={editingProject.vastuVerificationText ?? 'Verified Ishanya (Water) & Agneya (Fire) spatial harmony.'}
+                          onChange={(e) => setEditingProject({ ...editingProject, vastuVerificationText: e.target.value })}
+                          placeholder="Enter the verification statement"
+                          className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs"
+                        />
+                      </div>
                     </div>
 
                     <div>
