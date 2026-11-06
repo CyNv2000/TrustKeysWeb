@@ -27,6 +27,14 @@ export interface FloorPlanItem {
   image: string;
 }
 
+export interface ProjectDescriptionBlock {
+  id: string;
+  type: 'heading' | 'subheading' | 'paragraph';
+  text: string;
+  font: 'serif' | 'sans';
+  size: 'small' | 'medium' | 'large';
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -54,6 +62,7 @@ export interface Project {
   vastuNotes: string;
   vastuVerificationText?: string;
   description: string;
+  descriptionBlocks?: ProjectDescriptionBlock[];
   images: string[];
   googleMapsUrl?: string;
   reraNumber: string;
