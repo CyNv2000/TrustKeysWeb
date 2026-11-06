@@ -11,7 +11,6 @@ import {
   TrendingUp, 
   CheckCircle2, 
   MapPin,
-  ChevronRight
 } from 'lucide-react';
 import { ProjectCatalogue } from '../components/ProjectCatalogue';
 
@@ -26,58 +25,6 @@ export const HomePage: React.FC<HomePageProps> = ({
   onOpenEnquiry,
   navigate
 }) => {
-  // Static Western Mumbai micro-market cards.
-  const microMarkets = [
-  {
-    id: 'bandra-west',
-    name: 'Bandra West (Pali Hill & Bandstand)',
-    desc: 'Mumbai’s golden mile. Seafront promenades, heritage lanes, high-fashion boutiques, and Bollywood aristocracy.',
-    priceAvg: '₹65,000 - ₹1,10,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Bandra West'
-  },
-  {
-    id: 'bandra-east',
-    name: 'Bandra East (BKC Financial Gateway)',
-    desc: 'Immediate access to Mumbai’s business powerhouse, Jio World Drive, and top international schools.',
-    priceAvg: '₹42,000 - ₹68,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Bandra East'
-  },
-  {
-    id: 'juhu',
-    name: 'Juhu & JVPD Scheme',
-    desc: 'Quiet coastal aristocracy, wide tree-lined avenues, luxury clubs, and expansive ocean estates.',
-    priceAvg: '₹55,000 - ₹95,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Juhu'
-  },
-  {
-    id: 'andheri-west',
-    name: 'Andheri West (Lokhandwala & Versova)',
-    desc: 'Vibrant cultural pulse, premium culinary hotspots, metro intersections, and dynamic residential towers.',
-    priceAvg: '₹28,000 - ₹48,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Andheri West'
-  },
-  {
-    id: 'goregaon-malad',
-    name: 'Goregaon & Malad West',
-    desc: 'Suburban luxury hubs with Mindspace IT Parks, Inorbit Mall, premium gated communities, and lush green lungs.',
-    priceAvg: '₹20,000 - ₹34,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Goregaon West'
-  },
-  {
-    id: 'kandivali-borivali',
-    name: 'Kandivali & Borivali West',
-    desc: 'Peaceful, family-centric lifestyle along the Metro Line 2A with prominent Jain Derasars and national park views.',
-    priceAvg: '₹17,000 - ₹28,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Borivali West'
-  }
-];
-
   // Preset filters passed into the catalogue
   const [activeAreaPreset, setActiveAreaPreset] = useState<string | undefined>(undefined);
   const [activeStatusPreset, setActiveStatusPreset] = useState<string | undefined>(undefined);
@@ -314,67 +261,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 5. Western Mumbai Micro-Markets Showcase */}
-      <section className="py-20 bg-slate-50/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-gold-700 bg-gold-100 px-3 py-1 rounded-full">
-                Western Mumbai Corridors
-              </span>
-              <h2 className="font-serif-display text-3xl sm:text-4xl font-bold text-stone-900 mt-2">
-                Hyper-Local Expertise in Every Micro-Market
-              </h2>
-            </div>
-            <button
-              onClick={() => navigate('/projects')}
-              className="text-xs font-semibold text-gold-800 hover:text-gold-900 flex items-center gap-1 group"
-            >
-              <span>Explore all neighbourhoods</span>
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {microMarkets.map((market) => (
-              <div
-                key={market.name}
-                onClick={() => handleApplyPreset('area', market.areaFilter)}
-                className="group relative rounded-2xl overflow-hidden bg-white border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
-              >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-sky-100">
-                  <img
-                    src={market.img}
-                    alt={market.name}
-                    width={800}
-                    height={450}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-        <span className="pointer-events-none absolute bottom-2 right-2 z-10 text-[10px] font-bold tracking-wider text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Trustkeys</span>
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
-                </div>
-                <div className="p-5">
-                  <span className="inline-flex mb-2 bg-sky-50 text-sky-900 border border-sky-100 text-[11px] font-bold px-3 py-1 rounded-lg">{market.priceAvg}</span>
-                  <h3 className="font-serif-display text-base font-bold text-slate-900 group-hover:text-gold-700 transition-colors">
-                    {market.name}
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-1 line-clamp-2">
-                    {market.desc}
-                  </p>
-                  <div className="mt-3 flex items-center gap-1.5 text-xs font-bold text-gold-700">
-                    <span>View Residences in this Sector</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. High-Conversion Enquiry CTA - Warm, Bright & Radiant */}
+      {/* 5. High-Conversion Enquiry CTA - Warm, Bright & Radiant */}
       <section className="py-20 bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 text-white shadow-lg">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <div className="w-14 h-14 rounded-2xl bg-white/20 border border-white/30 text-white flex items-center justify-center mx-auto shadow-sm">
