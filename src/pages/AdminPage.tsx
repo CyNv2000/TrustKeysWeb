@@ -852,15 +852,20 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                         <h4 className="font-bold text-stone-900">Vastu Shastra Display</h4>
                         <p className="text-[10px] text-stone-500 mt-1">These fields control the Vastu information card shown on this project's detail page.</p>
                       </div>
-                      <label className="flex items-center gap-2 rounded-lg bg-white border border-stone-200 px-3 py-2 text-xs font-semibold text-stone-800">
+                      <div className="flex items-center justify-between gap-4 rounded-lg bg-white border border-amber-300 px-4 py-3">
+                        <div className="min-w-0">
+                          <label htmlFor="vastu-display-enabled" className="block text-xs font-bold text-stone-900 cursor-pointer">Display Vastu card on website</label>
+                          <p className="text-[10px] text-stone-500 mt-1">Turn off to hide this card from this project's detail page.</p>
+                        </div>
                         <input
+                          id="vastu-display-enabled"
                           type="checkbox"
+                          role="switch"
                           checked={editingProject.vastuDisplayEnabled !== false}
                           onChange={(e) => setEditingProject({ ...editingProject, vastuDisplayEnabled: e.target.checked })}
-                          className="rounded border-stone-300 text-amber-600 focus:ring-amber-500"
+                          className="!appearance-auto !visible !opacity-100 !static !m-0 h-5 w-5 shrink-0 cursor-pointer accent-amber-600"
                         />
-                        Show Vastu card on project detail page
-                      </label>
+                      </div>
                       <div>
                         <label className="block font-semibold text-stone-700 mb-1">Card Heading</label>
                         <input
