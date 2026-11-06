@@ -62,6 +62,9 @@ export interface ProjectQuery {
   maxPrice?: number;
   minArea?: number;
   maxArea?: number;
+  amenities?: string[];
+  hasParking?: boolean;
+  hasBalcony?: boolean;
   possession?: string;
   sort?: string;
   page?: number;
@@ -89,6 +92,9 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
   if (query.maxPrice) params.set('maxPrice', String(query.maxPrice));
   if (query.minArea) params.set('minArea', String(query.minArea));
   if (query.maxArea) params.set('maxArea', String(query.maxArea));
+  if (query.amenities && query.amenities.length > 0) params.set('amenities', query.amenities.join(','));
+  if (query.hasParking) params.set('hasParking', 'true');
+  if (query.hasBalcony) params.set('hasBalcony', 'true');
   if (query.possession && query.possession !== 'all') params.set('possession', query.possession);
   if (query.sort) params.set('sort', query.sort);
   if (query.page) params.set('page', String(query.page));
