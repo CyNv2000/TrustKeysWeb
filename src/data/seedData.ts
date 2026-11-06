@@ -920,57 +920,6 @@ export const initialFAQs: FAQ[] = [
   }
 ];
 
-const defaultMicroMarkets = [
-  {
-    id: 'bandra-west',
-    name: 'Bandra West (Pali Hill & Bandstand)',
-    desc: 'Mumbai’s golden mile. Seafront promenades, heritage lanes, high-fashion boutiques, and Bollywood aristocracy.',
-    priceAvg: '₹65,000 - ₹1,10,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Bandra West'
-  },
-  {
-    id: 'bandra-east',
-    name: 'Bandra East (BKC Financial Gateway)',
-    desc: 'Immediate access to Mumbai’s business powerhouse, Jio World Drive, and top international schools.',
-    priceAvg: '₹42,000 - ₹68,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Bandra East'
-  },
-  {
-    id: 'juhu',
-    name: 'Juhu & JVPD Scheme',
-    desc: 'Quiet coastal aristocracy, wide tree-lined avenues, luxury clubs, and expansive ocean estates.',
-    priceAvg: '₹55,000 - ₹95,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Juhu'
-  },
-  {
-    id: 'andheri-west',
-    name: 'Andheri West (Lokhandwala & Versova)',
-    desc: 'Vibrant cultural pulse, premium culinary hotspots, metro intersections, and dynamic residential towers.',
-    priceAvg: '₹28,000 - ₹48,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Andheri West'
-  },
-  {
-    id: 'goregaon-malad',
-    name: 'Goregaon & Malad West',
-    desc: 'Suburban luxury hubs with Mindspace IT Parks, Inorbit Mall, premium gated communities, and lush green lungs.',
-    priceAvg: '₹20,000 - ₹34,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Goregaon West'
-  },
-  {
-    id: 'kandivali-borivali',
-    name: 'Kandivali & Borivali West',
-    desc: 'Peaceful, family-centric lifestyle along the Metro Line 2A with prominent Jain Derasars and national park views.',
-    priceAvg: '₹17,000 - ₹28,000 / sq.ft.',
-    img: 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=800&q=80',
-    areaFilter: 'Borivali West'
-  }
-];
-
 export const initialSiteSettings: SiteSettings = {
   id: 'default',
   businessName: 'TrustKeys',
