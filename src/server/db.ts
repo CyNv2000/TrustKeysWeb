@@ -205,6 +205,9 @@ class LocalDatabase {
     maxPrice?: number;
     minArea?: number;
     maxArea?: number;
+    amenities?: string[];
+    hasParking?: boolean;
+    hasBalcony?: boolean;
     possession?: string;
     sort?: string;
     page?: number;
@@ -269,6 +272,22 @@ class LocalDatabase {
 
     if (filters?.maxArea && filters.maxArea > 0) {
       list = list.filter(p => p.minArea <= filters.maxArea!);
+    }
+
+    if (filters?.amenities && filters.amenities.length > 0) {
+      const requiredAmenities = filters.amenities.map(value => value.trim().toLowerCase()).filter(Boolean);
+      list = list.filter(p => {
+        const available = (p.amenities || []).map(value => value.toLowerCase());
+        return requiredAmenities.every(required => available.some(item => item.includes(required)));
+      });
+    }
+
+    if (filters?.hasParking) {
+      list = list.filter(p => Boolean(p.parking && !/^(no|none|not available|n\/a)$/i.test(p.parking.trim())));
+    }
+
+    if (filters?.hasBalcony) {
+      list = list.filter(p => Boolean(p.balcony && !/^(no|none|not available|n\/a)$/i.test(p.balcony.trim())));
     }
 
     if (filters?.possession && filters.possession !== 'all') {
