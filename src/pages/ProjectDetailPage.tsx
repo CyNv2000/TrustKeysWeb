@@ -490,9 +490,23 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               <h3 className="font-serif-display text-2xl font-bold text-stone-900">
                 Architectural Overview
               </h3>
-              <p className="text-sm text-stone-700 leading-relaxed whitespace-pre-line">
-                {project.description}
-              </p>
+              {project.descriptionBlocks && project.descriptionBlocks.length > 0 ? (
+                <div className="space-y-3">
+                  {project.descriptionBlocks.map((block) => (
+                    <div key={block.id} className={block.font === 'serif' ? 'font-serif-display' : 'font-sans'}>
+                      {block.type === 'heading' ? (
+                        <h4 className={block.size === 'large' ? 'text-2xl sm:text-3xl font-bold text-stone-900' : block.size === 'small' ? 'text-base font-bold text-stone-900' : 'text-xl font-bold text-stone-900'}>{block.text}</h4>
+                      ) : block.type === 'subheading' ? (
+                        <h5 className={block.size === 'large' ? 'text-xl font-semibold text-stone-800' : block.size === 'small' ? 'text-sm font-semibold text-stone-800' : 'text-lg font-semibold text-stone-800'}>{block.text}</h5>
+                      ) : (
+                        <p className={block.size === 'large' ? 'text-base leading-relaxed text-stone-700 whitespace-pre-line' : block.size === 'small' ? 'text-xs leading-relaxed text-stone-700 whitespace-pre-line' : 'text-sm leading-relaxed text-stone-700 whitespace-pre-line'}>{block.text}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-stone-700 leading-relaxed whitespace-pre-line">{project.description}</p>
+              )}
 
               {/* Key Highlights Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-stone-100 text-xs">
