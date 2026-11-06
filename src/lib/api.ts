@@ -121,6 +121,22 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
     if (query.status && query.status.length > 0 && !query.status.includes('All')) {
       list = list.filter(p => query.status!.includes(p.status));
     }
+
+    // Keep fallback results consistent with the server-side carpet-area filters.
+    if (query.minArea && query.minArea > 0) {
+      list = list.filter(p => {
+        const areas = (p.configurations || []).map(c => Number(c.carpetArea)).filter(n => Number.isFinite(n) && n > 0);
+        const largestArea = areas.length ? Math.max(...areas) : Number(p.maxArea || 0);
+        return largestArea >= query.minArea!;
+      });
+    }
+    if (query.maxArea && query.maxArea > 0) {
+      list = list.filter(p => {
+        const areas = (p.configurations || []).map(c => Number(c.carpetArea)).filter(n => Number.isFinite(n) && n > 0);
+        const smallestArea = areas.length ? Math.min(...areas) : Number(p.minArea || 0);
+        return smallestArea <= query.maxArea!;
+      });
+    }
     const page = query.page || 1;
     const limit = query.limit || 12;
     const paginated = list.slice((page - 1) * limit, page * limit);
