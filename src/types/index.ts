@@ -114,15 +114,6 @@ export interface FAQ {
   createdAt?: string;
 }
 
-export interface MicroMarket {
-  id: string;
-  name: string;
-  desc: string;
-  priceAvg: string;
-  img: string;
-  areaFilter: string;
-}
-
 export interface SiteSettings {
   id: string;
   businessName: string;
@@ -141,7 +132,6 @@ export interface SiteSettings {
   advisorBio: string;
   advisorImage: string;
   whatsappNumber: string;
-  microMarkets?: MicroMarket[];
   statusBadgeColors?: { ready: string; ongoing: string; upcoming: string };
   socialLinks: {
     instagram?: string;
