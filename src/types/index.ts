@@ -49,6 +49,7 @@ export interface Project {
   parking: string;
   balcony: string;
   totalFloors: number;
+  vastuDisplayEnabled?: boolean;
   vastuTitle?: string;
   vastuNotes: string;
   vastuVerificationText?: string;
