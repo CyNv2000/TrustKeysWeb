@@ -285,10 +285,18 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
         editingProject.startingPriceFormatted = `₹${(editingProject.startingPrice / 10000000).toFixed(2)} Cr`;
       }
 
+      const configurationAreas = (editingProject.configurations || [])
+        .map(cfg => Number(cfg.carpetArea))
+        .filter(area => Number.isFinite(area) && area > 0);
       const projectData = {
         ...editingProject,
         title: (editingProject.title || '').trim(),
-        amenities: (editingProject.amenities || []).map(item => item.trim()).filter(Boolean)
+        amenities: (editingProject.amenities || []).map(item => item.trim()).filter(Boolean),
+        ...(configurationAreas.length > 0 ? {
+          minArea: Math.min(...configurationAreas),
+          maxArea: Math.max(...configurationAreas),
+          carpetArea: `${Math.min(...configurationAreas).toLocaleString('en-IN')} - ${Math.max(...configurationAreas).toLocaleString('en-IN')} sq.ft.`
+        } : {})
       };
 
       if (isCreatingNew) {
