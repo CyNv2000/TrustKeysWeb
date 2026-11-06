@@ -39,6 +39,7 @@ import {
   SellLead, 
   FAQ, 
   SiteSettings,
+  ProjectDescriptionBlock,
 } from '../types';
 import { 
   adminLogin, 
@@ -892,15 +893,45 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                       </div>
                     </div>
 
-                    <div>
-                      <label className="block font-semibold text-stone-700 mb-1">Description</label>
-                      <textarea
-                        rows={5}
-                        value={editingProject.description || ''}
-                        onChange={(e) => setEditingProject({ ...editingProject, description: e.target.value })}
-                        placeholder="Describe the project, location, design, and key benefits."
-                        className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs leading-relaxed"
-                      />
+                    <div className="md:col-span-3 rounded-xl border border-stone-200 bg-white p-4 space-y-4">
+                      <div className="flex items-center justify-between gap-3">
+                        <div>
+                          <h4 className="font-bold text-stone-900">Project Description Layout Editor</h4>
+                          <p className="text-[10px] text-stone-500 mt-1">Build the description using movable headings and text blocks. Choose font and size for each block.</p>
+                        </div>
+                        <button type="button" onClick={() => setEditingProject({ ...editingProject, descriptionBlocks: [...(editingProject.descriptionBlocks || []), { id: `desc-${Date.now()}`, type: 'paragraph', text: '', font: 'sans', size: 'medium' }] })} className="shrink-0 px-3 py-2 rounded-lg bg-stone-900 text-white text-xs font-semibold">+ Add block</button>
+                      </div>
+                      {(!editingProject.descriptionBlocks || editingProject.descriptionBlocks.length === 0) && (
+                        <div>
+                          <label className="block font-semibold text-stone-700 mb-1">Description (existing text)</label>
+                          <textarea rows={4} value={editingProject.description || ''} onChange={(e) => setEditingProject({ ...editingProject, description: e.target.value })} placeholder="Describe the project, location, design, and key benefits." className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs leading-relaxed" />
+                          <p className="text-[10px] text-stone-500 mt-1">Add a block to create a structured description with editable headings and typography.</p>
+                        </div>
+                      )}
+                      {(editingProject.descriptionBlocks || []).map((block, index) => (
+                        <div key={block.id} className="rounded-lg border border-stone-200 bg-stone-50 p-3 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-bold text-stone-700">Content block {index + 1}</span>
+                            <div className="flex items-center gap-2">
+                              <button type="button" disabled={index === 0} onClick={() => { const blocks = [...(editingProject.descriptionBlocks || [])]; [blocks[index - 1], blocks[index]] = [blocks[index], blocks[index - 1]]; setEditingProject({ ...editingProject, descriptionBlocks: blocks }); }} className="px-2 py-1 border rounded text-xs disabled:opacity-30">↑</button>
+                              <button type="button" disabled={index === (editingProject.descriptionBlocks || []).length - 1} onClick={() => { const blocks = [...(editingProject.descriptionBlocks || [])]; [blocks[index + 1], blocks[index]] = [blocks[index], blocks[index + 1]]; setEditingProject({ ...editingProject, descriptionBlocks: blocks }); }} className="px-2 py-1 border rounded text-xs disabled:opacity-30">↓</button>
+                              <button type="button" onClick={() => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).filter((_, i) => i !== index) })} className="px-2 py-1 border border-red-200 text-red-700 rounded text-xs">Remove</button>
+                            </div>
+                          </div>
+                          <textarea rows={block.type === 'paragraph' ? 4 : 2} value={block.text} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, text: e.target.value } : item) })} placeholder="Enter content..." className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs" />
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <select value={block.type} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, type: e.target.value as ProjectDescriptionBlock['type'] } : item) })} className="px-2 py-2 bg-white border rounded-lg text-xs">
+                              <option value="heading">Main heading</option><option value="subheading">Subheading</option><option value="paragraph">Paragraph</option>
+                            </select>
+                            <select value={block.font} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, font: e.target.value as ProjectDescriptionBlock['font'] } : item) })} className="px-2 py-2 bg-white border rounded-lg text-xs">
+                              <option value="serif">Serif font</option><option value="sans">Sans-serif font</option>
+                            </select>
+                            <select value={block.size} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, size: e.target.value as ProjectDescriptionBlock['size'] } : item) })} className="px-2 py-2 bg-white border rounded-lg text-xs">
+                              <option value="small">Small</option><option value="medium">Medium</option><option value="large">Large</option>
+                            </select>
+                          </div>
+                        </div>
+                      ))}
                     </div>
 
                     <div>
