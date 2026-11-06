@@ -406,7 +406,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   </div>
                 </div>
                 <a
-                  href={`https://maharera.mahaonline.gov.in/`}
+                  href="https://www.maharera.maharashtra.gov.in/projects-search-result"
                   target="_blank"
                   rel="noreferrer"
                   className="px-4 py-2 rounded-xl bg-white hover:bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-semibold whitespace-nowrap transition-colors"
