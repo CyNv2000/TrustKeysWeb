@@ -515,22 +515,26 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               </div>
             </div>
 
-            {/* Vastu Shastra Compliance Summary */}
-            <div className="bg-gold-50/60 rounded-3xl p-6 sm:p-8 border border-gold-200/80 shadow-sm space-y-3">
-              <div className="flex items-center gap-2.5 text-gold-900">
-                <Compass className="w-6 h-6 text-gold-700" />
-                <h3 className="font-serif-display text-xl font-bold">
-                  {project.vastuTitle || 'Vastu Shastra Orientation Audit'}
-                </h3>
+            {project.vastuDisplayEnabled !== false && (
+              {/* Vastu Shastra Compliance Summary */}
+              <div className="bg-gold-50/60 rounded-3xl p-6 sm:p-8 border border-gold-200/80 shadow-sm space-y-3">
+                <div className="flex items-center gap-2.5 text-gold-900">
+                  <Compass className="w-6 h-6 text-gold-700" />
+                  <h3 className="font-serif-display text-xl font-bold">
+                    {project.vastuTitle || 'Vastu Shastra Orientation Audit'}
+                  </h3>
+                </div>
+                <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                  {project.vastuNotes}
+                </p>
+                <div className="pt-2 flex items-center gap-2 text-xs text-gold-800 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>{project.vastuVerificationText || 'Verified Ishanya (Water) & Agneya (Fire) spatial harmony.'}</span>
+                </div>
               </div>
-              <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                {project.vastuNotes}
-              </p>
-              <div className="pt-2 flex items-center gap-2 text-xs text-gold-800 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>{project.vastuVerificationText || 'Verified Ishanya (Water) & Agneya (Fire) spatial harmony.'}</span>
-              </div>
-            </div>
+  
+  
+            )}
 
             {/* Amenities Grid */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 shadow-sm space-y-6">
