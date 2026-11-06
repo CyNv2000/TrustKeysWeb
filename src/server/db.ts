@@ -267,11 +267,19 @@ class LocalDatabase {
     }
 
     if (filters?.minArea && filters.minArea > 0) {
-      list = list.filter(p => p.maxArea >= filters.minArea!);
+      list = list.filter(p => {
+        const areas = (p.configurations || []).map(c => Number(c.carpetArea)).filter(n => Number.isFinite(n) && n > 0);
+        const largestArea = areas.length ? Math.max(...areas) : Number(p.maxArea || 0);
+        return largestArea >= filters.minArea!;
+      });
     }
 
     if (filters?.maxArea && filters.maxArea > 0) {
-      list = list.filter(p => p.minArea <= filters.maxArea!);
+      list = list.filter(p => {
+        const areas = (p.configurations || []).map(c => Number(c.carpetArea)).filter(n => Number.isFinite(n) && n > 0);
+        const smallestArea = areas.length ? Math.min(...areas) : Number(p.minArea || 0);
+        return smallestArea <= filters.maxArea!;
+      });
     }
 
     if (filters?.amenities && filters.amenities.length > 0) {
