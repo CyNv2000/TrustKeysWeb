@@ -530,6 +530,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             </div>
 
             {project.vastuDisplayEnabled !== false && (
+              <>
               {/* Vastu Shastra Compliance Summary */}
               <div className="bg-gold-50/60 rounded-3xl p-6 sm:p-8 border border-gold-200/80 shadow-sm space-y-3">
                 <div className="flex items-center gap-2.5 text-gold-900">
@@ -546,8 +547,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   <span>{project.vastuVerificationText || 'Verified Ishanya (Water) & Agneya (Fire) spatial harmony.'}</span>
                 </div>
               </div>
-  
-  
+              </>
             )}
 
             {/* Amenities Grid */}
