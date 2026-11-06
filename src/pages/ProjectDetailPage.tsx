@@ -520,7 +520,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               <div className="flex items-center gap-2.5 text-gold-900">
                 <Compass className="w-6 h-6 text-gold-700" />
                 <h3 className="font-serif-display text-xl font-bold">
-                  Vastu Shastra Orientation Audit
+                  {project.vastuTitle || 'Vastu Shastra Orientation Audit'}
                 </h3>
               </div>
               <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
@@ -528,7 +528,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               </p>
               <div className="pt-2 flex items-center gap-2 text-xs text-gold-800 font-medium">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>Verified Ishanya (Water) & Agneya (Fire) spatial harmony.</span>
+                <span>{project.vastuVerificationText || 'Verified Ishanya (Water) & Agneya (Fire) spatial harmony.'}</span>
               </div>
             </div>
 
