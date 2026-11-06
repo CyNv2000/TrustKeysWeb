@@ -49,7 +49,9 @@ export interface Project {
   parking: string;
   balcony: string;
   totalFloors: number;
+  vastuTitle?: string;
   vastuNotes: string;
+  vastuVerificationText?: string;
   description: string;
   images: string[];
   googleMapsUrl?: string;
