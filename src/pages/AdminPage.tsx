@@ -854,17 +854,18 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                       </div>
                       <div className="flex items-center justify-between gap-4 rounded-lg bg-white border border-amber-300 px-4 py-3">
                         <div className="min-w-0">
-                          <label htmlFor="vastu-display-enabled" className="block text-xs font-bold text-stone-900 cursor-pointer">Display Vastu card on website</label>
-                          <p className="text-[10px] text-stone-500 mt-1">Turn off to hide this card from this project's detail page.</p>
+                          <span className="block text-xs font-bold text-stone-900">Display Vastu card on website</span>
+                          <p className="text-[10px] text-stone-500 mt-1">Choose whether this card appears on this project's detail page.</p>
                         </div>
-                        <input
-                          id="vastu-display-enabled"
-                          type="checkbox"
+                        <button
+                          type="button"
                           role="switch"
-                          checked={editingProject.vastuDisplayEnabled !== false}
-                          onChange={(e) => setEditingProject({ ...editingProject, vastuDisplayEnabled: e.target.checked })}
-                          className="!appearance-auto !visible !opacity-100 !static !m-0 h-5 w-5 shrink-0 cursor-pointer accent-amber-600"
-                        />
+                          aria-checked={editingProject.vastuDisplayEnabled !== false}
+                          onClick={() => setEditingProject({ ...editingProject, vastuDisplayEnabled: editingProject.vastuDisplayEnabled === false })}
+                          className={`shrink-0 min-w-[76px] rounded-full px-3 py-2 text-[11px] font-bold transition-colors ${editingProject.vastuDisplayEnabled !== false ? 'bg-emerald-600 text-white' : 'bg-stone-300 text-stone-800'}`}
+                        >
+                          {editingProject.vastuDisplayEnabled !== false ? 'ON' : 'OFF'}
+                        </button>
                       </div>
                       <div>
                         <label className="block font-semibold text-stone-700 mb-1">Card Heading</label>
