@@ -751,6 +751,103 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                   </button>
                 </div>
 
+                <div className="space-y-4">
+                    <div className="md:col-span-3 rounded-xl border border-gold-200 bg-gold-50/40 p-4 space-y-3">
+                      <div>
+                        <h4 className="font-bold text-stone-900">Vastu Shastra Display</h4>
+                        <p className="text-[10px] text-stone-500 mt-1">These fields control the Vastu information card shown on this project's detail page.</p>
+                      </div>
+                      <div className="flex items-center justify-between gap-4 rounded-lg bg-white border border-amber-300 px-4 py-3">
+                        <div className="min-w-0">
+                          <span className="block text-xs font-bold text-stone-900">Display Vastu card on website</span>
+                          <p className="text-[10px] text-stone-500 mt-1">Choose whether this card appears on this project's detail page.</p>
+                        </div>
+                        <button
+                          type="button"
+                          role="switch"
+                          aria-checked={editingProject.vastuDisplayEnabled !== false}
+                          onClick={() => setEditingProject({ ...editingProject, vastuDisplayEnabled: editingProject.vastuDisplayEnabled === false })}
+                          className={`shrink-0 min-w-[76px] rounded-full px-3 py-2 text-[11px] font-bold transition-colors ${editingProject.vastuDisplayEnabled !== false ? 'bg-emerald-600 text-white' : 'bg-stone-300 text-stone-800'}`}
+                        >
+                          {editingProject.vastuDisplayEnabled !== false ? 'ON' : 'OFF'}
+                        </button>
+                      </div>
+                      <div>
+                        <label className="block font-semibold text-stone-700 mb-1">Card Heading</label>
+                        <input
+                          type="text"
+                          value={editingProject.vastuTitle ?? 'Vastu Shastra Orientation Audit'}
+                          onChange={(e) => setEditingProject({ ...editingProject, vastuTitle: e.target.value })}
+                          placeholder="Vastu Shastra Orientation Audit"
+                          className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-semibold text-stone-700 mb-1">Orientation / Vastu Description</label>
+                        <textarea
+                          rows={2}
+                          value={editingProject.vastuNotes || ''}
+                          onChange={(e) => setEditingProject({ ...editingProject, vastuNotes: e.target.value })}
+                          placeholder="Describe the entrance direction, balcony orientation and Vastu details."
+                          className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-semibold text-stone-700 mb-1">Verification Statement</label>
+                        <input
+                          type="text"
+                          value={editingProject.vastuVerificationText ?? 'Verified Ishanya (Water) & Agneya (Fire) spatial harmony.'}
+                          onChange={(e) => setEditingProject({ ...editingProject, vastuVerificationText: e.target.value })}
+                          placeholder="Enter the verification statement"
+                          className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="md:col-span-3 rounded-xl border border-stone-200 bg-white p-4 space-y-4">
+                      <div className="flex items-center justify-between gap-3">
+                        <div>
+                          <h4 className="font-bold text-stone-900">Project Description Layout Editor</h4>
+                          <p className="text-[10px] text-stone-500 mt-1">Build the description using movable headings and text blocks. Choose font and size for each block.</p>
+                        </div>
+                        <button type="button" onClick={() => setEditingProject({ ...editingProject, descriptionBlocks: [...(editingProject.descriptionBlocks || []), { id: `desc-${Date.now()}`, type: 'paragraph', text: '', font: 'sans', size: 'medium' }] })} className="shrink-0 px-3 py-2 rounded-lg bg-stone-900 text-white text-xs font-semibold">+ Add block</button>
+                      </div>
+                      {(!editingProject.descriptionBlocks || editingProject.descriptionBlocks.length === 0) && (
+                        <div>
+                          <label className="block font-semibold text-stone-700 mb-1">Description (existing text)</label>
+                          <textarea rows={4} value={editingProject.description || ''} onChange={(e) => setEditingProject({ ...editingProject, description: e.target.value })} placeholder="Describe the project, location, design, and key benefits." className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs leading-relaxed" />
+                          <p className="text-[10px] text-stone-500 mt-1">Add a block to create a structured description with editable headings and typography.</p>
+                        </div>
+                      )}
+                      {(editingProject.descriptionBlocks || []).map((block, index) => (
+                        <div key={block.id} className="rounded-lg border border-stone-200 bg-stone-50 p-3 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-bold text-stone-700">Content block {index + 1}</span>
+                            <div className="flex items-center gap-2">
+                              <button type="button" disabled={index === 0} onClick={() => { const blocks = [...(editingProject.descriptionBlocks || [])]; [blocks[index - 1], blocks[index]] = [blocks[index], blocks[index - 1]]; setEditingProject({ ...editingProject, descriptionBlocks: blocks }); }} className="px-2 py-1 border rounded text-xs disabled:opacity-30">↑</button>
+                              <button type="button" disabled={index === (editingProject.descriptionBlocks || []).length - 1} onClick={() => { const blocks = [...(editingProject.descriptionBlocks || [])]; [blocks[index + 1], blocks[index]] = [blocks[index], blocks[index + 1]]; setEditingProject({ ...editingProject, descriptionBlocks: blocks }); }} className="px-2 py-1 border rounded text-xs disabled:opacity-30">↓</button>
+                              <button type="button" onClick={() => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).filter((_, i) => i !== index) })} className="px-2 py-1 border border-red-200 text-red-700 rounded text-xs">Remove</button>
+                            </div>
+                          </div>
+                          <textarea rows={block.type === 'paragraph' ? 4 : 2} value={block.text} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, text: e.target.value } : item) })} placeholder="Enter content..." className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs" />
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <select value={block.type} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, type: e.target.value as ProjectDescriptionBlock['type'] } : item) })} className="px-2 py-2 bg-white border rounded-lg text-xs">
+                              <option value="heading">Main heading</option><option value="subheading">Subheading</option><option value="paragraph">Paragraph</option>
+                            </select>
+                            <select value={block.font} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, font: e.target.value as ProjectDescriptionBlock['font'] } : item) })} className="px-2 py-2 bg-white border rounded-lg text-xs">
+                              <option value="serif">Serif font</option><option value="sans">Sans-serif font</option>
+                            </select>
+                            <select value={block.size} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, size: e.target.value as ProjectDescriptionBlock['size'] } : item) })} className="px-2 py-2 bg-white border rounded-lg text-xs">
+                              <option value="small">Small</option><option value="medium">Medium</option><option value="large">Large</option>
+                            </select>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
                   
                   {/* Basic Details */}
@@ -845,99 +942,6 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                         className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"
                       />
                       <p className="text-[10px] text-stone-500 mt-1">One amenity per line. Leave a line blank to remove it.</p>
-                    </div>
-
-                    <div className="md:col-span-3 rounded-xl border border-gold-200 bg-gold-50/40 p-4 space-y-3">
-                      <div>
-                        <h4 className="font-bold text-stone-900">Vastu Shastra Display</h4>
-                        <p className="text-[10px] text-stone-500 mt-1">These fields control the Vastu information card shown on this project's detail page.</p>
-                      </div>
-                      <div className="flex items-center justify-between gap-4 rounded-lg bg-white border border-amber-300 px-4 py-3">
-                        <div className="min-w-0">
-                          <span className="block text-xs font-bold text-stone-900">Display Vastu card on website</span>
-                          <p className="text-[10px] text-stone-500 mt-1">Choose whether this card appears on this project's detail page.</p>
-                        </div>
-                        <button
-                          type="button"
-                          role="switch"
-                          aria-checked={editingProject.vastuDisplayEnabled !== false}
-                          onClick={() => setEditingProject({ ...editingProject, vastuDisplayEnabled: editingProject.vastuDisplayEnabled === false })}
-                          className={`shrink-0 min-w-[76px] rounded-full px-3 py-2 text-[11px] font-bold transition-colors ${editingProject.vastuDisplayEnabled !== false ? 'bg-emerald-600 text-white' : 'bg-stone-300 text-stone-800'}`}
-                        >
-                          {editingProject.vastuDisplayEnabled !== false ? 'ON' : 'OFF'}
-                        </button>
-                      </div>
-                      <div>
-                        <label className="block font-semibold text-stone-700 mb-1">Card Heading</label>
-                        <input
-                          type="text"
-                          value={editingProject.vastuTitle ?? 'Vastu Shastra Orientation Audit'}
-                          onChange={(e) => setEditingProject({ ...editingProject, vastuTitle: e.target.value })}
-                          placeholder="Vastu Shastra Orientation Audit"
-                          className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs"
-                        />
-                      </div>
-                      <div>
-                        <label className="block font-semibold text-stone-700 mb-1">Orientation / Vastu Description</label>
-                        <textarea
-                          rows={2}
-                          value={editingProject.vastuNotes || ''}
-                          onChange={(e) => setEditingProject({ ...editingProject, vastuNotes: e.target.value })}
-                          placeholder="Describe the entrance direction, balcony orientation and Vastu details."
-                          className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs"
-                        />
-                      </div>
-                      <div>
-                        <label className="block font-semibold text-stone-700 mb-1">Verification Statement</label>
-                        <input
-                          type="text"
-                          value={editingProject.vastuVerificationText ?? 'Verified Ishanya (Water) & Agneya (Fire) spatial harmony.'}
-                          onChange={(e) => setEditingProject({ ...editingProject, vastuVerificationText: e.target.value })}
-                          placeholder="Enter the verification statement"
-                          className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="md:col-span-3 rounded-xl border border-stone-200 bg-white p-4 space-y-4">
-                      <div className="flex items-center justify-between gap-3">
-                        <div>
-                          <h4 className="font-bold text-stone-900">Project Description Layout Editor</h4>
-                          <p className="text-[10px] text-stone-500 mt-1">Build the description using movable headings and text blocks. Choose font and size for each block.</p>
-                        </div>
-                        <button type="button" onClick={() => setEditingProject({ ...editingProject, descriptionBlocks: [...(editingProject.descriptionBlocks || []), { id: `desc-${Date.now()}`, type: 'paragraph', text: '', font: 'sans', size: 'medium' }] })} className="shrink-0 px-3 py-2 rounded-lg bg-stone-900 text-white text-xs font-semibold">+ Add block</button>
-                      </div>
-                      {(!editingProject.descriptionBlocks || editingProject.descriptionBlocks.length === 0) && (
-                        <div>
-                          <label className="block font-semibold text-stone-700 mb-1">Description (existing text)</label>
-                          <textarea rows={4} value={editingProject.description || ''} onChange={(e) => setEditingProject({ ...editingProject, description: e.target.value })} placeholder="Describe the project, location, design, and key benefits." className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs leading-relaxed" />
-                          <p className="text-[10px] text-stone-500 mt-1">Add a block to create a structured description with editable headings and typography.</p>
-                        </div>
-                      )}
-                      {(editingProject.descriptionBlocks || []).map((block, index) => (
-                        <div key={block.id} className="rounded-lg border border-stone-200 bg-stone-50 p-3 space-y-3">
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold text-stone-700">Content block {index + 1}</span>
-                            <div className="flex items-center gap-2">
-                              <button type="button" disabled={index === 0} onClick={() => { const blocks = [...(editingProject.descriptionBlocks || [])]; [blocks[index - 1], blocks[index]] = [blocks[index], blocks[index - 1]]; setEditingProject({ ...editingProject, descriptionBlocks: blocks }); }} className="px-2 py-1 border rounded text-xs disabled:opacity-30">↑</button>
-                              <button type="button" disabled={index === (editingProject.descriptionBlocks || []).length - 1} onClick={() => { const blocks = [...(editingProject.descriptionBlocks || [])]; [blocks[index + 1], blocks[index]] = [blocks[index], blocks[index + 1]]; setEditingProject({ ...editingProject, descriptionBlocks: blocks }); }} className="px-2 py-1 border rounded text-xs disabled:opacity-30">↓</button>
-                              <button type="button" onClick={() => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).filter((_, i) => i !== index) })} className="px-2 py-1 border border-red-200 text-red-700 rounded text-xs">Remove</button>
-                            </div>
-                          </div>
-                          <textarea rows={block.type === 'paragraph' ? 4 : 2} value={block.text} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, text: e.target.value } : item) })} placeholder="Enter content..." className="w-full px-3 py-2 bg-white border border-stone-200 rounded-lg text-xs" />
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                            <select value={block.type} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, type: e.target.value as ProjectDescriptionBlock['type'] } : item) })} className="px-2 py-2 bg-white border rounded-lg text-xs">
-                              <option value="heading">Main heading</option><option value="subheading">Subheading</option><option value="paragraph">Paragraph</option>
-                            </select>
-                            <select value={block.font} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, font: e.target.value as ProjectDescriptionBlock['font'] } : item) })} className="px-2 py-2 bg-white border rounded-lg text-xs">
-                              <option value="serif">Serif font</option><option value="sans">Sans-serif font</option>
-                            </select>
-                            <select value={block.size} onChange={(e) => setEditingProject({ ...editingProject, descriptionBlocks: (editingProject.descriptionBlocks || []).map((item, i) => i === index ? { ...item, size: e.target.value as ProjectDescriptionBlock['size'] } : item) })} className="px-2 py-2 bg-white border rounded-lg text-xs">
-                              <option value="small">Small</option><option value="medium">Medium</option><option value="large">Large</option>
-                            </select>
-                          </div>
-                        </div>
-                      ))}
                     </div>
 
                     <div>
