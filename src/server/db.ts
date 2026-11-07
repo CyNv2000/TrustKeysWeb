@@ -311,7 +311,9 @@ class LocalDatabase {
 
     if (filters?.hasBalcony) {
       list = list.filter(p => {
-        const values = [p.balcony, ...(p.configurations || []).map(config => config.balcony)];
+        const values = p.configurations?.length
+          ? p.configurations.map(config => config.balcony)
+          : [p.balcony];
         return values.some(value => {
           const balcony = String(value || '').trim().toLowerCase();
           if (!balcony || /\b(no|none|without|not available|not provided|not specified|nil|n\/?a|zero|0)\b/.test(balcony)) return false;
