@@ -153,7 +153,9 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
     }
     if (query.hasBalcony) {
       list = list.filter(p => {
-        const values = [p.balcony, ...(p.configurations || []).map(config => config.balcony)];
+        const values = p.configurations?.length
+          ? p.configurations.map(config => config.balcony)
+          : [p.balcony];
         return values.some(value => {
           const balcony = String(value || '').trim().toLowerCase();
           return Boolean(balcony) &&
