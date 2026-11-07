@@ -90,6 +90,15 @@ export async function fetchAvailableProjectAmenities(): Promise<string[]> {
     : [];
 }
 
+export async function fetchAvailableProjectCategories(): Promise<string[]> {
+  const response = await fetchWithTimeout(`${API_BASE}/project-filters/categories`, {}, 7000);
+  if (!response.ok) throw new Error('Unable to load available project categories');
+  const data = await response.json();
+  return Array.isArray(data.categories)
+    ? data.categories.map((value: unknown) => String(value || '').trim()).filter(Boolean)
+    : [];
+}
+
 export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsResponse> {
   const params = new URLSearchParams();
 
