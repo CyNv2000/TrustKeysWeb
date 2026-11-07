@@ -88,6 +88,17 @@ async function startServer() {
     res.json({ status: 'ok', service: 'TrustKeys API', timestamp: new Date().toISOString() });
   });
 
+  // Live filter options: never substitute demo/seed project data.
+  app.get('/api/project-filters/amenities', (_req, res) => {
+    try {
+      res.setHeader('Cache-Control', 'no-store');
+      res.json({ amenities: db.getAvailableProjectAmenities() });
+    } catch (err) {
+      console.error('Failed to load project filter amenities:', err);
+      res.status(500).json({ error: 'Unable to load available project amenities' });
+    }
+  });
+
   // Projects - List & Query
   app.get('/api/projects', (req, res) => {
     try {
