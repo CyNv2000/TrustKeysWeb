@@ -121,6 +121,26 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
     if (query.status && query.status.length > 0 && !query.status.includes('All')) {
       list = list.filter(p => query.status!.includes(p.status));
     }
+    if (query.bhk && query.bhk.length > 0 && !query.bhk.includes('All')) {
+      list = list.filter(p => (p.configuration || []).some(config =>
+        query.bhk!.some(bhk => config.toLowerCase().includes(bhk.toLowerCase()))
+      ));
+    }
+    if (query.category && query.category.length > 0) {
+      list = list.filter(p => query.category!.includes(p.category));
+    }
+    if (query.amenities && query.amenities.length > 0) {
+      list = list.filter(p => query.amenities!.every(required =>
+        (p.amenities || []).some(available => available.toLowerCase().includes(required.toLowerCase()))
+      ));
+    }
+    if (query.hasParking) {
+      list = list.filter(p => /covered|stilt|podium|garage/i.test(String(p.parking || '')));
+    }
+    if (query.hasBalcony) {
+      list = list.filter(p => [p.balcony, ...(p.configurations || []).map(config => config.balcony)]
+        .some(value => Boolean(String(value || '').trim()) && !/^(no|none|not available|n\/a)$/i.test(String(value).trim())));
+    }
 
     // Keep fallback results consistent with the server-side carpet-area filters.
     if (query.minArea && query.minArea > 0) {
