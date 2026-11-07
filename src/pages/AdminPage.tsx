@@ -857,6 +857,19 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                     </h3>
                     
                     <div>
+                      <label className="block font-semibold text-stone-700 mb-1">Project Category *</label>
+                      <input
+                        type="text"
+                        required
+                        value={editingProject.category || ''}
+                        onChange={(e) => setEditingProject({ ...editingProject, category: e.target.value })}
+                        placeholder="e.g. Luxury Apartments, Commercial, Boutique Seafront"
+                        className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"
+                      />
+                      <p className="text-[10px] text-stone-500 mt-1">Enter the category used to classify this residence. Categories used by published projects appear in the website filters.</p>
+                    </div>
+
+                    <div>
                       <label className="block font-semibold text-stone-700 mb-1">Residence Title *</label>
                       <input
                         type="text"
