@@ -47,16 +47,6 @@ const PROPERTY_TYPES = [
   'High-Rise Tower'
 ];
 
-const AMENITY_TAGS = [
-  'Infinity Rooftop Pool',
-  'Technogym Fitness Studio',
-  'EV Charging Stations',
-  'Sky Lounge at 300 Ft',
-  'Private Screening Lounge',
-  'Badminton Court',
-  'Squash Court'
-];
-
 export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   onSelectProject,
   presetArea,
@@ -87,6 +77,8 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
 
   // Pagination & Loading States
   const [projects, setProjects] = useState<Project[]>([]);
+  const [availableAmenities, setAvailableAmenities] = useState<string[]>([]);
+  const [amenitiesLoaded, setAmenitiesLoaded] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -95,6 +87,42 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   const [, startTransition] = useTransition();
+
+  // Load all published residences independently of the active filters and pagination.
+  useEffect(() => {
+    let cancelled = false;
+    const loadAvailableAmenities = async () => {
+      try {
+        const firstPage = await fetchProjects({ page: 1, limit: 100 });
+        let allProjects = [...firstPage.projects];
+        for (let page = 2; page <= firstPage.totalPages; page++) {
+          const nextPage = await fetchProjects({ page, limit: 100 });
+          allProjects = allProjects.concat(nextPage.projects);
+        }
+        if (!cancelled) {
+          const amenities = Array.from(new Set(
+            allProjects
+              .filter(project => project.published !== false)
+              .flatMap(project => project.amenities || [])
+              .map(amenity => String(amenity || '').trim())
+              .filter(Boolean)
+          )).sort((a, b) => a.localeCompare(b));
+          setAvailableAmenities(amenities);
+          setAmenitiesLoaded(true);
+        }
+      } catch (error) {
+        console.error('Could not load available amenity filters:', error);
+        if (!cancelled) setAmenitiesLoaded(true);
+      }
+    };
+    loadAvailableAmenities();
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    if (!amenitiesLoaded) return;
+    setSelectedAmenities(current => current.filter(amenity => availableAmenities.includes(amenity)));
+  }, [availableAmenities, amenitiesLoaded]);
 
   // Debounce search input (350ms)
   useEffect(() => {
@@ -555,7 +583,11 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                   Specific Lifestyle Amenities
                 </label>
                 <div className="space-y-1.5">
-                  {AMENITY_TAGS.map((amenity) => {
+                  {!amenitiesLoaded ? (
+                    <p className="text-xs text-stone-500">Loading available amenities...</p>
+                  ) : availableAmenities.length === 0 ? (
+                    <p className="text-xs text-stone-500">No amenities are currently listed on published residences.</p>
+                  ) : availableAmenities.map((amenity) => {
                     const isSelected = selectedAmenities.includes(amenity);
                     return (
                       <button
