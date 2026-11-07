@@ -37,7 +37,7 @@ const NEIGHBOURHOODS = [
   'Borivali West'
 ];
 
-const BHK_OPTIONS = ['All', '1 BHK', '2 BHK', '3 BHK', '4 BHK', 'Penthouse'];
+const BHK_OPTIONS = ['All', '1 BHK', '2 BHK', '3 BHK', '4 BHK', 'Jodi'];
 
 const PROPERTY_TYPES = [
   'Premium Residences',
