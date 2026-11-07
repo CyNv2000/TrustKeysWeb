@@ -294,8 +294,8 @@ class LocalDatabase {
       // This checkbox specifically promises reserved covered parking, not merely any parking.
       list = list.filter(p => {
         const parking = String(p.parking || '').trim().toLowerCase();
-        return /covered|stilt|podium|garage/.test(parking) &&
-          !/no parking|not available|\bnone\b|\bn\/a\b/.test(parking);
+        return /covered|stilt|podium|garage|reserved|basement|mechanical|stack(?:ed)?/.test(parking) &&
+          !/no parking|without parking|not available|\bnone\b|\bn\/a\b/.test(parking);
       });
     }
 
@@ -305,7 +305,7 @@ class LocalDatabase {
         const values = [p.balcony, ...(p.configurations || []).map(config => config.balcony)];
         return values.some(value => {
           const balcony = String(value || '').trim().toLowerCase();
-          return Boolean(balcony) && !/^(no|none|not available|n\/a)$/i.test(balcony);
+          return Boolean(balcony) && !/^(no|none|0|nil|not specified|not available|n\/?a|no balcony|without balcony)$/i.test(balcony);
         });
       });
     }
