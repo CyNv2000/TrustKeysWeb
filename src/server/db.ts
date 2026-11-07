@@ -194,6 +194,16 @@ class LocalDatabase {
     if (persistRemotely && this.persistenceReady) this.queuePersistence(dataToSave || this.data);
   }
 
+  // Return filter options from the current published catalogue only.
+  getAvailableProjectAmenities(): string[] {
+    const values = this.data.projects
+      .filter(project => project.published === true)
+      .flatMap(project => Array.isArray(project.amenities) ? project.amenities : [])
+      .map(value => String(value || '').trim())
+      .filter(Boolean);
+    return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
+  }
+
   // --- Projects Querying ---
   getProjects(filters?: {
     search?: string;
@@ -300,12 +310,12 @@ class LocalDatabase {
     }
 
     if (filters?.hasBalcony) {
-      // Balcony/sundeck is commonly saved per unit configuration, not only at project level.
       list = list.filter(p => {
         const values = [p.balcony, ...(p.configurations || []).map(config => config.balcony)];
         return values.some(value => {
           const balcony = String(value || '').trim().toLowerCase();
-          return Boolean(balcony) && !/^(no|none|0|nil|not specified|not available|n\/?a|no balcony|without balcony)$/i.test(balcony);
+          if (!balcony || /\\b(no|none|without|not available|not provided|not specified|nil|n\\/?a|zero|0)\\b/.test(balcony)) return false;
+          return /\\b(balcony|sundeck|sun deck|deck|terrace)\\b/.test(balcony);
         });
       });
     }
