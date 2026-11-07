@@ -135,11 +135,15 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
       ));
     }
     if (query.hasParking) {
-      list = list.filter(p => /covered|stilt|podium|garage/i.test(String(p.parking || '')));
+      list = list.filter(p => {
+        const parking = String(p.parking || '').trim().toLowerCase();
+        return /covered|stilt|podium|garage|reserved|basement|mechanical|stack(?:ed)?/.test(parking) &&
+          !/no parking|without parking|not available|\bnone\b|\bn\/a\b/.test(parking);
+      });
     }
     if (query.hasBalcony) {
       list = list.filter(p => [p.balcony, ...(p.configurations || []).map(config => config.balcony)]
-        .some(value => Boolean(String(value || '').trim()) && !/^(no|none|not available|n\/a)$/i.test(String(value).trim())));
+        .some(value => Boolean(String(value || '').trim()) && !/^(no|none|0|nil|not specified|not available|n\/?a|no balcony|without balcony)$/i.test(String(value).trim())));
     }
 
     // Keep fallback results consistent with the server-side carpet-area filters.
