@@ -157,8 +157,8 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
         return values.some(value => {
           const balcony = String(value || '').trim().toLowerCase();
           return Boolean(balcony) &&
-            !/\\b(no|none|without|not available|not provided|not specified|nil|n\\/?a|zero|0)\\b/.test(balcony) &&
-            /\\b(balcony|sundeck|sun deck|deck|terrace)\\b/.test(balcony);
+            !/\b(no|none|without|not available|not provided|not specified|nil|n\/?a|zero|0)\b/.test(balcony) &&
+            /\b(balcony|sundeck|sun deck|deck|terrace)\b/.test(balcony);
         });
       });
     }
