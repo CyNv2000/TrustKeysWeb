@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { Project, SortOption } from '../types';
 import { ProjectCard } from './ProjectCard';
-import { fetchProjects, fetchAvailableProjectAmenities } from '../lib/api';
+import { fetchProjects, fetchAvailableProjectAmenities, fetchAvailableProjectCategories } from '../lib/api';
 
 interface ProjectCatalogueProps {
   onSelectProject: (slug: string) => void;
@@ -38,14 +38,6 @@ const NEIGHBOURHOODS = [
 ];
 
 const BHK_OPTIONS = ['All', '1 BHK', '2 BHK', '3 BHK', '4 BHK', 'Jodi'];
-
-const PROPERTY_TYPES = [
-  'Premium Residences',
-  'Penthouse Suites',
-  'Boutique Seafront',
-  'Gated Community',
-  'High-Rise Tower'
-];
 
 export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   onSelectProject,
@@ -78,6 +70,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   // Pagination & Loading States
   const [projects, setProjects] = useState<Project[]>([]);
   const [availableAmenities, setAvailableAmenities] = useState<string[]>([]);
+  const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [amenitiesLoaded, setAmenitiesLoaded] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -181,6 +174,24 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     }
   };
 
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchAvailableProjectCategories()
+      .then(categories => {
+        if (cancelled) return;
+        setAvailableCategories(categories);
+      })
+      .catch(error => {
+        console.error('Could not load live project category filters:', error);
+        if (!cancelled) setAvailableCategories([]);
+      });
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    setSelectedCategories(current => current.filter(category => availableCategories.includes(category)));
+  }, [availableCategories]);
 
   // Reload when filters change
   useEffect(() => {
@@ -472,7 +483,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                   Property Category
                 </label>
                 <div className="space-y-1.5">
-                  {PROPERTY_TYPES.map((cat) => {
+                  {availableCategories.map((cat) => {
                     const isSelected = selectedCategories.includes(cat);
                     return (
                       <button
