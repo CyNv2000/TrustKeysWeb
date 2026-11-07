@@ -314,8 +314,8 @@ class LocalDatabase {
         const values = [p.balcony, ...(p.configurations || []).map(config => config.balcony)];
         return values.some(value => {
           const balcony = String(value || '').trim().toLowerCase();
-          if (!balcony || /\\b(no|none|without|not available|not provided|not specified|nil|n\\/?a|zero|0)\\b/.test(balcony)) return false;
-          return /\\b(balcony|sundeck|sun deck|deck|terrace)\\b/.test(balcony);
+          if (!balcony || /\b(no|none|without|not available|not provided|not specified|nil|n\/?a|zero|0)\b/.test(balcony)) return false;
+          return /\b(balcony|sundeck|sun deck|deck|terrace)\b/.test(balcony);
         });
       });
     }
