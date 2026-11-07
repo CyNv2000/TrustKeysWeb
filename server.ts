@@ -99,6 +99,16 @@ async function startServer() {
     }
   });
 
+  app.get('/api/project-filters/categories', (_req, res) => {
+    try {
+      res.setHeader('Cache-Control', 'no-store');
+      res.json({ categories: db.getAvailableProjectCategories() });
+    } catch (err) {
+      console.error('Failed to load project filter categories:', err);
+      res.status(500).json({ error: 'Unable to load available project categories' });
+    }
+  });
+
   // Projects - List & Query
   app.get('/api/projects', (req, res) => {
     try {
