@@ -112,6 +112,76 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     setSelectedAmenities(current => current.filter(amenity => availableAmenities.includes(amenity)));
   }, [availableAmenities, amenitiesLoaded]);
 
+  const calculatedBudgetRange = useMemo(() => {
+    switch (budgetTier) {
+      case 'under-2cr':
+        return { min: undefined, max: 20000000 };
+      case '2-5cr':
+        return { min: 20000000, max: 50000000 };
+      case '5-10cr':
+        return { min: 50000000, max: 100000000 };
+      case 'above-10cr':
+        return { min: 100000000, max: undefined };
+      default:
+        return { min: minPriceInput, max: maxPriceInput };
+    }
+  }, [budgetTier, minPriceInput, maxPriceInput]);
+
+  // Main data fetcher
+  const loadData = async (pageToLoad: number, append = false) => {
+    if (append) {
+      setIsLoadingMore(true);
+    } else {
+      setIsLoading(true);
+    }
+    setError(null);
+
+    try {
+      const areaParam = selectedArea !== 'All' ? [selectedArea] : undefined;
+      const bhkParam = selectedBHK !== 'All' ? [selectedBHK] : undefined;
+      const statusParam = selectedStatus !== 'All' ? [selectedStatus] : undefined;
+      const catParam = selectedCategories.length > 0 ? selectedCategories : undefined;
+
+      const result = await fetchProjects({
+        search: debouncedSearch.trim() || undefined,
+        area: areaParam,
+        bhk: bhkParam,
+        status: statusParam,
+        category: catParam,
+        minPrice: calculatedBudgetRange.min,
+        maxPrice: calculatedBudgetRange.max,
+        minArea: minAreaInput,
+        maxArea: maxAreaInput,
+        amenities: selectedAmenities,
+        hasParking: hasParkingOnly,
+        hasBalcony: hasBalconyOnly,
+        possession: possessionFilter,
+        sort: sortBy,
+        page: pageToLoad,
+        limit: 12
+      });
+
+      startTransition(() => {
+        if (append) {
+          setProjects(prev => [...prev, ...result.projects]);
+        } else {
+          setProjects(result.projects);
+        }
+        setTotalCount(result.total);
+        setCurrentPage(result.page);
+        setTotalPages(result.totalPages);
+        setIsLoading(false);
+        setIsLoadingMore(false);
+      });
+    } catch (err: any) {
+      console.error('Projects load failed:', err);
+      setError(err.message || 'Unable to load residential properties. Please retry.');
+      setIsLoading(false);
+      setIsLoadingMore(false);
+    }
+  };
+
+
   // Reload when filters change
   useEffect(() => {
     setCurrentPage(1);
