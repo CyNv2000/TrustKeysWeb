@@ -1,12 +1,6 @@
 export type ProjectStatus = 'Ready' | 'Ongoing' | 'Upcoming';
 
-export type PropertyCategory = 
-  | 'Luxury Apartments'
-  | 'Premium Residences'
-  | 'Penthouse Suites'
-  | 'Boutique Seafront'
-  | 'Gated Community'
-  | 'High-Rise Tower';
+export type PropertyCategory = string;
 
 export interface ProjectConfiguration {
   id: string;
