@@ -204,6 +204,14 @@ class LocalDatabase {
     return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
   }
 
+  getAvailableProjectCategories(): string[] {
+    const values = this.data.projects
+      .filter(project => project.published === true)
+      .map(project => String(project.category || '').trim())
+      .filter(Boolean);
+    return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
+  }
+
   // --- Projects Querying ---
   getProjects(filters?: {
     search?: string;
