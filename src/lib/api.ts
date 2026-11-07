@@ -80,6 +80,16 @@ export interface ProjectsResponse {
   totalPages: number;
 }
 
+// Fetch amenity options directly from the live catalogue. No demo-data fallback.
+export async function fetchAvailableProjectAmenities(): Promise<string[]> {
+  const response = await fetchWithTimeout(`${API_BASE}/project-filters/amenities`, {}, 7000);
+  if (!response.ok) throw new Error('Unable to load available project amenities');
+  const data = await response.json();
+  return Array.isArray(data.amenities)
+    ? data.amenities.map((value: unknown) => String(value || '').trim()).filter(Boolean)
+    : [];
+}
+
 export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsResponse> {
   const params = new URLSearchParams();
 
@@ -142,8 +152,15 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
       });
     }
     if (query.hasBalcony) {
-      list = list.filter(p => [p.balcony, ...(p.configurations || []).map(config => config.balcony)]
-        .some(value => Boolean(String(value || '').trim()) && !/^(no|none|0|nil|not specified|not available|n\/?a|no balcony|without balcony)$/i.test(String(value).trim())));
+      list = list.filter(p => {
+        const values = [p.balcony, ...(p.configurations || []).map(config => config.balcony)];
+        return values.some(value => {
+          const balcony = String(value || '').trim().toLowerCase();
+          return Boolean(balcony) &&
+            !/\\b(no|none|without|not available|not provided|not specified|nil|n\\/?a|zero|0)\\b/.test(balcony) &&
+            /\\b(balcony|sundeck|sun deck|deck|terrace)\\b/.test(balcony);
+        });
+      });
     }
 
     // Keep fallback results consistent with the server-side carpet-area filters.
