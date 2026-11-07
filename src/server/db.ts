@@ -291,11 +291,23 @@ class LocalDatabase {
     }
 
     if (filters?.hasParking) {
-      list = list.filter(p => Boolean(p.parking && !/^(no|none|not available|n\/a)$/i.test(p.parking.trim())));
+      // This checkbox specifically promises reserved covered parking, not merely any parking.
+      list = list.filter(p => {
+        const parking = String(p.parking || '').trim().toLowerCase();
+        return /covered|stilt|podium|garage/.test(parking) &&
+          !/no parking|not available|\bnone\b|\bn\/a\b/.test(parking);
+      });
     }
 
     if (filters?.hasBalcony) {
-      list = list.filter(p => Boolean(p.balcony && !/^(no|none|not available|n\/a)$/i.test(p.balcony.trim())));
+      // Balcony/sundeck is commonly saved per unit configuration, not only at project level.
+      list = list.filter(p => {
+        const values = [p.balcony, ...(p.configurations || []).map(config => config.balcony)];
+        return values.some(value => {
+          const balcony = String(value || '').trim().toLowerCase();
+          return Boolean(balcony) && !/^(no|none|not available|n\/a)$/i.test(balcony);
+        });
+      });
     }
 
     if (filters?.possession && filters.possession !== 'all') {
