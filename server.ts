@@ -54,8 +54,10 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-async function startServer() {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+export async function createApp() {
+  if (process.env.VERCEL !== '1') {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
   await db.initializePersistentStorage();
   const app = express();
 
@@ -79,7 +81,9 @@ async function startServer() {
     }
     next();
   });
-  app.use('/uploads', express.static(UPLOADS_DIR, { maxAge: '1d', immutable: true }));
+  if (process.env.VERCEL !== '1') {
+    app.use('/uploads', express.static(UPLOADS_DIR, { maxAge: '1d', immutable: true }));
+  }
 
   // --- API Endpoints ---
 
@@ -546,7 +550,9 @@ async function startServer() {
   });
 
   // --- Vite / Frontend Serving ---
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.VERCEL === '1') {
+    // Vercel serves the Vite dist/ output as static assets; this function handles API requests only.
+  } else if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(__dirname, 'dist')));
     app.get('*', (req, res) => {
       res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
@@ -559,11 +565,17 @@ async function startServer() {
     app.use(vite.middlewares);
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`TrustKeys server operational on port ${PORT}`);
-  });
+  return app;
 }
 
-startServer().catch(err => {
-  console.error('Failed to initialize server:', err);
-});
+// Keep the existing Render/local Node deployment working unchanged.
+if (process.env.VERCEL !== '1') {
+  createApp().then(app => {
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`TrustKeys server operational on port ${PORT}`);
+    });
+  }).catch(err => {
+    console.error('Failed to initialize server:', err);
+    process.exitCode = 1;
+  });
+}
