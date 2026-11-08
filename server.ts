@@ -115,6 +115,16 @@ export async function createApp() {
     }
   });
 
+  app.get('/api/project-filters/areas', (_req, res) => {
+    try {
+      res.setHeader('Cache-Control', 'no-store');
+      res.json({ areas: db.getAvailableProjectAreas() });
+    } catch (err) {
+      console.error('Failed to load project areas:', err);
+      res.status(500).json({ error: 'Unable to load available project areas' });
+    }
+  });
+
   app.get('/api/project-filters/possession-years', (_req, res) => {
     try {
       res.setHeader('Cache-Control', 'no-store');
