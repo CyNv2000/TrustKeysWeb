@@ -19,6 +19,18 @@ interface DatabaseSchema {
 }
 
 const DEFAULT_ADMIN_PASS = process.env.ADMIN_PASSWORD || ((process.env.VERCEL === '1' || process.env.NODE_ENV === 'production') ? '' : 'trustkeys2026');
+const POSSESSION_MONTH_ABBREVIATIONS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+function getProjectPossessionMonth(project: Project): string {
+  const possessionLabel = String(project.possession || '').trim().match(/^([A-Za-z]{3,9})\s+(\d{4})$/);
+  if (possessionLabel) {
+    const month = POSSESSION_MONTH_ABBREVIATIONS.indexOf(possessionLabel[1].slice(0, 3).toLowerCase()) + 1;
+    if (month > 0) {
+      return possessionLabel[2] + '-' + String(month).padStart(2, '0');
+    }
+  }
+  return String(project.possessionDate || '').slice(0, 7);
+}
 
 class LocalDatabase {
   private data: DatabaseSchema;
@@ -215,6 +227,14 @@ class LocalDatabase {
     return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
   }
 
+  getAvailableProjectPossessionYears(): number[] {
+    const years = this.data.projects
+      .filter(project => project.published === true)
+      .map(project => Number(getProjectPossessionMonth(project).slice(0, 4)))
+      .filter(Number.isInteger);
+    return Array.from(new Set(years)).sort((a, b) => a - b);
+  }
+
   // --- Projects Querying ---
   getProjects(filters?: {
     search?: string;
@@ -346,17 +366,7 @@ class LocalDatabase {
 
     if (filters?.possessionMonth && /^\d{4}-(0[1-9]|1[0-2])$/.test(filters.possessionMonth)) {
       const selectedMonth = filters.possessionMonth;
-      const monthNames = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-      list = list.filter(project => {
-        const possessionLabel = String(project.possession || '').trim().match(/^([A-Za-z]{3,9})\s+(\d{4})$/);
-        if (possessionLabel) {
-          const month = monthNames.indexOf(possessionLabel[1].slice(0, 3).toLowerCase()) + 1;
-          if (month > 0) {
-            return possessionLabel[2] + '-' + String(month).padStart(2, '0') >= selectedMonth;
-          }
-        }
-        return String(project.possessionDate || '').slice(0, 7) === selectedMonth;
-      });
+      list = list.filter(project => getProjectPossessionMonth(project) >= selectedMonth);
     }
 
     // Sorting
