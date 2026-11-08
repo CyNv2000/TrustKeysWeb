@@ -77,6 +77,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   const [projects, setProjects] = useState<Project[]>([]);
   const [availableAmenities, setAvailableAmenities] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
+  const [categoriesLoaded, setCategoriesLoaded] = useState(false);
   const [amenitiesLoaded, setAmenitiesLoaded] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -187,17 +188,25 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
       .then(categories => {
         if (cancelled) return;
         setAvailableCategories(categories);
+        setCategoriesLoaded(true);
       })
       .catch(error => {
         console.error('Could not load live project category filters:', error);
-        if (!cancelled) setAvailableCategories([]);
+        if (!cancelled) {
+          setAvailableCategories([]);
+          setCategoriesLoaded(false);
+        }
       });
     return () => { cancelled = true; };
   }, []);
 
   useEffect(() => {
-    setSelectedCategories(current => current.filter(category => availableCategories.includes(category)));
-  }, [availableCategories]);
+    if (!categoriesLoaded) return;
+    setSelectedCategories(current => {
+      const valid = current.filter(category => availableCategories.includes(category));
+      return valid.length === current.length ? current : valid;
+    });
+  }, [availableCategories, categoriesLoaded]);
 
   // Reload when filters change
   useEffect(() => {
