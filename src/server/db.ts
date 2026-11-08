@@ -82,6 +82,17 @@ class LocalDatabase {
     }
   }
 
+  async refreshPersistentStorage(): Promise<void> {
+    if (!this.persistenceReady) return;
+    await this.flushPersistentWrites();
+    const response = await this.persistenceRequest('state');
+    const persisted = await response.json() as Partial<DatabaseSchema> | null;
+    if (persisted && typeof persisted === 'object') {
+      this.data = { ...this.data, ...persisted };
+      this.saveData(this.data, false);
+    }
+  }
+
   private queuePersistence(data: DatabaseSchema): void {
     const snapshot = JSON.parse(JSON.stringify(data)) as DatabaseSchema;
     this.persistenceQueue = this.persistenceQueue.then(async () => {
