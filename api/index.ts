@@ -5,11 +5,25 @@ import type { IncomingMessage, ServerResponse } from 'node:http';
 // by the request's 503 response instead of terminating the serverless process.
 let appPromise: Promise<any> | undefined;
 
+function restoreRewrittenApiPath(req: IncomingMessage): void {
+  const host = req.headers.host || 'localhost';
+  const requestUrl = new URL(req.url || '/', `http://${host}`);
+  const rewrittenPaths = requestUrl.searchParams.getAll('__tk_route');
+  const routePath = rewrittenPaths.at(-1);
+
+  if (routePath === undefined) return;
+
+  requestUrl.searchParams.delete('__tk_route');
+  const encodedPath = routePath.split('/').map(segment => encodeURIComponent(segment)).join('/');
+  req.url = `/api/${encodedPath}${requestUrl.search}`;
+}
+
 export default async function handler(
   req: IncomingMessage,
   res: ServerResponse
 ): Promise<void> {
   try {
+    restoreRewrittenApiPath(req);
     appPromise ??= import('../server.js').then(({ createApp }) => createApp());
     const app = await appPromise;
     app(req as any, res as any);
