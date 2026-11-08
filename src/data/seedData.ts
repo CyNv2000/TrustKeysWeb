@@ -1,4 +1,4 @@
-import { Project, FAQ, SiteSettings } from '../types';
+import type { Project, FAQ, SiteSettings } from '../types/index.js';
 
 export const initialProjects: Project[] = [
   {
