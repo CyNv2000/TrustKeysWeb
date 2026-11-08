@@ -18,7 +18,7 @@ interface DatabaseSchema {
   adminPasswordHash: string;
 }
 
-const DEFAULT_ADMIN_PASS = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === 'production' ? '' : 'trustkeys2026');
+const DEFAULT_ADMIN_PASS = process.env.ADMIN_PASSWORD || ((process.env.VERCEL === '1' || process.env.NODE_ENV === 'production') ? '' : 'trustkeys2026');
 
 class LocalDatabase {
   private data: DatabaseSchema;
