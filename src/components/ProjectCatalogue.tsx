@@ -49,6 +49,12 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   // Search & Filters State
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
+
+  // Keep typing responsive while avoiding a request for every keystroke.
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => setDebouncedSearch(searchTerm), 300);
+    return () => window.clearTimeout(timeoutId);
+  }, [searchTerm]);
   const [selectedArea, setSelectedArea] = useState<string>(presetArea || 'All');
   const [selectedBHK, setSelectedBHK] = useState<string>('All');
   const [selectedStatus, setSelectedStatus] = useState<string>(presetStatus || 'All');
