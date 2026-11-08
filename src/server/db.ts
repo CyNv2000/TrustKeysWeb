@@ -344,7 +344,7 @@ class LocalDatabase {
       }
     }
 
-    if (filters?.possessionMonth && /^\\d{4}-(0[1-9]|1[0-2])$/.test(filters.possessionMonth)) {
+    if (filters?.possessionMonth && /^\d{4}-(0[1-9]|1[0-2])$/.test(filters.possessionMonth)) {
       list = list.filter(p => String(p.possessionDate || '').slice(0, 7) === filters.possessionMonth);
     }
 
