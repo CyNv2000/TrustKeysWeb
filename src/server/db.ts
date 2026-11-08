@@ -232,7 +232,14 @@ class LocalDatabase {
       .filter(project => project.published === true)
       .map(project => String(project.area || '').trim())
       .filter(Boolean);
-    const uniqueValues = Array.from(new Map(values.map(value => [value.toLocaleLowerCase(), value])).values());
+    const uniqueValues: string[] = [];
+    const seen = new Set<string>();
+    for (const value of values) {
+      const key = value.toLocaleLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      uniqueValues.push(value);
+    }
     return uniqueValues.sort((a, b) => a.localeCompare(b));
   }
 
