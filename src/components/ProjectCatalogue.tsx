@@ -59,6 +59,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   const [selectedBHK, setSelectedBHK] = useState<string>('All');
   const [selectedStatus, setSelectedStatus] = useState<string>(presetStatus || 'All');
   const [possessionFilter, setPossessionFilter] = useState<string>('all');
+  const [possessionMonthFilter, setPossessionMonthFilter] = useState('');
   const [budgetTier, setBudgetTier] = useState<string>('all');
   const [sortBy, setSortBy] = useState<SortOption>('newest');
 
@@ -156,6 +157,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
         hasParking: hasParkingOnly,
         hasBalcony: hasBalconyOnly,
         possession: possessionFilter,
+        possessionMonth: possessionMonthFilter,
         sort: sortBy,
         page: pageToLoad,
         limit: 12
@@ -218,6 +220,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     selectedBHK,
     selectedStatus,
     possessionFilter,
+    possessionMonthFilter,
     budgetTier,
     selectedCategories,
     selectedAmenities,
@@ -243,6 +246,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     setSelectedBHK('All');
     setSelectedStatus('All');
     setPossessionFilter('all');
+    setPossessionMonthFilter('');
     setBudgetTier('all');
     setSelectedCategories([]);
     setSelectedAmenities([]);
@@ -263,6 +267,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     if (selectedBHK !== 'All') count++;
     if (selectedStatus !== 'All') count++;
     if (possessionFilter !== 'all') count++;
+    if (possessionMonthFilter) count++;
     if (budgetTier !== 'all') count++;
     if (selectedCategories.length > 0) count += selectedCategories.length;
     if (selectedAmenities.length > 0) count += selectedAmenities.length;
@@ -275,6 +280,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     selectedBHK,
     selectedStatus,
     possessionFilter,
+    possessionMonthFilter,
     budgetTier,
     selectedCategories,
     selectedAmenities,
@@ -543,6 +549,18 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                     className="px-3 py-2 bg-white text-xs border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500"
                   />
                 </div>
+
+                <label htmlFor="possession-month-filter" className="block text-xs font-semibold text-stone-700 uppercase mb-2">
+                  Possession Month &amp; Year
+                </label>
+                <input
+                  id="possession-month-filter"
+                  type="month"
+                  value={possessionMonthFilter}
+                  onChange={(e) => setPossessionMonthFilter(e.target.value)}
+                  aria-label="Filter by possession month and year"
+                  className="w-full px-3 py-2 mb-4 bg-white text-xs border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500"
+                />
 
                 <label className="block text-xs font-semibold text-stone-700 uppercase mb-2">
                   Key Specifications
