@@ -66,6 +66,7 @@ export interface ProjectQuery {
   hasParking?: boolean;
   hasBalcony?: boolean;
   possession?: string;
+  possessionMonth?: string;
   sort?: string;
   page?: number;
   limit?: number;
@@ -115,6 +116,7 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
   if (query.hasParking) params.set('hasParking', 'true');
   if (query.hasBalcony) params.set('hasBalcony', 'true');
   if (query.possession && query.possession !== 'all') params.set('possession', query.possession);
+  if (query.possessionMonth) params.set('possessionMonth', query.possessionMonth);
   if (query.sort) params.set('sort', query.sort);
   if (query.page) params.set('page', String(query.page));
   if (query.limit) params.set('limit', String(query.limit));
@@ -188,6 +190,9 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
         const smallestArea = areas.length ? Math.min(...areas) : Number(p.minArea || 0);
         return smallestArea <= query.maxArea!;
       });
+    }
+    if (query.possessionMonth) {
+      list = list.filter(project => String(project.possessionDate || '').slice(0, 7) === query.possessionMonth);
     }
     const page = query.page || 1;
     const limit = query.limit || 12;
