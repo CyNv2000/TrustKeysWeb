@@ -1,9 +1,8 @@
 import fs from 'node:fs';
-import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { initialProjects, initialFAQs, initialSiteSettings } from '../data/seedData';
-import { Project, Enquiry, SellLead, FAQ, SiteSettings } from '../types';
+import { initialProjects, initialFAQs, initialSiteSettings } from '../data/seedData.js';
+import type { Project, Enquiry, SellLead, FAQ, SiteSettings } from '../types/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
