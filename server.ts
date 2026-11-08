@@ -115,8 +115,9 @@ export async function createApp() {
     }
   });
 
-  app.get('/api/project-filters/areas', (_req, res) => {
+  app.get('/api/project-filters/areas', async (_req, res) => {
     try {
+      await db.refreshPersistentStorage();
       res.setHeader('Cache-Control', 'no-store');
       res.json({ areas: db.getAvailableProjectAreas() });
     } catch (err) {
@@ -136,8 +137,10 @@ export async function createApp() {
   });
 
   // Projects - List & Query
-  app.get('/api/projects', (req, res) => {
+  app.get('/api/projects', async (req, res) => {
     try {
+      await db.refreshPersistentStorage();
+      res.setHeader('Cache-Control', 'no-store');
       const {
         search,
         area,
