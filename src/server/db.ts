@@ -230,6 +230,7 @@ class LocalDatabase {
     hasParking?: boolean;
     hasBalcony?: boolean;
     possession?: string;
+    possessionMonth?: string;
     sort?: string;
     page?: number;
     limit?: number;
@@ -341,6 +342,10 @@ class LocalDatabase {
       } else if (filters.possession === 'upcoming') {
         list = list.filter(p => p.status === 'Upcoming');
       }
+    }
+
+    if (filters?.possessionMonth && /^\\d{4}-(0[1-9]|1[0-2])$/.test(filters.possessionMonth)) {
+      list = list.filter(p => String(p.possessionDate || '').slice(0, 7) === filters.possessionMonth);
     }
 
     // Sorting
