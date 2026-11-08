@@ -4,7 +4,7 @@ import path from 'path';
 import { createHmac, randomUUID, timingSafeEqual } from 'crypto';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import { db } from './src/server/db';
+import { db } from './src/server/db.js';
 
 dotenv.config();
 
