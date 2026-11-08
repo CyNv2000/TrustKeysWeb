@@ -345,7 +345,18 @@ class LocalDatabase {
     }
 
     if (filters?.possessionMonth && /^\d{4}-(0[1-9]|1[0-2])$/.test(filters.possessionMonth)) {
-      list = list.filter(p => String(p.possessionDate || '').slice(0, 7) === filters.possessionMonth);
+      const selectedMonth = filters.possessionMonth;
+      const monthNames = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+      list = list.filter(project => {
+        const possessionLabel = String(project.possession || '').trim().match(/^([A-Za-z]{3,9})\s+(\d{4})$/);
+        if (possessionLabel) {
+          const month = monthNames.indexOf(possessionLabel[1].slice(0, 3).toLowerCase()) + 1;
+          if (month > 0) {
+            return possessionLabel[2] + '-' + String(month).padStart(2, '0') === selectedMonth;
+          }
+        }
+        return String(project.possessionDate || '').slice(0, 7) === selectedMonth;
+      });
     }
 
     // Sorting
