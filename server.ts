@@ -13,7 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PORT = Number(process.env.PORT || 3000);
-const ADMIN_TOKEN_SECRET = process.env.SESSION_SECRET || (process.env.NODE_ENV === 'production' ? '' : 'trustkeys-admin-secure-auth-2026');
+const ADMIN_TOKEN_SECRET = process.env.SESSION_SECRET || ((process.env.VERCEL === '1' || process.env.NODE_ENV === 'production') ? '' : 'trustkeys-admin-secure-auth-2026');
 const UPLOADS_DIR = path.resolve(__dirname, '.data', 'uploads');
 const ADMIN_TOKEN_TTL_MS = 12 * 60 * 60 * 1000;
 
@@ -55,7 +55,7 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
 }
 
 export async function createApp() {
-  if (process.env.NODE_ENV === 'production' && (!process.env.ADMIN_PASSWORD || !process.env.SESSION_SECRET)) {
+  if ((process.env.VERCEL === '1' || process.env.NODE_ENV === 'production') && (!process.env.ADMIN_PASSWORD || !process.env.SESSION_SECRET)) {
     throw new Error('ADMIN_PASSWORD and SESSION_SECRET must be configured in production.');
   }
   if (process.env.VERCEL !== '1') {
