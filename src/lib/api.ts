@@ -100,6 +100,15 @@ export async function fetchAvailableProjectCategories(): Promise<string[]> {
     : [];
 }
 
+export async function fetchAvailableProjectPossessionYears(): Promise<number[]> {
+  const response = await fetchWithTimeout(`${API_BASE}/project-filters/possession-years`, {}, 7000);
+  if (!response.ok) throw new Error('Unable to load available possession years');
+  const data = await response.json();
+  return Array.isArray(data.years)
+    ? data.years.filter((year: unknown): year is number => Number.isInteger(year))
+    : [];
+}
+
 export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsResponse> {
   const params = new URLSearchParams();
 
