@@ -6,7 +6,7 @@ import { Project, Enquiry, SellLead, FAQ, SiteSettings } from '../types';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DATA_DIR = path.resolve(__dirname, '../../.data');
+const DATA_DIR = process.env.VERCEL === '1' ? path.join('/tmp', 'trustkeys-data') : path.resolve(__dirname, '../../.data');
 const DB_FILE = path.resolve(DATA_DIR, 'db.json');
 
 interface DatabaseSchema {
@@ -18,7 +18,7 @@ interface DatabaseSchema {
   adminPasswordHash: string;
 }
 
-const DEFAULT_ADMIN_PASS = process.env.ADMIN_PASSWORD || 'trustkeys2026';
+const DEFAULT_ADMIN_PASS = process.env.ADMIN_PASSWORD || ((process.env.VERCEL === '1' || process.env.NODE_ENV === 'production') ? '' : 'trustkeys2026');
 
 class LocalDatabase {
   private data: DatabaseSchema;
@@ -47,6 +47,9 @@ class LocalDatabase {
 
   async initializePersistentStorage(): Promise<void> {
     if (!this.persistenceUrl || !this.persistenceSecret) {
+      if (process.env.VERCEL === '1' || process.env.NODE_ENV === 'production') {
+        throw new Error('TRUSTKEYS_PERSISTENCE_URL and TRUSTKEYS_PERSISTENCE_SECRET are required in production.');
+      }
       console.warn('Supabase persistence is not configured; using local .data storage.');
       return;
     }
