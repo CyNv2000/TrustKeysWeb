@@ -352,7 +352,7 @@ class LocalDatabase {
         if (possessionLabel) {
           const month = monthNames.indexOf(possessionLabel[1].slice(0, 3).toLowerCase()) + 1;
           if (month > 0) {
-            return possessionLabel[2] + '-' + String(month).padStart(2, '0') === selectedMonth;
+            return possessionLabel[2] + '-' + String(month).padStart(2, '0') >= selectedMonth;
           }
         }
         return String(project.possessionDate || '').slice(0, 7) === selectedMonth;
