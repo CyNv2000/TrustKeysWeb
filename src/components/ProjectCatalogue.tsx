@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { Project, SortOption } from '../types';
 import { ProjectCard } from './ProjectCard';
-import { fetchProjects, fetchAvailableProjectAmenities, fetchAvailableProjectCategories, fetchAvailableProjectPossessionYears } from '../lib/api';
+import { fetchProjects, fetchAvailableProjectAreas, fetchAvailableProjectAmenities, fetchAvailableProjectCategories, fetchAvailableProjectPossessionYears } from '../lib/api';
 
 interface ProjectCatalogueProps {
   onSelectProject: (slug: string) => void;
@@ -21,21 +21,6 @@ interface ProjectCatalogueProps {
   presetCategory?: string;
   id?: string;
 }
-
-const NEIGHBOURHOODS = [
-  'All',
-  'Bandra West',
-  'Bandra East',
-  'Khar West',
-  'Santacruz West',
-  'Juhu',
-  'Vile Parle',
-  'Andheri West',
-  'Goregaon West',
-  'Malad West',
-  'Kandivali West',
-  'Borivali West'
-];
 
 const BHK_OPTIONS = ['All', '1 BHK', '2 BHK', '3 BHK', '4 BHK', 'Jodi'];
 const POSSESSION_MONTHS = [
@@ -92,6 +77,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
 
   // Pagination & Loading States
   const [projects, setProjects] = useState<Project[]>([]);
+  const [availableAreas, setAvailableAreas] = useState<string[]>([]);
   const [availableAmenities, setAvailableAmenities] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [categoriesLoaded, setCategoriesLoaded] = useState(false);
@@ -104,6 +90,19 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchAvailableProjectAreas()
+      .then(areas => {
+        if (!cancelled) setAvailableAreas(areas);
+      })
+      .catch(error => {
+        console.error('Could not load live project areas:', error);
+        if (!cancelled) setAvailableAreas([]);
+      });
+    return () => { cancelled = true; };
+  }, []);
 
   // Read filter choices only from the live published-project catalogue.
   useEffect(() => {
@@ -434,7 +433,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
               <span className="text-xs text-slate-500 font-bold uppercase tracking-wider mr-1 shrink-0">
                 Area:
               </span>
-              {NEIGHBOURHOODS.map((area) => (
+              {['All', ...availableAreas].map((area) => (
                 <button
                   key={area}
                   onClick={() => setSelectedArea(area)}
