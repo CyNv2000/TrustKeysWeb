@@ -10,7 +10,7 @@ export default async function handler(
   res: ServerResponse
 ): Promise<void> {
   try {
-    appPromise ??= import('../server').then(({ createApp }) => createApp());
+    appPromise ??= import('../server.js').then(({ createApp }) => createApp());
     const app = await appPromise;
     app(req as any, res as any);
   } catch (error) {
