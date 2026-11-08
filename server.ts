@@ -115,6 +115,16 @@ export async function createApp() {
     }
   });
 
+  app.get('/api/project-filters/possession-years', (_req, res) => {
+    try {
+      res.setHeader('Cache-Control', 'no-store');
+      res.json({ years: db.getAvailableProjectPossessionYears() });
+    } catch (err) {
+      console.error('Failed to load project possession years:', err);
+      res.status(500).json({ error: 'Unable to load possession year options' });
+    }
+  });
+
   // Projects - List & Query
   app.get('/api/projects', (req, res) => {
     try {
