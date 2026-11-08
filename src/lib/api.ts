@@ -100,6 +100,15 @@ export async function fetchAvailableProjectCategories(): Promise<string[]> {
     : [];
 }
 
+export async function fetchAvailableProjectAreas(): Promise<string[]> {
+  const response = await fetchWithTimeout(`${API_BASE}/project-filters/areas`, {}, 7000);
+  if (!response.ok) throw new Error('Unable to load available project areas');
+  const data = await response.json();
+  return Array.isArray(data.areas)
+    ? data.areas.map((value: unknown) => String(value || '').trim()).filter(Boolean)
+    : [];
+}
+
 export async function fetchAvailableProjectPossessionYears(): Promise<number[]> {
   const response = await fetchWithTimeout(`${API_BASE}/project-filters/possession-years`, {}, 7000);
   if (!response.ok) throw new Error('Unable to load available possession years');
