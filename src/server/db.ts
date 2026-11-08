@@ -227,6 +227,15 @@ class LocalDatabase {
     return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
   }
 
+  getAvailableProjectAreas(): string[] {
+    const values = this.data.projects
+      .filter(project => project.published === true)
+      .map(project => String(project.area || '').trim())
+      .filter(Boolean);
+    const uniqueValues = Array.from(new Map(values.map(value => [value.toLocaleLowerCase(), value])).values());
+    return uniqueValues.sort((a, b) => a.localeCompare(b));
+  }
+
   getAvailableProjectPossessionYears(): number[] {
     const years = this.data.projects
       .filter(project => project.published === true)
