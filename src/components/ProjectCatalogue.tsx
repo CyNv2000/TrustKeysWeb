@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { Project, SortOption } from '../types';
 import { ProjectCard } from './ProjectCard';
-import { fetchProjects, fetchAvailableProjectAmenities, fetchAvailableProjectCategories } from '../lib/api';
+import { fetchProjects, fetchAvailableProjectAmenities, fetchAvailableProjectCategories, fetchAvailableProjectPossessionYears } from '../lib/api';
 
 interface ProjectCatalogueProps {
   onSelectProject: (slug: string) => void;
@@ -38,6 +38,20 @@ const NEIGHBOURHOODS = [
 ];
 
 const BHK_OPTIONS = ['All', '1 BHK', '2 BHK', '3 BHK', '4 BHK', 'Jodi'];
+const POSSESSION_MONTHS = [
+  { value: '01', label: 'January' },
+  { value: '02', label: 'February' },
+  { value: '03', label: 'March' },
+  { value: '04', label: 'April' },
+  { value: '05', label: 'May' },
+  { value: '06', label: 'June' },
+  { value: '07', label: 'July' },
+  { value: '08', label: 'August' },
+  { value: '09', label: 'September' },
+  { value: '10', label: 'October' },
+  { value: '11', label: 'November' },
+  { value: '12', label: 'December' }
+];
 
 export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   onSelectProject,
@@ -60,6 +74,8 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   const [selectedStatus, setSelectedStatus] = useState<string>(presetStatus || 'All');
   const [possessionFilter, setPossessionFilter] = useState<string>('all');
   const [possessionMonthFilter, setPossessionMonthFilter] = useState('');
+  const [possessionYearFilter, setPossessionYearFilter] = useState('');
+  const [availablePossessionYears, setAvailablePossessionYears] = useState<number[]>([]);
   const [budgetTier, setBudgetTier] = useState<string>('all');
   const [sortBy, setSortBy] = useState<SortOption>('newest');
 
@@ -157,7 +173,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
         hasParking: hasParkingOnly,
         hasBalcony: hasBalconyOnly,
         possession: possessionFilter,
-        possessionMonth: possessionMonthFilter,
+        possessionMonth: possessionMonthFilter && possessionYearFilter ? possessionYearFilter + '-' + possessionMonthFilter : undefined,
         sort: sortBy,
         page: pageToLoad,
         limit: 12
@@ -210,6 +226,19 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     });
   }, [availableCategories, categoriesLoaded]);
 
+  useEffect(() => {
+    let cancelled = false;
+    fetchAvailableProjectPossessionYears()
+      .then(years => {
+        if (!cancelled) setAvailablePossessionYears(years);
+      })
+      .catch(error => {
+        console.error('Could not load project possession years:', error);
+        if (!cancelled) setAvailablePossessionYears([]);
+      });
+    return () => { cancelled = true; };
+  }, []);
+
   // Reload when filters change
   useEffect(() => {
     setCurrentPage(1);
@@ -221,6 +250,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     selectedStatus,
     possessionFilter,
     possessionMonthFilter,
+    possessionYearFilter,
     budgetTier,
     selectedCategories,
     selectedAmenities,
@@ -247,6 +277,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     setSelectedStatus('All');
     setPossessionFilter('all');
     setPossessionMonthFilter('');
+    setPossessionYearFilter('');
     setBudgetTier('all');
     setSelectedCategories([]);
     setSelectedAmenities([]);
@@ -267,7 +298,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     if (selectedBHK !== 'All') count++;
     if (selectedStatus !== 'All') count++;
     if (possessionFilter !== 'all') count++;
-    if (possessionMonthFilter) count++;
+    if (possessionMonthFilter && possessionYearFilter) count++;
     if (budgetTier !== 'all') count++;
     if (selectedCategories.length > 0) count += selectedCategories.length;
     if (selectedAmenities.length > 0) count += selectedAmenities.length;
@@ -281,6 +312,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     selectedStatus,
     possessionFilter,
     possessionMonthFilter,
+    possessionYearFilter,
     budgetTier,
     selectedCategories,
     selectedAmenities,
@@ -553,14 +585,30 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                 <label htmlFor="possession-month-filter" className="block text-xs font-semibold text-stone-700 uppercase mb-2">
                   Possession Month &amp; Year
                 </label>
-                <input
-                  id="possession-month-filter"
-                  type="month"
-                  value={possessionMonthFilter}
-                  onChange={(e) => setPossessionMonthFilter(e.target.value)}
-                  aria-label="Filter by possession month and year"
-                  className="w-full px-3 py-2 mb-4 bg-white text-xs border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500"
-                />
+                <div className="grid grid-cols-2 gap-2 mb-4">
+                  <select
+                    value={possessionMonthFilter}
+                    onChange={(e) => setPossessionMonthFilter(e.target.value)}
+                    aria-label="Possession month"
+                    className="w-full px-3 py-2 bg-white text-xs border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500"
+                  >
+                    <option value="">Month</option>
+                    {POSSESSION_MONTHS.map(month => (
+                      <option key={month.value} value={month.value}>{month.label}</option>
+                    ))}
+                  </select>
+                  <select
+                    value={possessionYearFilter}
+                    onChange={(e) => setPossessionYearFilter(e.target.value)}
+                    aria-label="Possession year"
+                    className="w-full px-3 py-2 bg-white text-xs border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500"
+                  >
+                    <option value="">Year</option>
+                    {availablePossessionYears.map(year => (
+                      <option key={year} value={String(year)}>{year}</option>
+                    ))}
+                  </select>
+                </div>
 
                 <label className="block text-xs font-semibold text-stone-700 uppercase mb-2">
                   Key Specifications
