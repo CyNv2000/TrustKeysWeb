@@ -129,3 +129,71 @@ To deploy the full-stack Express + React application on [Render](https://render.
 - **Malad West**: Mindspace IT Park, Chincholi Bunder
 - **Kandivali West**: Mahavir Nagar, Link Road
 - **Borivali West**: Shimpoli Road, IC Colony, Eksar
+
+
+---
+
+## ☁️ Vercel Deployment (Express + Vite + Supabase)
+
+This repository supports Vercel using the Express API as a Node.js serverless function. The Vite frontend is built into `dist/` and served by Vercel's static hosting/CDN.
+
+### 1. Import the GitHub repository
+
+1. Open https://vercel.com/new and import `CyNv2000/TrustKeysWeb`.
+2. Deploy branch `vercel-adaptation` for the initial validation (merge to `main` only after the deployment tests pass).
+3. Use the repository root as the Root Directory.
+4. Framework preset: Vite.
+5. Build command: `npm run build`.
+6. Output directory: `dist`.
+7. Install command: `npm install`.
+
+The checked-in `vercel.json` routes `/api/*` to `api/index.ts` and sends browser routes to `index.html`.
+
+### 2. Configure Vercel environment variables
+
+Set these for Production (and Preview if you intend to test preview deployments):
+
+- `NODE_ENV=production`
+- `ADMIN_PASSWORD`: a new, strong admin password
+- `SESSION_SECRET`: a cryptographically random secret of at least 32 bytes
+- `TRUSTKEYS_PERSISTENCE_URL=https://<project-ref>.supabase.co/functions/v1/trustkeysweb-persistence`
+- `TRUSTKEYS_PERSISTENCE_SECRET`: a long random secret shared with the Supabase Edge Function
+
+Do not expose any of these as `VITE_*` variables. Never commit their values to Git.
+
+### 3. Configure and deploy the Supabase persistence function
+
+The function source is `supabase/functions/trustkeysweb-persistence/index.ts`. Configure the Supabase Edge Function secrets:
+
+- `TRUSTKEYS_PERSISTENCE_SECRET`: exactly the same secret configured in Vercel
+- `SUPABASE_SERVICE_ROLE_KEY`: the project's server-side service-role/secret key (keep private)
+
+Supabase provides `SUPABASE_URL` to deployed Edge Functions. Deploy the function named `trustkeysweb-persistence` from the Supabase CLI:
+
+```bash
+supabase secrets set TRUSTKEYS_PERSISTENCE_SECRET="<same-random-secret>" SUPABASE_SERVICE_ROLE_KEY="<service-role-secret>" --project-ref <project-ref>
+supabase functions deploy trustkeysweb-persistence --project-ref <project-ref>
+```
+
+Ensure the `trustkeysweb_state` table exists before deployment. The function accesses it using the service role and the Vercel API accesses the function using the shared secret.
+
+### 4. Important runtime limitations to validate
+
+- Vercel functions are stateless and can run in multiple instances. The current application stores its complete application state in one JSON row (`trustkeysweb_state`). Concurrent writes from separate instances can overwrite one another. This implementation is suitable only for controlled validation until the persistence layer is made concurrency-safe or moved to normalized transactional table operations.
+- Vercel has a request-body limit for Functions (currently 4.5 MB). The existing upload endpoint sends base64-encoded file data in JSON and advertises a 10 MB file limit. Uploads near that limit will not work through this endpoint on Vercel; use direct browser-to-Supabase Storage uploads with signed upload URLs before production use.
+- Local `.data` and `/uploads` files are not durable on Vercel. Production persistence and uploads must use Supabase.
+- Admin passwords are currently stored in the application state as plaintext despite the legacy `adminPasswordHash` field name. Plan a password-hashing migration before treating the admin portal as production-hardened.
+
+### 5. Smoke tests
+
+After deploying, verify:
+
+- `GET /api/health` returns HTTP 200.
+- `GET /api/projects` returns the expected catalogue.
+- `GET /api/faqs` and `GET /api/settings` return persisted content.
+- Admin login works with the configured password.
+- A test enquiry is visible in the admin dashboard after a fresh page load.
+- Project/FAQ/settings changes survive a new function invocation.
+- Uploads are tested only after the direct-to-Storage upload flow is implemented.
+
+Do not consider the site production-ready until the concurrency, upload-size, and admin-password storage limitations above are resolved.
