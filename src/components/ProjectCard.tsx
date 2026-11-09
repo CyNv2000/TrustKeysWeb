@@ -15,17 +15,6 @@ import {
 import { Project } from '../types';
 import { addToCompare, removeFromCompare, getCompareList } from '../lib/api';
 
-// Serve appropriately sized, modern-format images for catalogue cards.
-const getOptimizedProjectImage = (src: string): string => {
-  try {
-    const imageUrl = new URL(src);
-    if (imageUrl.hostname !== 'images.unsplash.com') return src;
-    // Preserve original image URL, dimensions, crop, and quality.
-    return src;
-  } catch {
-    return src;
-  }
-};
 
 interface ProjectCardProps {
   project: Project;
@@ -102,7 +91,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, isF
       {/* Media Carousel Header */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-sky-100">
         <img
-          src={getOptimizedProjectImage(images[currentImgIdx])}
+          src={images[currentImgIdx]}
           alt={`${project.title} - ${project.area}`}
           width={800}
           height={600}
