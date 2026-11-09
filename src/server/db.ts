@@ -360,12 +360,8 @@ class LocalDatabase {
     }
 
     if (filters?.hasParking) {
-      // This checkbox specifically promises reserved covered parking, not merely any parking.
-      list = list.filter(p => {
-        const parking = String(p.parking || '').trim().toLowerCase();
-        return /covered|stilt|podium|garage|reserved|basement|mechanical|stack(?:ed)?/.test(parking) &&
-          !/no parking|without parking|not available|\bnone\b|\bn\/a\b/.test(parking);
-      });
+      // Match any parking description, regardless of letter case.
+      list = list.filter(p => /parking/i.test(String(p.parking || '')));
     }
 
     if (filters?.hasBalcony) {
