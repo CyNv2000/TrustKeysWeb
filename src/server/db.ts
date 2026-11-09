@@ -393,7 +393,10 @@ class LocalDatabase {
 
     if (filters?.possessionMonth && /^\d{4}-(0[1-9]|1[0-2])$/.test(filters.possessionMonth)) {
       const selectedMonth = filters.possessionMonth;
-      list = list.filter(project => getProjectPossessionMonth(project) >= selectedMonth);
+      list = list.filter(project => {
+        const projectMonth = getProjectPossessionMonth(project);
+        return Boolean(projectMonth) && projectMonth <= selectedMonth;
+      });
     }
 
     // Sorting
