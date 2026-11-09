@@ -84,61 +84,6 @@ export const ResalePage: React.FC = () => {
             Navigating secondary market residential transactions with comprehensive 30-year title searches, society transfer guidance, and transparent escrow facilitation.
           </p>
         </div>
-
-        {/* 5-Step Resale Process Roadmap */}
-        <section className="bg-white rounded-3xl p-8 sm:p-10 border border-stone-200 shadow-sm space-y-8">
-          <div className="text-center max-w-xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-widest text-gold-800">
-              Transparent Framework
-            </span>
-            <h2 className="font-serif-display text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
-              The 5-Step Resale Verification Process
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-            {[
-              {
-                step: '01',
-                title: '30-Year Title Search',
-                desc: 'Independent advocate verification of chain of title deeds, Index II records, and encumbrance certificates.'
-              },
-              {
-                step: '02',
-                title: 'Society NOC & Dues Audit',
-                desc: 'Confirmation of co-operative housing society share certificates, pending dues, transfer fee bylaws, and NOCs.'
-              },
-              {
-                step: '03',
-                title: 'Bank Valuation & Payoff',
-                desc: 'Facilitating existing loan foreclosure letters, escrow accounts, and seamless fresh mortgage clearances.'
-              },
-              {
-                step: '04',
-                title: 'Agreement for Sale',
-                desc: 'Carefully structured legal drafting protecting buyer advances and ensuring unconditional seller obligations.'
-              },
-              {
-                step: '05',
-                title: 'Sub-Registrar Registration',
-                desc: 'End-to-end assistance at Mumbai Sub-Registrar offices for stamp duty, registration, and key handover.'
-              }
-            ].map((s) => (
-              <div key={s.step} className="p-5 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-3">
-                <span className="font-mono text-2xl font-bold text-gold-700 block">
-                  {s.step}
-                </span>
-                <h3 className="font-serif-display text-base font-bold text-stone-900">
-                  {s.title}
-                </h3>
-                <p className="text-xs text-stone-600 leading-relaxed">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Form & Direct Contact Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
@@ -347,29 +292,6 @@ export const ResalePage: React.FC = () => {
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
-
-            {/* Advisory Guarantee Box */}
-            <div className="bg-white rounded-3xl p-6 border border-stone-200 shadow-sm space-y-3">
-              <h4 className="font-serif-display text-lg font-bold text-stone-900 flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-gold-600" />
-                The TrustKeys Resale Guarantee
-              </h4>
-              <ul className="space-y-2 text-xs text-stone-600">
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0 mt-1.5" />
-                  <span><strong>Zero Disputed Titles:</strong> We decline properties with unclear ancestral succession or pending litigation.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0 mt-1.5" />
-                  <span><strong>Accurate Carpet Verification:</strong> Physical on-ground measurement before token payment.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0 mt-1.5" />
-                  <span><strong>Escrow Protection:</strong> Advance tokens held in institutional escrow accounts until title clearance.</span>
-                </li>
-              </ul>
-            </div>
-
           </div>
 
         </div>
