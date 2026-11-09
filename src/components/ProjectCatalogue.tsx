@@ -581,9 +581,10 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                   />
                 </div>
 
-                <label htmlFor="possession-month-filter" className="block text-xs font-semibold text-stone-700 uppercase mb-2">
-                  Possession Month &amp; Year
+                <label htmlFor="possession-month-filter" className="block text-xs font-semibold text-stone-700 uppercase mb-1">
+                  Possession By (Month &amp; Year)
                 </label>
+                <p className="text-[11px] text-stone-500 mb-2">Shows projects with possession on or before the selected month.</p>
                 <div className="grid grid-cols-2 gap-2 mb-4">
                   <select
                     value={possessionMonthFilter}
