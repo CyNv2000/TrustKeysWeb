@@ -98,35 +98,6 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span>Speak to Tejas Shah (Principal Advisor)</span>
               </button>
             </div>
-
-            {/* Quick Metrics */}
-            <div className="pt-8 border-t border-gold-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-gold-200/80 shadow-xs">
-                <span className="font-serif-display text-2xl sm:text-3xl font-bold text-gold-700 block">
-                  ₹450 Cr+
-                </span>
-                <span className="text-xs text-slate-600 font-medium">Transacted Advisory</span>
-              </div>
-              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-gold-200/80 shadow-xs">
-                <span className="font-serif-display text-2xl sm:text-3xl font-bold text-slate-900 block">
-                  100%
-                </span>
-                <span className="text-xs text-slate-600 font-medium">RERA Title Audits</span>
-              </div>
-              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-gold-200/80 shadow-xs">
-                <span className="font-serif-display text-2xl sm:text-3xl font-bold text-slate-900 block">
-                  18+ Yrs
-                </span>
-                <span className="text-xs text-slate-600 font-medium">Western Suburbs Focus</span>
-              </div>
-              <div className="bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-gold-200/80 shadow-xs">
-                <span className="font-serif-display text-2xl sm:text-3xl font-bold text-gold-700 block">
-                  0
-                </span>
-                <span className="text-xs text-slate-600 font-medium">Litigation Record</span>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
