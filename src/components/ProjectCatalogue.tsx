@@ -621,7 +621,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                       onChange={(e) => setHasParkingOnly(e.target.checked)}
                       className="rounded text-gold-600 focus:ring-gold-500 w-4 h-4"
                     />
-                    <span>Must include reserved covered parking</span>
+                    <span>Must include parking</span>
                   </label>
                   <label className="flex items-center gap-2 text-xs text-stone-700 cursor-pointer">
                     <input
