@@ -20,12 +20,8 @@ const getOptimizedProjectImage = (src: string): string => {
   try {
     const imageUrl = new URL(src);
     if (imageUrl.hostname !== 'images.unsplash.com') return src;
-    imageUrl.searchParams.set('auto', 'format');
-    imageUrl.searchParams.set('fit', 'crop');
-    imageUrl.searchParams.set('w', '800');
-    imageUrl.searchParams.set('h', '600');
-    imageUrl.searchParams.set('q', '65');
-    return imageUrl.toString();
+    // Preserve original image URL, dimensions, crop, and quality.
+    return src;
   } catch {
     return src;
   }
