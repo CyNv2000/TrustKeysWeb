@@ -15,6 +15,22 @@ import {
 import { Project } from '../types';
 import { addToCompare, removeFromCompare, getCompareList } from '../lib/api';
 
+// Serve appropriately sized, modern-format images for catalogue cards.
+const getOptimizedProjectImage = (src: string): string => {
+  try {
+    const imageUrl = new URL(src);
+    if (imageUrl.hostname !== 'images.unsplash.com') return src;
+    imageUrl.searchParams.set('auto', 'format');
+    imageUrl.searchParams.set('fit', 'crop');
+    imageUrl.searchParams.set('w', '800');
+    imageUrl.searchParams.set('h', '600');
+    imageUrl.searchParams.set('q', '65');
+    return imageUrl.toString();
+  } catch {
+    return src;
+  }
+};
+
 interface ProjectCardProps {
   project: Project;
   onSelect: (slug: string) => void;
@@ -90,11 +106,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, isF
       {/* Media Carousel Header */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-sky-100">
         <img
-          src={images[currentImgIdx]}
+          src={getOptimizedProjectImage(images[currentImgIdx])}
           alt={`${project.title} - ${project.area}`}
           width={800}
-          height={500}
+          height={600}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
           loading={isFirst && currentImgIdx === 0 ? 'eager' : 'lazy'}
+          fetchPriority={isFirst && currentImgIdx === 0 ? 'high' : 'auto'}
           decoding="async"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
