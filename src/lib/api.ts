@@ -63,7 +63,7 @@ export interface ProjectQuery {
   minArea?: number;
   maxArea?: number;
   amenities?: string[];
-  hasParking?: boolean;
+  parkingTypes?: string[];
   hasBalcony?: boolean;
   possession?: string;
   possessionMonth?: string;
@@ -131,7 +131,7 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
   if (query.minArea) params.set('minArea', String(query.minArea));
   if (query.maxArea) params.set('maxArea', String(query.maxArea));
   if (query.amenities && query.amenities.length > 0) params.set('amenities', query.amenities.join(','));
-  if (query.hasParking) params.set('hasParking', 'true');
+  if (query.parkingTypes && query.parkingTypes.length > 0) params.set('parkingTypes', query.parkingTypes.join(','));
   if (query.hasBalcony) params.set('hasBalcony', 'true');
   if (query.possession && query.possession !== 'all') params.set('possession', query.possession);
   if (query.possessionMonth) params.set('possessionMonth', query.possessionMonth);
@@ -173,8 +173,11 @@ export async function fetchProjects(query: ProjectQuery = {}): Promise<ProjectsR
         (p.amenities || []).some(available => available.toLowerCase().includes(required.toLowerCase()))
       ));
     }
-    if (query.hasParking) {
-      list = list.filter(p => /parking/i.test(String(p.parking || '')));
+    if (query.parkingTypes && query.parkingTypes.length > 0) {
+      list = list.filter(p => {
+        const parkingText = [p.parking, ...(p.configurations || []).map(config => config.parking)].filter(Boolean).join(' ').toLowerCase();
+        return query.parkingTypes!.some(type => parkingText.includes(type.toLowerCase()));
+      });
     }
     if (query.hasBalcony) {
       list = list.filter(p => {
