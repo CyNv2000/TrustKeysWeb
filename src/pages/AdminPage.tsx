@@ -295,6 +295,11 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
         ...editingProject,
         title: (editingProject.title || '').trim(),
         amenities: (editingProject.amenities || []).map(item => item.trim()).filter(Boolean),
+        parking: (editingProject.parking || '').trim().replace(/\b\w/g, character => character.toUpperCase()),
+        configurations: (editingProject.configurations || []).map(config => ({
+          ...config,
+          parking: (config.parking || '').trim().replace(/\b\w/g, character => character.toUpperCase())
+        })),
         ...(configurationAreas.length > 0 ? {
           minArea: Math.min(...configurationAreas),
           maxArea: Math.max(...configurationAreas),
@@ -962,7 +967,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ initialTab = 'projects' })
                       <input
                         type="text"
                         value={editingProject.parking || ''}
-                        onChange={(e) => setEditingProject({ ...editingProject, parking: e.target.value })}
+                        onChange={(e) => setEditingProject({ ...editingProject, parking: e.target.value.replace(/\b\w/g, character => character.toUpperCase()) })}
                         placeholder="e.g. Covered podium parking"
                         className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs"
                       />
