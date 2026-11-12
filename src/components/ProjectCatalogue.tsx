@@ -23,6 +23,7 @@ interface ProjectCatalogueProps {
 }
 
 const BHK_OPTIONS = ['All', '1 BHK', '2 BHK', '3 BHK', '4 BHK', 'Jodi'];
+const PARKING_TYPE_OPTIONS = ['Stilt Parking', 'Covered Parking', 'Podium Surface Parking', 'Podium Stack Parking', 'Puzzle Parking', 'Mechanised Parking', 'Tower Parking', 'Ramp Surface Parking', 'Ramp Stack Parking', 'Lift Surface Parking', 'Lift Stack Parking', 'Stack Parking'];
 const POSSESSION_MONTHS = [
   { value: '01', label: 'January' },
   { value: '02', label: 'February' },
@@ -68,7 +69,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>(presetCategory ? [presetCategory] : []);
   const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]);
-  const [hasParkingOnly, setHasParkingOnly] = useState(false);
+  const [selectedParkingTypes, setSelectedParkingTypes] = useState<string[]>([]);
   const [hasBalconyOnly, setHasBalconyOnly] = useState(false);
   const [minPriceInput, setMinPriceInput] = useState<number | undefined>(undefined);
   const [maxPriceInput, setMaxPriceInput] = useState<number | undefined>(undefined);
@@ -169,7 +170,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
         minArea: minAreaInput,
         maxArea: maxAreaInput,
         amenities: selectedAmenities,
-        hasParking: hasParkingOnly,
+        parkingTypes: selectedParkingTypes,
         hasBalcony: hasBalconyOnly,
         possession: possessionFilter,
         possessionMonth: possessionMonthFilter && possessionYearFilter ? possessionYearFilter + '-' + possessionMonthFilter : undefined,
@@ -253,7 +254,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     budgetTier,
     selectedCategories,
     selectedAmenities,
-    hasParkingOnly,
+    selectedParkingTypes,
     hasBalconyOnly,
     minAreaInput,
     maxAreaInput,
@@ -280,7 +281,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     setBudgetTier('all');
     setSelectedCategories([]);
     setSelectedAmenities([]);
-    setHasParkingOnly(false);
+    setSelectedParkingTypes([]);
     setHasBalconyOnly(false);
     setMinPriceInput(undefined);
     setMaxPriceInput(undefined);
@@ -301,7 +302,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     if (budgetTier !== 'all') count++;
     if (selectedCategories.length > 0) count += selectedCategories.length;
     if (selectedAmenities.length > 0) count += selectedAmenities.length;
-    if (hasParkingOnly) count++;
+    count += selectedParkingTypes.length;
     if (hasBalconyOnly) count++;
     if (debouncedSearch) count++;
     return count;
@@ -315,7 +316,7 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
     budgetTier,
     selectedCategories,
     selectedAmenities,
-    hasParkingOnly,
+    selectedParkingTypes,
     hasBalconyOnly,
     debouncedSearch
   ]);
@@ -614,15 +615,22 @@ export const ProjectCatalogue: React.FC<ProjectCatalogueProps> = ({
                   Key Specifications
                 </label>
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2 text-xs text-stone-700 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={hasParkingOnly}
-                      onChange={(e) => setHasParkingOnly(e.target.checked)}
-                      className="rounded text-gold-600 focus:ring-gold-500 w-4 h-4"
-                    />
-                    <span>Must include parking</span>
-                  </label>
+                  <div>
+                    <p className="text-[11px] font-semibold text-stone-600 mb-2">Parking Type</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {PARKING_TYPE_OPTIONS.map((parkingType) => {
+                        const isSelected = selectedParkingTypes.includes(parkingType);
+                        return (
+                          <label key={parkingType} className="flex items-center gap-2 text-xs text-stone-700 cursor-pointer">
+                            <input type="checkbox" checked={isSelected}
+                              onChange={() => setSelectedParkingTypes(current => isSelected ? current.filter(type => type !== parkingType) : [...current, parkingType])}
+                              className="rounded text-gold-600 focus:ring-gold-500 w-4 h-4" />
+                            <span>{parkingType}</span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
                   <label className="flex items-center gap-2 text-xs text-stone-700 cursor-pointer">
                     <input
                       type="checkbox"
