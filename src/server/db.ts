@@ -274,7 +274,7 @@ class LocalDatabase {
     minArea?: number;
     maxArea?: number;
     amenities?: string[];
-    hasParking?: boolean;
+    parkingTypes?: string[];
     hasBalcony?: boolean;
     possession?: string;
     possessionMonth?: string;
@@ -359,9 +359,12 @@ class LocalDatabase {
       });
     }
 
-    if (filters?.hasParking) {
-      // Match any parking description, regardless of letter case.
-      list = list.filter(p => /parking/i.test(String(p.parking || '')));
+    if (filters?.parkingTypes && filters.parkingTypes.length > 0) {
+      const requiredParkingTypes = filters.parkingTypes.map(value => value.trim().toLowerCase()).filter(Boolean);
+      list = list.filter(p => {
+        const parkingText = [p.parking, ...(p.configurations || []).map(config => config.parking)].filter(Boolean).join(' ').toLowerCase();
+        return requiredParkingTypes.some(required => parkingText.includes(required));
+      });
     }
 
     if (filters?.hasBalcony) {
