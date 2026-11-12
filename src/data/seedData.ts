@@ -62,7 +62,7 @@ export const initialProjects: Project[] = [
       'EV Charging Stations',
       'Acoustic Double Glazing'
     ],
-    parking: '2 to 4 Reserved Covered Stilt',
+    parking: '2 To 4 Reserved Covered Stilt',
     balcony: 'Expansive Sundecks overlooking Pali Hill greens',
     totalFloors: 18,
     vastuNotes: 'North-East oriented entry doors, kitchens positioned in Agni quadrant, master suites anchored in South-West stability zone.',
@@ -136,7 +136,7 @@ export const initialProjects: Project[] = [
       'Banquet Hall & Cafe',
       'EV Charging Bays'
     ],
-    parking: '1 to 2 Covered Multi-level Podium',
+    parking: '1 To 2 Covered Multi-Level Podium',
     balcony: 'Step-out balconies with panoramic Western views',
     totalFloors: 34,
     vastuNotes: '100% compliant East and North entrance alignments. Vastu certified layout ensuring abundance and peace.',
@@ -209,7 +209,7 @@ export const initialProjects: Project[] = [
       'Electric Vehicle Fast Chargers',
       'Smart Home Automation'
     ],
-    parking: '2 to 3 Covered Basement Parking Slots',
+    parking: '2 To 3 Covered Basement Parking Slots',
     balcony: 'Sunlit sit-out sundecks with clear skyline views',
     totalFloors: 32,
     vastuNotes: 'Optimal Ishanya (North-East) water placement and Nairutya master chambers.',
@@ -279,7 +279,7 @@ export const initialProjects: Project[] = [
       'Wellness Pavilion & Sauna',
       'High Security Biometrics'
     ],
-    parking: '2 to 3 Hydraulic Stacked and Stilt',
+    parking: '2 To 3 Hydraulic Stacked And Stilt',
     balcony: 'Deep oceanview sundecks with glass balustrades',
     totalFloors: 11,
     vastuNotes: 'Harmonious water-element orientation facing Arabian sea to invoke continuous wealth and vitality.',
@@ -419,7 +419,7 @@ export const initialProjects: Project[] = [
       'Covered Heated Spa',
       'Automated Valet Retrieval'
     ],
-    parking: '2 to 3 Covered Reserved Stilt',
+    parking: '2 To 3 Covered Reserved Stilt',
     balcony: 'Dual covered sundecks with teakwood deck flooring',
     totalFloors: 14,
     vastuNotes: 'North-East entrance, kitchen in Agneya (South-East), Master Suite in Nairutya (South-West).',
@@ -490,7 +490,7 @@ export const initialProjects: Project[] = [
       'Co-working Lounge with High-speed Wi-Fi',
       'Electric Vehicle Charging Stations'
     ],
-    parking: '1 to 2 Covered Multi-level Podium',
+    parking: '1 To 2 Covered Multi-Level Podium',
     balcony: 'Wide sundecks with unhindered views over green canopy',
     totalFloors: 38,
     vastuNotes: 'Rectangular plot geometry ensuring balanced prana energy throughout all residential zones.',
@@ -559,7 +559,7 @@ export const initialProjects: Project[] = [
       'High-Speed Elevators with Biometric Security',
       'EV Car Charging Points'
     ],
-    parking: '2 to 3 Covered Stilt',
+    parking: '2 To 3 Covered Stilt',
     balcony: 'Expansive private sundecks with skyline views',
     totalFloors: 35,
     vastuNotes: '100% Vastu verified with northeast water tanks and east-facing balconies.',
@@ -639,7 +639,7 @@ export const initialProjects: Project[] = [
       'Fitness Gym & Yoga Room',
       'Intercom and Video Door Phone'
     ],
-    parking: 'Puzzle and Covered Stilt Parking',
+    parking: 'Puzzle And Covered Stilt Parking',
     balcony: 'Open view sitouts overlooking Mahavir Nagar',
     totalFloors: 22,
     vastuNotes: 'Pure North-facing and East-facing doors with dedicated clean North-East pooja corner.',
@@ -777,7 +777,7 @@ export const initialProjects: Project[] = [
       'Smart Fingerprint Access',
       'Silent DG Backup'
     ],
-    parking: '2 to 3 Covered Reserved Stilt',
+    parking: '2 To 3 Covered Reserved Stilt',
     balcony: 'Expansive private sundecks facing the Arabian Sea',
     totalFloors: 12,
     vastuNotes: 'Auspicious East & North ventilation pathways with sea alignment.',
@@ -846,7 +846,7 @@ export const initialProjects: Project[] = [
       '24/7 Manned Security',
       'High-Speed Elevators'
     ],
-    parking: '1 to 2 Covered Stilt',
+    parking: '1 To 2 Covered Stilt',
     balcony: 'Flowerbed balconies overlooking quiet green residential lanes',
     totalFloors: 14,
     vastuNotes: 'Compliant Ishanya and Agneya quadrants with peaceful energy flow.',
